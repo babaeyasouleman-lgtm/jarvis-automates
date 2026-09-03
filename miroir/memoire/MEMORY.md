@@ -9,6 +9,6 @@
 - [Jamais ancrer la valeur sur le temps](jamais-ancrer-la-valeur-sur-le-temps.md) — ne jamais dire combien de temps un livrable a pris, ni chez un prospect ni chez un client.
 - [Coffre Obsidian second cerveau](second-brain-obsidian.md) — emplacement `C:\Obsidian\Second Brain`, structure, et synchro iPhone non résolue.
 - [Six structures, une paie](souleman-six-structures.md) — ce qu'il porte, et pourquoi son emploi chez iA conditionne sa résidence permanente.
-- [Automatisations du coffre](coffre-automatisations.md) — le filet horaire et le bibliothécaire nocturne, plus les deux pièges Windows qui les font échouer en silence.
+- [Automatisations du coffre](coffre-automatisations.md) — trois tâches Windows, filet, bibliothécaire avec extracteur sur Sonnet, filet des automates vers jarvis-automates, plus les pièges Windows.
 - [Cagnotte live Gala MLM](cagnotte-live-gala-mlm.md) — l'appli du gala du 30 août 2026, et les valeurs qui manquent encore dans config.json.
 - [Archives Portraits homonymes](archives-portraits-homonymes.md) — deux zips du même nom, deux clients différents, vérifier par empreinte MD5.
