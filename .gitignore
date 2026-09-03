@@ -1,0 +1,16 @@
+# Depot jarvis-automates. Racine C:\Obsidian.
+# Le coffre a son propre depot, second-brain. On ne le suit pas ici.
+Second Brain/
+
+# Ce qui tourne et se regenere a chaque passage
+*/journal*.log
+*/travail/
+*/contexte.txt
+__pycache__/
+*.pyc
+
+# Le miroir des skills : jamais de dependances ni de cles
+miroir/**/node_modules/
+miroir/**/*.local.*
+miroir/**/.env
+miroir/**/.env.*

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{NOM}}</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family={{FONT_Q}}&display=swap" rel="stylesheet">
+<!--
+  GABARIT BATIMENT  ·  planche D2 Sphera&Live (atelier suisse, variante sombre)
+  Dispositifs repris: etiquette 01/ a barre oblique · panneau encastre portant le nom ·
+  grappe de cartes flottantes · titre bicolore.
+  Adaptation: les cartes passent en HAUT a droite. En bas a droite elles seraient
+  masquees par le telephone de la composition.
+-->
+<style>
+:root{
+  --accent:{{ACCENT}}; --sur-accent:{{SUR_ACCENT}}; --accent-clair:{{ACCENT_CLAIR}};
+  --champ:{{CHAMP}}; --champ-2:{{CHAMP_2}}; --papier:{{PAPIER}};
+  --encre:{{ENCRE}}; --gris:{{GRIS}}; --filet:{{FILET}};
+  --tt:'{{FONT_TITRE}}'; --tc:'{{FONT_CORPS}}';
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--papier);color:var(--encre);
+  font:400 16px/1.6 var(--tc),-apple-system,Segoe UI,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+.marge{padding-left:max(20px,calc(50vw - 692px));padding-right:max(20px,calc(50vw - 692px))}
+
+/* ---- barre ---- */
+header{background:var(--papier)}
+.bar{height:76px;display:flex;align-items:center;gap:34px}
+.bar .mark{display:flex;align-items:center;gap:11px;flex-shrink:0}
+/* logo dessine en clair: il lui faut son propre fond sombre, sinon il disparait */
+.bar .mark.chip{background:var(--encre);border-radius:9px;padding:8px 13px}
+.bar .mark img{height:{{LOGO_H}}px;width:auto;max-width:200px;object-fit:contain;display:block}
+.bar .mark b{font-family:var(--tt);font-weight:700;font-size:17px;letter-spacing:-.01em;
+  line-height:1.05;max-width:190px}
+nav{margin:0 auto;display:flex;gap:28px}
+nav a{color:var(--encre);opacity:.72;text-decoration:none;font-size:13.5px;font-weight:500}
+nav a:hover{opacity:1}
+.droite{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.lang{display:flex;gap:1px;background:var(--filet);border-radius:100px;overflow:hidden}
+.lang span{padding:6px 12px;font-size:11.5px;font-weight:600;background:var(--papier);
+  letter-spacing:.04em}
+.lang .on{background:var(--encre);color:var(--papier)}
+.pil{display:inline-flex;align-items:center;gap:9px;background:var(--encre);color:var(--papier);
+  border-radius:100px;padding:12px 20px;font-size:13.5px;font-weight:600;text-decoration:none;
+  white-space:nowrap}
+.pil i{width:6px;height:6px;border-radius:50%;background:var(--accent-clair);display:block}
+
+/* ---- panneau ---- */
+.scene{padding-bottom:22px}
+.panneau{position:relative;overflow:hidden;border-radius:16px;background:var(--champ);
+  min-height:calc(100svh - 76px - 132px);display:flex;flex-direction:column;
+  justify-content:space-between;color:#fff}
+.panneau.photo::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,rgba(8,9,10,.90) 4%,rgba(8,9,10,.60) 42%,rgba(8,9,10,.20) 78%)}
+.panneau img.fond{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.panneau.sans::before{content:"";position:absolute;inset:0;opacity:.5;
+  background:radial-gradient(78% 62% at 8% 96%,{{HALO}} 0%,transparent 62%)}
+.dedans{position:relative;z-index:3;display:flex;justify-content:space-between;
+  align-items:flex-start;gap:26px;padding:30px 32px}
+.bas{position:relative;z-index:3;padding:0 32px 34px}
+
+.etiq{font-family:var(--tt);font-size:12.5px;font-weight:500;letter-spacing:.04em;
+  color:rgba(255,255,255,.62);white-space:nowrap}
+.etiq b{color:#fff;font-weight:500}
+
+/* grappe de cartes, en haut a droite */
+.cartes{display:flex;gap:11px;align-items:stretch}
+.carte{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);
+  border-radius:11px;padding:13px 16px;backdrop-filter:blur(7px);min-width:0}
+.carte u{display:block;text-decoration:none;font-size:10.5px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.60);margin-bottom:6px}
+.carte p{font-family:var(--tt);font-size:15px;font-weight:600;line-height:1.25;white-space:nowrap}
+.carte.tel{background:var(--accent);border-color:transparent}
+.carte.tel u{color:{{SUR_ACCENT_DOUX}}}
+.carte.tel p{color:var(--sur-accent);font-size:21px;letter-spacing:-.01em}
+
+h1{font-family:var(--tt);font-weight:600;letter-spacing:-.025em;line-height:1.03;
+  font-size:clamp(34px,{{H1_VW}}vw,{{H1_MAX}}px);max-width:15ch}
+h1 span{color:rgba(255,255,255,.52)}
+.nomgeant{font-family:var(--tt);font-weight:600;letter-spacing:-.03em;line-height:.94;
+  font-size:clamp(38px,{{H1_VW}}vw,{{H1_MAX}}px);text-transform:{{CASSE_NOM}}}
+.sous{margin-top:15px;font-size:15.5px;color:rgba(255,255,255,.74);max-width:52ch}
+.actes{margin-top:26px;display:flex;flex-wrap:wrap;gap:11px}
+.b1{background:#fff;color:#111;border-radius:100px;padding:14px 24px;font-size:14px;
+  font-weight:600;text-decoration:none;white-space:nowrap}
+.b2{border:1px solid rgba(255,255,255,.34);color:#fff;border-radius:100px;padding:14px 24px;
+  font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap}
+
+/* ---- amorce de la section 02, coupee par le cadre ---- */
+.amorce{padding:26px 0 60px;display:flex;align-items:flex-start;gap:34px}
+.amorce .et{font-family:var(--tt);font-size:12.5px;font-weight:500;color:var(--gris);
+  white-space:nowrap;padding-top:6px}
+/* une seule ligne: la coupe du cadre doit tomber sur du vide, jamais au milieu d'un mot */
+.amorce h2{font-family:var(--tt);font-weight:600;font-size:clamp(17px,1.75vw,25px);
+  letter-spacing:-.02em;line-height:1.15;white-space:nowrap}
+.amorce h2 span{color:var(--gris)}
+.puces{margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;padding-top:4px}
+.puces s{text-decoration:none;border:1px solid var(--filet);border-radius:100px;
+  padding:8px 15px;font-size:12.5px;font-weight:500;white-space:nowrap}
+.puces em{font-style:normal;color:var(--gris);font-size:12px}
+
+/* ---- marques S-WEB ---- */
+#wm{position:fixed;inset:0;z-index:900;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='240' viewBox='0 0 340 240'%3E%3Ctext x='0' y='130' transform='rotate(-30 0 130)' font-family='Helvetica,Arial,sans-serif' font-size='27' font-weight='700' letter-spacing='3' fill='%23808080' fill-opacity='0.085'%3ES-WEB AGENCY%3C/text%3E%3C/svg%3E")}
+#badge{position:fixed;right:13px;bottom:13px;z-index:901;background:var(--encre);color:var(--papier);
+  border-radius:6px;padding:7px 12px;font-size:11.5px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;pointer-events:none}
+
+@media(max-width:900px){
+  .marge{padding-left:18px;padding-right:18px}
+  nav,.lang{display:none}
+  .bar{height:64px;gap:12px}
+  .pil{margin-left:auto;padding:10px 15px;font-size:13px}
+  .panneau{min-height:calc(100svh - 64px - 74px);border-radius:13px}
+  .dedans{flex-direction:column;padding:20px 20px 0;gap:16px}
+  .cartes{width:100%}
+  .carte{flex:1 1 0;min-width:0}
+  .carte p{font-size:13.5px;white-space:normal}
+  .carte.tel p{font-size:18px}
+  .bas{padding:0 20px 24px}
+  .sous{margin-top:12px;font-size:14.5px}
+  .actes{margin-top:18px}
+  .amorce{flex-wrap:wrap;gap:14px;padding:20px 0 40px}
+  .puces{margin-left:0;width:100%;flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+<div id="wm" aria-hidden="true"></div>
+<div id="badge" aria-hidden="true">S-WEB Agency</div>
+
+<header class="marge">
+  <div class="bar">
+    <span class="mark {{MARK_CHIP}}">{{MARQUE}}</span>
+    <nav>{{NAV}}</nav>
+    <span class="droite">
+      <span class="lang"><span class="on">{{L1}}</span><span>{{L2}}</span></span>
+      <a class="pil" href="tel:{{TEL_BRUT}}"><i></i>{{TEL}}</a>
+    </span>
+  </div>
+</header>
+
+<div class="scene marge">
+  <section class="panneau {{VARIANTE}}">
+    {{FOND}}
+    <div class="dedans">
+      <span class="etiq">01 / <b>{{ETIQUETTE}}</b></span>
+      <div class="cartes">
+        <div class="carte tel"><u>{{L_APPEL}}</u><p>{{TEL}}</p></div>
+        <div class="carte"><u>{{L_PREUVE}}</u><p>{{PREUVE}}</p></div>
+      </div>
+    </div>
+    <div class="bas">
+      {{TITRE}}
+      <p class="sous">{{SOUS}}</p>
+      <div class="actes">
+        <a class="b1" href="tel:{{TEL_BRUT}}">{{CTA1}}</a>
+        <a class="b2" href="#">{{CTA2}}</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="marge amorce">
+  <span class="et">02 / {{ETIQ2}}</span>
+  <h2>{{TITRE2A}} <span>{{TITRE2B}}</span></h2>
+  <div class="puces">{{PUCES}}</div>
+</div>
+</body>
+</html>

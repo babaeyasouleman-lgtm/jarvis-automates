@@ -1,0 +1,48 @@
+{
+  "_": "Fiche client. Remplis tous les champs en MAJUSCULES. Rien d'autre a modifier.",
+  "id": "",
+  "metier": "",
+  "ENTREPRISE": "",
+  "SALUTATION": "",
+  "DESCRIPTION": "",
+  "TERRITOIRE": "",
+  "HEURES": "",
+  "REASSURANCE": "",
+  "REGLE_LANGUE": "",
+  "OBJET_DU_BESOIN": "",
+  "EXEMPLE_CONFIRMATION_FR": "",
+  "EXEMPLE_CONFIRMATION_EN": "",
+  "PRIX_DEPEND_DE": "",
+  "PRIX_DEPEND_COURT": "",
+  "PRIX_DEPEND_COURT_EN": "",
+  "QUI_FIXE_LE_PRIX": "",
+  "FAITS_AUTORISES": "",
+  "URGENCES": "",
+  "ACTION_URGENCE": "",
+  "MENTION_PATRON": "",
+  "FAQ": "",
+  "_dashboard": {
+    "valeur_contrat_moyen": null,
+    "calendrier": null,
+    "numero_urgence_proprio": null
+  },
+  "vapi": {
+    "voice": {
+      "provider": "vapi",
+      "voiceId": "Savannah",
+      "version": "2",
+      "language": "fr-CA",
+      "speed": 1
+    },
+    "assistantId": null
+  },
+  "LIEU_PIEGE": "",
+  "LIEUX_NEUTRES": "",
+  "PRIX_PUBLICS": "",
+  "HORS_SERVICE": "",
+  "RESUME_METIER": "",
+  "RESUME_METIER_EN": "",
+  "DELAI_GARANTIE": "",
+  "SYMPTOMES": "",
+  "EXEMPLE_SERVICE": ""
+}

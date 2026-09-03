@@ -1,0 +1,562 @@
+{
+ "_lisezmoi": "Banque de contenu par métier. 'mots' sert à détecter le métier dans leur propre texte: ces clés sont comparées SANS accents et en minuscules, ne pas en mettre. Tout le reste est du texte qui part chez un propriétaire, donc accentué. Le titre est bicolore: 'titre_gris' est la moitié grise, 'titre_plein' la moitié pleine. Aucun tiret cadratin, aucun mot de vocabulaire IA. {ville} est remplacé à l'assemblage.",
+ "plomberie": {
+  "famille": "batiment",
+  "mots": [
+   "plomb",
+   "plombier",
+   "egout",
+   "drain",
+   "tuyau",
+   "aqueduc",
+   "chauffe-eau",
+   "plumbing",
+   "plumber",
+   "sewer",
+   "drain cleaning"
+  ],
+  "fr": {
+   "etiquette": "Urgence 24 h sur 24",
+   "titre_gris": "Un tuyau qui lâche",
+   "titre_plein": "n'attend pas lundi matin.",
+   "sous": "Dégel de conduites, déblocage d'égouts et inspection par caméra à {ville} et dans les environs. Résidentiel, commercial et industriel.",
+   "cta1": "Appeler maintenant",
+   "cta2": "Demander une intervention",
+   "nav": [
+    "Accueil",
+    "Services",
+    "Réalisations",
+    "Contact"
+   ],
+   "l_appel": "Ligne d'urgence",
+   "l_preuve": "Atelier",
+   "l_preuve_repli": "Secteur",
+   "preuve_repli": "Résidentiel et commercial",
+   "etiq2": "Services",
+   "titre2a": "Ce qui se règle",
+   "titre2b": "le jour même",
+   "puces": [
+    "Déblocage d'égout",
+    "Dégel de tuyau",
+    "Inspection par caméra",
+    "Drain français",
+    "Chauffe-eau"
+   ]
+  },
+  "en": {
+   "etiquette": "24/7 emergency line",
+   "titre_gris": "A burst pipe does not",
+   "titre_plein": "wait until Monday.",
+   "sous": "Pipe thawing, sewer unblocking and camera inspection across {ville} and the surrounding area. Residential, commercial and industrial.",
+   "cta1": "Call now",
+   "cta2": "Book a visit",
+   "nav": [
+    "Home",
+    "Services",
+    "Our work",
+    "Contact"
+   ],
+   "l_appel": "Emergency line",
+   "l_preuve": "Shop",
+   "l_preuve_repli": "Service area",
+   "preuve_repli": "Residential and commercial",
+   "etiq2": "Services",
+   "titre2a": "What gets fixed",
+   "titre2b": "the same day",
+   "puces": [
+    "Sewer unblocking",
+    "Pipe thawing",
+    "Camera inspection",
+    "Weeping tile",
+    "Water heater"
+   ]
+  }
+ },
+ "toiture": {
+  "famille": "batiment",
+  "mots": [
+   "toiture",
+   "couvreur",
+   "toit",
+   "bardeau",
+   "membrane",
+   "roofing",
+   "roofer",
+   "roof",
+   "shingle",
+   "flat roof",
+   "eavestrough"
+  ],
+  "fr": {
+   "etiquette": "Toiture résidentielle et commerciale",
+   "titre_gris": "Une toiture se juge",
+   "titre_plein": "en février, pas en juin.",
+   "sous": "Réfection, réparation d'urgence et inspection à {ville} et dans les environs. Bardeau, membrane élastomère et toit plat.",
+   "cta1": "Appeler maintenant",
+   "cta2": "Demander une inspection",
+   "nav": [
+    "Accueil",
+    "Services",
+    "Réalisations",
+    "Contact"
+   ],
+   "l_appel": "Ligne directe",
+   "l_preuve": "Bureau",
+   "l_preuve_repli": "Secteur",
+   "preuve_repli": "Résidentiel et commercial",
+   "etiq2": "Services",
+   "titre2a": "Ce qu'on refait,",
+   "titre2b": "et ce qu'on répare",
+   "puces": [
+    "Réfection complète",
+    "Réparation d'urgence",
+    "Toit plat",
+    "Inspection",
+    "Gouttières"
+   ]
+  },
+  "en": {
+   "etiquette": "Residential and commercial roofing",
+   "titre_gris": "A roof is judged in",
+   "titre_plein": "February, not in June.",
+   "sous": "Full replacement, emergency repair and inspection across {ville} and the surrounding area. Shingle, elastomeric membrane and flat roofs.",
+   "cta1": "Call now",
+   "cta2": "Book an inspection",
+   "nav": [
+    "Home",
+    "Services",
+    "Our work",
+    "Contact"
+   ],
+   "l_appel": "Direct line",
+   "l_preuve": "Office",
+   "l_preuve_repli": "Service area",
+   "preuve_repli": "Residential and commercial",
+   "etiq2": "Services",
+   "titre2a": "What we replace,",
+   "titre2b": "and what we repair",
+   "puces": [
+    "Full replacement",
+    "Emergency repair",
+    "Flat roofing",
+    "Inspection",
+    "Eavestrough"
+   ]
+  }
+ },
+ "electricite": {
+  "famille": "batiment",
+  "mots": [
+   "electric",
+   "electricien",
+   "panneau electrique",
+   "borne de recharge",
+   "filage",
+   "electrical",
+   "electrician",
+   "wiring",
+   "panel upgrade"
+  ],
+  "fr": {
+   "etiquette": "Maître électricien",
+   "titre_gris": "Un panneau à bout",
+   "titre_plein": "de souffle se voit avant.",
+   "sous": "Mise aux normes, changement de panneau et bornes de recharge à {ville} et dans les environs. Résidentiel et commercial.",
+   "cta1": "Appeler maintenant",
+   "cta2": "Demander une soumission",
+   "nav": [
+    "Accueil",
+    "Services",
+    "Réalisations",
+    "Contact"
+   ],
+   "l_appel": "Ligne directe",
+   "l_preuve": "Atelier",
+   "l_preuve_repli": "Licence",
+   "preuve_repli": "Maître électricien",
+   "etiq2": "Services",
+   "titre2a": "Ce qui se planifie,",
+   "titre2b": "et ce qui presse",
+   "puces": [
+    "Changement de panneau",
+    "Borne de recharge",
+    "Mise aux normes",
+    "Éclairage",
+    "Génératrice"
+   ]
+  },
+  "en": {
+   "etiquette": "Master electrician",
+   "titre_gris": "A panel at its limit",
+   "titre_plein": "shows the signs first.",
+   "sous": "Code upgrades, panel replacement and EV chargers across {ville} and the surrounding area. Residential and commercial.",
+   "cta1": "Call now",
+   "cta2": "Request a quote",
+   "nav": [
+    "Home",
+    "Services",
+    "Our work",
+    "Contact"
+   ],
+   "l_appel": "Direct line",
+   "l_preuve": "Shop",
+   "l_preuve_repli": "Licence",
+   "preuve_repli": "Master electrician",
+   "etiq2": "Services",
+   "titre2a": "What can be planned,",
+   "titre2b": "and what cannot wait",
+   "puces": [
+    "Panel replacement",
+    "EV charger",
+    "Code upgrade",
+    "Lighting",
+    "Generator"
+   ]
+  }
+ },
+ "excavation": {
+  "famille": "batiment",
+  "mots": [
+   "excavation",
+   "terrassement",
+   "fondation",
+   "drain francais",
+   "demolition",
+   "excavating",
+   "foundation",
+   "grading"
+  ],
+  "fr": {
+   "etiquette": "Excavation et fondation",
+   "titre_gris": "Tout ce qui tient debout",
+   "titre_plein": "commence sous terre.",
+   "sous": "Excavation, drain français, fondation et terrassement à {ville} et dans les environs.",
+   "cta1": "Appeler maintenant",
+   "cta2": "Demander une soumission",
+   "nav": [
+    "Accueil",
+    "Services",
+    "Réalisations",
+    "Contact"
+   ],
+   "l_appel": "Ligne directe",
+   "l_preuve": "Garage",
+   "l_preuve_repli": "Secteur",
+   "preuve_repli": "Résidentiel et commercial",
+   "etiq2": "Services",
+   "titre2a": "Ce qu'on creuse,",
+   "titre2b": "et ce qu'on remonte",
+   "puces": [
+    "Drain français",
+    "Fondation",
+    "Terrassement",
+    "Démolition",
+    "Déneigement"
+   ]
+  },
+  "en": {
+   "etiquette": "Excavation and foundations",
+   "titre_gris": "Everything that stands",
+   "titre_plein": "starts underground.",
+   "sous": "Excavation, weeping tile, foundations and grading across {ville} and the surrounding area.",
+   "cta1": "Call now",
+   "cta2": "Request a quote",
+   "nav": [
+    "Home",
+    "Services",
+    "Our work",
+    "Contact"
+   ],
+   "l_appel": "Direct line",
+   "l_preuve": "Yard",
+   "l_preuve_repli": "Service area",
+   "preuve_repli": "Residential and commercial",
+   "etiq2": "Services",
+   "titre2a": "What we dig,",
+   "titre2b": "and what we rebuild",
+   "puces": [
+    "Weeping tile",
+    "Foundations",
+    "Grading",
+    "Demolition",
+    "Snow removal"
+   ]
+  }
+ },
+ "construction": {
+  "famille": "batiment",
+  "mots": [
+   "construction",
+   "renovation",
+   "entrepreneur general",
+   "batiment",
+   "contractor",
+   "remodel",
+   "general contractor",
+   "design build"
+  ],
+  "fr": {
+   "etiquette": "Entrepreneur général",
+   "titre_gris": "Un chantier se juge",
+   "titre_plein": "à la date de fin.",
+   "sous": "Rénovation, agrandissement et construction neuve à {ville} et dans les environs. Résidentiel et commercial.",
+   "cta1": "Appeler maintenant",
+   "cta2": "Demander une soumission",
+   "nav": [
+    "Accueil",
+    "Services",
+    "Réalisations",
+    "Contact"
+   ],
+   "l_appel": "Ligne directe",
+   "l_preuve": "Bureau",
+   "l_preuve_repli": "Licence RBQ",
+   "preuve_repli": "Résidentiel et commercial",
+   "etiq2": "Réalisations",
+   "titre2a": "Des chantiers finis,",
+   "titre2b": "pas des rendus",
+   "puces": [
+    "Rénovation",
+    "Agrandissement",
+    "Construction neuve",
+    "Cuisine et salle de bain",
+    "Sous-sol"
+   ]
+  },
+  "en": {
+   "etiquette": "General contractor",
+   "titre_gris": "A project is judged",
+   "titre_plein": "on its finish date.",
+   "sous": "Renovation, additions and new builds across {ville} and the surrounding area. Residential and commercial.",
+   "cta1": "Call now",
+   "cta2": "Request a quote",
+   "nav": [
+    "Home",
+    "Services",
+    "Our work",
+    "Contact"
+   ],
+   "l_appel": "Direct line",
+   "l_preuve": "Office",
+   "l_preuve_repli": "Licence",
+   "preuve_repli": "Residential and commercial",
+   "etiq2": "Our work",
+   "titre2a": "Finished projects,",
+   "titre2b": "not renderings",
+   "puces": [
+    "Renovation",
+    "Additions",
+    "New builds",
+    "Kitchen and bath",
+    "Basements"
+   ]
+  }
+ },
+ "paysagement": {
+  "famille": "entretien",
+  "mots": [
+   "paysag",
+   "amenagement",
+   "pave uni",
+   "gazon",
+   "deneigement",
+   "landscap",
+   "hardscape",
+   "interlock",
+   "lawn care"
+  ],
+  "fr": {
+   "etiquette": "Aménagement et entretien",
+   "titre_gris": "Un terrain se regarde",
+   "titre_plein": "depuis la rue.",
+   "sous": "Pavé uni, murets, plantation et entretien à {ville} et dans les environs. Résidentiel et commercial.",
+   "cta1": "Appeler maintenant",
+   "cta2": "Demander une soumission",
+   "nav": [
+    "Accueil",
+    "Services",
+    "Réalisations",
+    "Contact"
+   ],
+   "l_appel": "Ligne directe",
+   "l_preuve": "Pépinière",
+   "l_preuve_repli": "Secteur",
+   "preuve_repli": "Résidentiel et commercial",
+   "etiq2": "Services",
+   "titre2a": "Ce qu'on aménage,",
+   "titre2b": "et ce qu'on entretient",
+   "puces": [
+    "Pavé uni",
+    "Muret",
+    "Plantation",
+    "Entretien",
+    "Déneigement"
+   ]
+  },
+  "en": {
+   "etiquette": "Landscaping and maintenance",
+   "titre_gris": "A property is judged",
+   "titre_plein": "from the street.",
+   "sous": "Interlock, retaining walls, planting and maintenance across {ville} and the surrounding area. Residential and commercial.",
+   "cta1": "Call now",
+   "cta2": "Request a quote",
+   "nav": [
+    "Home",
+    "Services",
+    "Our work",
+    "Contact"
+   ],
+   "l_appel": "Direct line",
+   "l_preuve": "Yard",
+   "l_preuve_repli": "Service area",
+   "preuve_repli": "Residential and commercial",
+   "etiq2": "Services",
+   "titre2a": "What we build,",
+   "titre2b": "and what we maintain",
+   "puces": [
+    "Interlock",
+    "Retaining walls",
+    "Planting",
+    "Maintenance",
+    "Snow removal"
+   ]
+  }
+ },
+ "cvac": {
+  "famille": "batiment",
+  "mots": [
+   "cvac",
+   "chauffage",
+   "climatisation",
+   "ventilation",
+   "thermopompe",
+   "echangeur d'air",
+   "echangeur",
+   "fournaise",
+   "air climatise",
+   "calorifere",
+   "qualite d'air",
+   "hvac",
+   "heating",
+   "air conditioning",
+   "heat pump",
+   "furnace",
+   "ductwork",
+   "air exchanger"
+  ],
+  "fr": {
+   "etiquette": "Appel de service",
+   "titre_gris": "Une fournaise qui lâche",
+   "titre_plein": "n'attend pas le printemps.",
+   "sous": "Chauffage, climatisation, thermopompe et échangeur d'air à {ville} et dans les environs. Résidentiel et commercial.",
+   "cta1": "Appeler maintenant",
+   "cta2": "Obtenir une soumission",
+   "nav": [
+    "Accueil",
+    "Chauffage",
+    "Climatisation",
+    "Contact"
+   ],
+   "l_appel": "Appel de service",
+   "l_preuve": "Atelier",
+   "l_preuve_repli": "Secteur",
+   "preuve_repli": "Résidentiel et commercial",
+   "etiq2": "Services",
+   "titre2a": "Ce qu'on installe,",
+   "titre2b": "et ce qu'on entretient",
+   "puces": [
+    "Fournaise et chauffage",
+    "Thermopompe",
+    "Climatisation centrale",
+    "Échangeur d'air",
+    "Ventilation",
+    "Entretien annuel"
+   ]
+  },
+  "en": {
+   "etiquette": "Service call",
+   "titre_gris": "A furnace that quits",
+   "titre_plein": "will not wait for spring.",
+   "sous": "Heating, air conditioning, heat pumps and air exchangers across {ville} and the surrounding area. Residential and commercial.",
+   "cta1": "Call now",
+   "cta2": "Request a quote",
+   "nav": [
+    "Home",
+    "Heating",
+    "Cooling",
+    "Contact"
+   ],
+   "l_appel": "Service call",
+   "l_preuve": "Shop",
+   "l_preuve_repli": "Service area",
+   "preuve_repli": "Residential and commercial",
+   "etiq2": "Services",
+   "titre2a": "What we install,",
+   "titre2b": "and what we service",
+   "puces": [
+    "Furnace and heating",
+    "Heat pump",
+    "Central air conditioning",
+    "Air exchanger",
+    "Ventilation",
+    "Yearly maintenance"
+   ]
+  }
+ },
+ "_defaut": {
+  "famille": "batiment",
+  "mots": [],
+  "fr": {
+   "etiquette": "Service local",
+   "titre_gris": "Le travail bien fait",
+   "titre_plein": "se voit de loin.",
+   "sous": "Service résidentiel et commercial à {ville} et dans les environs.",
+   "cta1": "Appeler maintenant",
+   "cta2": "Demander une soumission",
+   "nav": [
+    "Accueil",
+    "Services",
+    "Réalisations",
+    "Contact"
+   ],
+   "l_appel": "Ligne directe",
+   "l_preuve": "Bureau",
+   "l_preuve_repli": "Secteur",
+   "preuve_repli": "Résidentiel et commercial",
+   "etiq2": "Services",
+   "titre2a": "Ce qu'on fait,",
+   "titre2b": "et comment",
+   "puces": [
+    "Service 1",
+    "Service 2",
+    "Service 3"
+   ]
+  },
+  "en": {
+   "etiquette": "Local service",
+   "titre_gris": "Work done properly",
+   "titre_plein": "shows from a distance.",
+   "sous": "Residential and commercial service across {ville} and the surrounding area.",
+   "cta1": "Call now",
+   "cta2": "Request a quote",
+   "nav": [
+    "Home",
+    "Services",
+    "Our work",
+    "Contact"
+   ],
+   "l_appel": "Direct line",
+   "l_preuve": "Office",
+   "l_preuve_repli": "Service area",
+   "preuve_repli": "Residential and commercial",
+   "etiq2": "Services",
+   "titre2a": "What we do,",
+   "titre2b": "and how",
+   "puces": [
+    "Service 1",
+    "Service 2",
+    "Service 3"
+   ]
+  }
+ }
+}

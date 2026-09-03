@@ -1,0 +1,49 @@
+{
+  "_": "Client fictif, uniquement la pour prouver que le gabarit tient sans y toucher. Metier different, urgences differentes, vocabulaire different. Aucun assistant Vapi n'est cree pour lui.",
+  "id": "toitures-beaudoin",
+  "metier": "toiture",
+  "ENTREPRISE": "Toitures Beaudoin",
+  "SALUTATION": "Toitures Beaudoin, bonjour!",
+  "DESCRIPTION": "Toitures Beaudoin répare et remplace les toitures de bardeaux, refait les solins de cheminée, corrige les infiltrations et pose des membranes sur toit plat. L'entreprise fait aussi des inspections avant vente.",
+  "TERRITOIRE": "Gatineau et l'Outaouais, jusqu'à trente minutes autour de Gatineau.",
+  "HEURES": "de sept heures à dix-sept heures, du lundi au vendredi.",
+  "REASSURANCE": "Entreprise couverte par la RBQ et assurée. Garantie de dix ans sur la main-d'oeuvre pour un remplacement complet.\n\nToitures Beaudoin est dirigée par Marc Beaudoin.",
+  "REGLE_LANGUE": "Si la personne répond en anglais, tu passes à l'anglais immédiatement, dès ta phrase suivante, et tu n'en fais aucun cas. Tu ne t'excuses pas et tu ne demandes pas si elle préfère l'anglais, tu changes, c'est tout.",
+  "OBJET_DU_BESOIN": "ce qui doit être réparé ou refait",
+  "EXEMPLE_CONFIRMATION_FR": "pour une infiltration près de la cheminée à Aylmer",
+  "EXEMPLE_CONFIRMATION_EN": "for a leak near the chimney in Aylmer",
+  "PRIX_DEPEND_DE": "de la surface du toit, de sa pente, du matériau en place et de l'état de la structure",
+  "PRIX_DEPEND_COURT": "de la surface et de la pente du toit",
+  "PRIX_DEPEND_COURT_EN": "the roof size and slope",
+  "QUI_FIXE_LE_PRIX": "notre équipe",
+  "FAITS_AUTORISES": "Les heures d'ouverture, de sept heures à dix-sept heures du lundi au vendredi. Le territoire, Gatineau et l'Outaouais. La garantie de dix ans sur la main-d'oeuvre. Que l'entreprise est couverte par la RBQ et assurée.",
+  "URGENCES": "une fuite active, de l'eau qui coule dans la maison en ce moment, ou une partie de toiture arrachée par le vent",
+  "ACTION_URGENCE": "tu annonces que tu transfères à Marc tout de suite, puis tu termines l'appel. Tu ne restes pas en ligne.",
+  "MENTION_PATRON": ", ou à Marc",
+  "FAQ": "« Est-ce que vous faites les toits plats? » Oui, avec membrane.\n« Vous pouvez venir voir cette semaine? » L'équipe fixe la visite au rappel, je ne réserve pas de date.\n« Est-ce que l'estimation est gratuite? » Oui, la visite d'estimation ne coûte rien.\n« Vous faites les gouttières? » Je le note et l'équipe vous en parle au rappel.\n« Est-ce qu'on peut réparer juste une section? » Souvent oui, Marc le confirme après avoir vu le toit.",
+  "_dashboard": {
+    "commentaire": "Champs non utilises par l'agent vocal.",
+    "valeur_contrat_moyen": 8700,
+    "calendrier": null,
+    "numero_urgence_proprio": null
+  },
+  "vapi": {
+    "voice": {
+      "provider": "vapi",
+      "voiceId": "Savannah",
+      "version": "2",
+      "language": "fr-CA",
+      "speed": 1
+    },
+    "assistantId": null
+  },
+  "LIEU_PIEGE": "Aylmer",
+  "LIEUX_NEUTRES": "Gatineau, Hull, Aylmer, Buckingham, Chelsea, Wakefield, Ottawa, Orléans, Kanata",
+  "PRIX_PUBLICS": "Aucun prix n'est publié pour cette entreprise. Tu n'en donnes donc aucun, sous aucune forme.",
+  "HORS_SERVICE": "Toitures Beaudoin ne fait pas les gouttières, ni le revêtement extérieur, ni les fenêtres, ni le déneigement de toiture, ni l'isolation du grenier. Pas de travaux intérieurs, pas de réparation de plafond ni de dégât d'eau à l'intérieur, même causé par le toit.",
+  "RESUME_METIER": "la toiture",
+  "RESUME_METIER_EN": "roofing",
+  "DELAI_GARANTIE": "dix ans sur la main-d'oeuvre",
+  "SYMPTOMES": "Une tache brune au plafond, de l'eau qui coule quand il pleut: une infiltration, souvent un solin.\nDes bardeaux dans la cour après un coup de vent: une réparation.\nLe toit a plus de vingt ans et la personne magasine: un remplacement.\nMaison à vendre ou en achat: une inspection.\nDe la glace au bord du toit l'hiver: à faire voir, souvent la ventilation du grenier.\nElle ne sait pas: demande l'âge du toit et si elle a vu quelque chose à l'intérieur.",
+  "EXEMPLE_SERVICE": "une réparation de solin"
+}
