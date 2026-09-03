@@ -42,21 +42,7 @@ function Get-SemaineIso([datetime]$d) {
 $maintenant = Get-Date
 $aujourdhui = $maintenant.ToString('yyyy-MM-dd')
 
-# 0. La phase 3, la note du matin.
-# Elle passe en premier, avant l extraction et avant les deux gardes plus bas.
-# Raison : une note du matin qui attend trois heures qu Obsidian se ferme n est
-# plus une note du matin, et elle ne cree qu un fichier neuf. Son propre
-# marqueur du jour la rend idempotente, les reessais de 30 minutes ne la
-# relancent pas. Elle enregistre elle-meme sa note, sans pousser.
-$matin = 'C:\Obsidian\matin\matin.ps1'
-if (Test-Path $matin) {
-    & powershell -ExecutionPolicy Bypass -File $matin
-    Note "note du matin, code $LASTEXITCODE"
-} else {
-    Note "matin.ps1 introuvable, on passe a l extraction"
-}
-
-# 0 bis. La phase 2 bis, les transcriptions Claude Code.
+# 0. La phase 2 bis, les transcriptions Claude Code.
 # Elle depose dans 00 Inbox ce que le bibliothecaire rangera juste apres.
 # Elle passe avant les deux gardes ci-dessous, volontairement : elle n ecrit
 # que des fichiers neufs, donc Obsidian ouvert ne la gene pas. Son propre

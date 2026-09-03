@@ -9,6 +9,11 @@ Second Brain/
 __pycache__/
 *.pyc
 
+# Les identifiants, ou qu'ils soient. Le pont agenda de matin/ en depose un.
+*.local.*
+.env
+.env.*
+
 # Le miroir des skills : jamais de dependances ni de cles
 miroir/**/node_modules/
 miroir/**/*.local.*
