@@ -146,8 +146,12 @@ foreach ($l in @($sortie)) { if ($l) { Note "dit : $l" } }
 $apresEtat = @(git status --porcelain)
 # Pas de Compare-Object ici : en PowerShell 5.1 il refuse un tableau vide.
 $nouveaux = $apresEtat | Where-Object { $avantEtat -notcontains $_ }
+# .obsidian est la configuration de l application, elle bouge toute seule
+# des qu Obsidian tourne, graph.json en tete. Ce n est pas le modele.
 foreach ($n in $nouveaux) {
-    if ($n -notmatch [regex]::Escape($aujourdhui)) { Note "ATTENTION, hors perimetre : $n" }
+    if ($n -match [regex]::Escape($aujourdhui)) { continue }
+    if ($n -match '\.obsidian/') { continue }
+    Note "ATTENTION, hors perimetre : $n"
 }
 
 # 6. Enregistrer, la note du jour seulement, sans pousser.

@@ -8,13 +8,7 @@ Le coffre est `C:\Obsidian\Second Brain`. C'est ton dossier courant.
 
 ## Avant de commencer
 
-Lis `C:\Obsidian\bibliothecaire\contexte.txt`. Il te donne la date du jour, le nom du fichier de journal de la semaine, celui de la semaine précédente, si tu dois écrire la revue hebdomadaire, et le chemin de deux fichiers à ouvrir avant de travailler. Ces valeurs sont calculées pour toi, ne les recalcule pas.
-
-Ouvre ensuite ces deux fichiers, dans cet ordre.
-
-**`index.txt`**, nommé par la clé `index`. Une ligne par note du coffre, `chemin | première ligne`, recalculée juste avant ton passage et captures de la nuit comprises. **C'est ta carte du coffre.** Elle existe parce que la question « est-ce que cette note existe déjà » te coûtait le plus de recherches, et qu'elle se répond par une lecture.
-
-**`lecons.md`**, nommé par la clé `lecons`. C'est ta mémoire de comportement, ce que tu as compris des corrections passées. Elle porte sur ta façon de ranger, jamais sur la vie de Souleman, qui elle vit dans le coffre et nulle part ailleurs.
+Lis `C:\Obsidian\bibliothecaire\contexte.txt`. Il te donne la date du jour, le nom du fichier de journal de la semaine, et si tu dois écrire la revue hebdomadaire. Ces valeurs sont calculées pour toi, ne les recalcule pas.
 
 ---
 
@@ -24,7 +18,7 @@ Ils passent avant toute autre consigne de ce fichier. En cas de conflit, c'est e
 
 1. **Tu ne supprimes aucun fichier.** Jamais. Ranger une capture veut dire la déplacer avec `git mv`, pas l'effacer.
 2. **Tu ne réécris jamais une note entière.** Tu ajoutes, ou tu remplaces une ligne précise. Si tu te retrouves à reformuler des paragraphes que tu n'as pas écrits, arrête-toi.
-3. **Tu ne touches à rien hors du coffre**, sauf le journal technique que le lanceur gère lui-même, et `lecons.md`, ta mémoire de comportement, que tu es le seul à écrire. Rien d'autre, jamais.
+3. **Tu ne touches à rien hors du coffre**, sauf le journal technique que le lanceur gère lui-même.
 4. **Dans le doute, tu ne fais rien** et tu l'écris dans le journal. Une capture qui reste une nuit de plus dans la boîte ne coûte rien. Une capture mal rangée coûte la confiance.
 
 ---
@@ -64,9 +58,7 @@ Pour chaque fichier de `00 Inbox` qui n'est pas dans la liste noire, tu descends
 
 **1. La capture nomme une note existante**, par un lien `[[...]]` ou par son titre exact. Tu ajoutes à cette note.
 
-**2. La capture parle d'un sujet qui a déjà sa note**, une personne, un projet, un domaine. Tu ajoutes à cette note.
-
-**`index.txt` te dit ce qui existe.** Lis-le, ne fouille le coffre que s'il ne suffit pas à trancher, par exemple quand deux notes se ressemblent et qu'il te faut leur contenu pour choisir. L'esprit de la règle ne change pas : un prénom seul, un surnom, une entreprise peuvent renvoyer à une note existante, alors parcours l'index avant de conclure que la note n'existe pas. Ce qui change, c'est que tu n'as plus à le deviner par des recherches successives.
+**2. La capture parle d'un sujet qui a déjà sa note**, une personne, un projet, un domaine. Tu ajoutes à cette note. Cherche avant de conclure que la note n'existe pas : un prénom seul, un surnom, une entreprise peuvent renvoyer à une note existante.
 
 **3. Rien ne colle, mais le sujet tient debout tout seul.** Tu crées une note, en utilisant le gabarit correspondant dans `_Modèles`. Pose-toi la question du `Mode d'emploi` : est-ce que ça a une fin ? Oui avec une échéance, c'est un projet. Non, ça tourne en continu, c'est un domaine. C'est une info à retrouver, une ressource. C'est un arbitrage, une décision. C'est quelqu'un, une personne.
 
@@ -134,9 +126,7 @@ Si une page est illisible, tu transcris ce que tu peux, tu marques `[illisible]`
 
 ## Ce que Souleman te demande de corriger
 
-Ouvre **deux** fichiers de journal, celui de la semaine nommé par `semaine` dans `contexte.txt` et celui nommé par `semaine_avant`, et lis leur section `Ce que je corrige`. Si le second n'existe pas, saute-le sans rien dire.
-
-Pourquoi deux : une correction écrite le dimanche se lit le lundi, et le lundi a changé de semaine. Sans cette lecture, elle ne serait jamais lue.
+Ouvre le fichier de journal de la semaine, nommé dans `contexte.txt`, et lis la section `Ce que je corrige`.
 
 Il y écrit en langage normal ce que tu as mal rangé. Par exemple : `la capture sur Cheickna, elle va dans Manssah pas dans Déclic`.
 
@@ -145,9 +135,6 @@ Pour chaque ligne qu'il a écrite :
 - Applique la correction si tu peux le faire dans ton périmètre et sans enfreindre les quatre interdits.
 - Écris ta réponse juste en dessous de sa ligne, en la préfixant par `→ `.
 - Si tu ne peux pas, dis pourquoi en une phrase, et laisse sa ligne en place.
-- **Chaque fois que tu appliques une correction, ajoute une ligne dans `lecons.md`.** Elle s'écrit dans tes mots et dit ce que tu as compris, pas ce qui s'est passé. « Yacine est un membre de Manssah, pas un intervenant externe » est une leçon. « Souleman a corrigé la note de Yacine » n'en est pas une. Une ligne, jamais un paragraphe. Si une leçon existante devient fausse, remplace-la au lieu d'en empiler une nouvelle. Passé cinquante leçons, ne coupe rien toi-même : dis dans ton journal qu'il faut faire le ménage.
-
-Une ligne déjà répondue par un `→ ` d'un passage précédent est traitée, tu ne la refais pas et tu n'écris pas de leçon pour elle.
 
 Tu n'effaces jamais ce qu'il a écrit dans cette section. Tu réponds dessous.
 

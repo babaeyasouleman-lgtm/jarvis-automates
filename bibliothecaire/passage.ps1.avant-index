@@ -23,10 +23,6 @@ $marqueur = Join-Path $base 'dernier-passage.txt'
 $journal  = Join-Path $base 'journal.log'
 $compteur = Join-Path $base 'essais.txt'
 $claude   = 'C:\Users\Administrator\.local\bin\claude.exe'
-$python   = 'C:\Users\Administrator\AppData\Local\Programs\Python\Python312\python.exe'
-$indexPy  = Join-Path $base 'index.py'
-$indexTx  = Join-Path $base 'index.txt'
-$lecons   = Join-Path $base 'lecons.md'
 $modele   = 'opus'
 # -------------------------------------------------------------------------
 
@@ -120,55 +116,21 @@ if ($LASTEXITCODE -ne 0) {
 }
 $avant = (git rev-parse --short HEAD).Trim()
 
-# 5. L index du coffre, calcule avant chaque passage.
-# Il passe apres l extraction, donc il contient deja les captures de la nuit.
-# Il repond en une lecture a la question qui coutait le plus de tours d outils :
-# est-ce que cette note existe deja ? Un index manquant ne doit jamais empecher
-# un rangement, donc un echec ici se note et le passage continue sans lui.
-$indexLignes = 0
-if (Test-Path $indexPy) {
-    if (-not (Test-Path $python)) {
-        $repli = Get-Command python -ErrorAction SilentlyContinue
-        if ($repli) { $python = $repli.Source }
-    }
-    if (Test-Path $python) {
-        & $python $indexPy $coffre $indexTx | Out-Null
-        if ($LASTEXITCODE -eq 0 -and (Test-Path $indexTx)) {
-            $indexLignes = (Get-Content $indexTx -Encoding utf8 | Measure-Object -Line).Lines
-            Note "index du coffre, $indexLignes notes"
-        } else {
-            Note "ECHEC de l index, code $LASTEXITCODE, le passage continue sans lui"
-        }
-    } else {
-        Note "index saute, python introuvable, le passage continue sans lui"
-    }
-} else {
-    Note "index.py introuvable, le passage continue sans lui"
-}
-
-# 5 bis. Ce que le bibliothecaire doit savoir, calcule ici et pas devine par lui
+# 5. Ce que le bibliothecaire doit savoir, calcule ici et pas devine par lui
 $semaine = Get-SemaineIso $maintenant
 $jourSem = [int]$maintenant.DayOfWeek        # 0 dimanche, 1 lundi
 $revue   = if ($jourSem -eq 0 -or $jourSem -eq 1) { 'oui' } else { 'non' }
 
-# La semaine d avant, parce qu une correction ecrite le dimanche se lit le
-# lundi, et que le lundi a change de semaine.
-$semaineAvant = Get-SemaineIso $maintenant.AddDays(-7)
-
 $lignes = @(
     "date=$aujourdhui",
     "semaine=$semaine",
-    "semaine_avant=$semaineAvant",
     "revue_hebdo=$revue",
-    "commit_avant=$avant",
-    "index=$indexTx",
-    "index_lignes=$indexLignes",
-    "lecons=$lecons"
+    "commit_avant=$avant"
 )
 Set-Content -Path $contexte -Value $lignes -Encoding utf8
 
 # 6. Le passage
-Note "debut du passage, commit avant $avant, semaine $semaine, avant $semaineAvant, revue $revue, index $indexLignes notes"
+Note "debut du passage, commit avant $avant, semaine $semaine, revue $revue"
 $chrono = [Diagnostics.Stopwatch]::StartNew()
 
 $sortie = & $claude -p "Lis le fichier $consigne et execute exactement ce qu il demande." --model $modele

@@ -35,6 +35,10 @@ Lis d'abord le coffre, puis assemble. Les notes ont un en-tête YAML entre deux 
 - `statut=vide` : écris `Rien au calendrier`.
 - `statut=indisponible` : écris exactement `Agenda indisponible ce matin` et continue le reste de la note. La ligne `raison=` te dit pourquoi, tu la reprends dans ton résumé, pas dans la note.
 
+Recopie le titre **exactement comme il est écrit** dans l'agenda, emoji et ponctuation compris. C'est une donnée, pas de la rédaction : les règles d'écriture plus bas ne s'appliquent pas à un titre que Souleman a lui-même tapé dans son agenda. Tu ne le traduis pas, tu ne le corriges pas, tu ne le raccourcis pas.
+
+Quand un mot du titre renvoie à une note du coffre, **pose le lien sans changer le mot**, avec un alias : `[[Centre Islamique de l'Outaouais|Mosquée]]`, jamais `[[Centre Islamique de l'Outaouais]]` à la place du mot d'origine. Le titre doit rester lisible tel qu'il apparaît dans l'agenda.
+
 N'invente jamais un rendez-vous. Ne cherche pas de contournement, ne tente aucun appel réseau, ne t'arrête pas là-dessus.
 
 ### 2. Ce que j'avais prévu hier

@@ -121,7 +121,12 @@ def main():
     print("figurer dans ses URI de redirection autorisees :")
     print("   ", REDIRECTION)
     print()
-    input("Appuie sur Entree pour ouvrir le navigateur, ou Ctrl+C pour arreter.")
+    # isatty() ment quand le script est lance depuis un shell non interactif,
+    # sous PowerShell notamment. On attrape l'EOF plutot que de s'y fier.
+    try:
+        input("Appuie sur Entree pour ouvrir le navigateur, ou Ctrl+C pour arreter.")
+    except EOFError:
+        print("(entree non interactive, on ouvre le navigateur directement)")
 
     params = {
         "client_id": c["client_id"],
@@ -142,14 +147,14 @@ def main():
     print(url)
     webbrowser.open(url)
 
-    for _ in range(120):
+    for _ in range(300):
         if recu:
             break
         threading.Event().wait(1)
     serveur.server_close()
 
     if "code" not in recu:
-        print("ECHEC : aucun code recu.", recu.get("error", "delai depasse"))
+        print("ECHEC : aucun code recu.", recu.get("error", "delai depasse, 5 minutes"))
         return 1
 
     try:
