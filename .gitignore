@@ -6,6 +6,7 @@ Second Brain/
 */journal*.log
 */travail/
 */contexte.txt
+*/agenda.txt
 __pycache__/
 *.pyc
 

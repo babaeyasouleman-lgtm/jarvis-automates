@@ -1,2 +1,0 @@
-statut=indisponible
-raison=google.local.json absent, identifiants jamais deposes
