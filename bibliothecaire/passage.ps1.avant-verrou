@@ -22,7 +22,6 @@ $contexte = Join-Path $base 'contexte.txt'
 $marqueur = Join-Path $base 'dernier-passage.txt'
 $journal  = Join-Path $base 'journal.log'
 $compteur = Join-Path $base 'essais.txt'
-$verrou   = Join-Path $base 'verrou.txt'
 $claude   = 'C:\Users\Administrator\.local\bin\claude.exe'
 $python   = 'C:\Users\Administrator\AppData\Local\Programs\Python\Python312\python.exe'
 $indexPy  = Join-Path $base 'index.py'
@@ -36,20 +35,6 @@ function Note($texte) {
     Add-Content -Path $journal -Value $ligne -Encoding utf8
 }
 
-# Le verrou n est jamais efface, seulement reecrit. Ce script ne supprime rien.
-function Verrou-Lever {
-    if (Test-Path $verrou) {
-        $garde = @(Get-Content $verrou) | Where-Object { $_ -like 'debut=*' }
-        Set-Content -Path $verrou -Value @($garde, "fin=$((Get-Date).ToString('o'))") -Encoding ascii
-    }
-}
-
-# Toute sortie passe par ici, sinon le verrou resterait pose jusqu a sa peremption.
-function Fin($code) {
-    Verrou-Lever
-    exit $code
-}
-
 function Get-SemaineIso([datetime]$d) {
     $ci = [Globalization.CultureInfo]::InvariantCulture
     $jour = [int]$ci.Calendar.GetDayOfWeek($d)
@@ -61,39 +46,7 @@ function Get-SemaineIso([datetime]$d) {
 $maintenant = Get-Date
 $aujourdhui = $maintenant.ToString('yyyy-MM-dd')
 
-# 0. Le verrou.
-# Deux passages simultanes lancent deux fois Opus, donc deux fois le cout, et
-# peuvent s ecrire l un par dessus l autre. Constate le 6 septembre 2026 : la
-# tache Windows et un lancement a la main se sont croises. Aucun degat ce
-# jour-la, le second bibliothecaire s est arrete de lui-meme au titre du
-# quatrieme interdit, celui du doute, mais rien ne l y obligeait.
-# Le verrou vaut aussi en mode Manuel, c est justement le cas qui a produit la
-# collision. Le garde du jour ne protege pas de ca : il ne se pose qu a la fin.
-# Peremption de 2 heures, sinon un passage tue net bloquerait tous les suivants.
-# Le plus long passage mesure tient en moins de 6 minutes.
-# Pour lever le verrou a la main, ouvrir verrou.txt et remplir la ligne fin=
-$peremptionH = 2
-if (Test-Path $verrou) {
-    $v = @{}
-    foreach ($l in (Get-Content $verrou)) {
-        if ($l -match '^([a-z]+)=(.*)$') { $v[$matches[1]] = $matches[2].Trim() }
-    }
-    if ($v['debut'] -and -not $v['fin']) {
-        $depuis = $null
-        try {
-            $depuis = [datetime]::Parse($v['debut'], [Globalization.CultureInfo]::InvariantCulture)
-        } catch { $depuis = $null }
-        if ($depuis -and ($maintenant - $depuis).TotalHours -lt $peremptionH) {
-            $min = [math]::Round(($maintenant - $depuis).TotalMinutes, 1)
-            Note "saute, un autre passage tourne depuis $min minutes, verrou pose a $($v['debut'])"
-            exit 0
-        }
-        Note "verrou perime, le passage precedent n a jamais fini. On repart"
-    }
-}
-Set-Content -Path $verrou -Value @("debut=$($maintenant.ToString('o'))", "fin=") -Encoding ascii
-
-# 0 bis. La phase 3, la note du matin.
+# 0. La phase 3, la note du matin.
 # Elle passe en premier, avant l extraction et avant les deux gardes plus bas.
 # Raison : une note du matin qui attend trois heures qu Obsidian se ferme n est
 # plus une note du matin, et elle ne cree qu un fichier neuf. Son propre
@@ -124,7 +77,7 @@ if (Test-Path $extraction) {
 if (-not $Manuel) {
     if ((Test-Path $marqueur) -and ((Get-Content $marqueur -TotalCount 1).Trim() -eq $aujourdhui)) {
         Note "saute, deja passe aujourd hui"
-        Fin 0
+        exit 0
     }
 }
 
@@ -145,16 +98,16 @@ if (-not $Manuel) {
         if ($refus -lt $refusMax) {
             Set-Content -Path $compteur -Value "$aujourdhui $refus" -Encoding ascii
             Note "Obsidian est ouvert, refus $refus sur $refusMax. Nouvel essai dans 30 minutes"
-            Fin 0
+            exit 0
         }
         Note "Obsidian ouvert depuis $refus essais, on range quand meme"
     }
 }
 
 # 3. Verifications
-if (-not (Test-Path $claude))   { Note "ECHEC, claude.exe introuvable"; Fin 1 }
-if (-not (Test-Path $consigne)) { Note "ECHEC, consigne.md introuvable"; Fin 1 }
-if (-not (Test-Path $coffre))   { Note "ECHEC, coffre introuvable"; Fin 1 }
+if (-not (Test-Path $claude))   { Note "ECHEC, claude.exe introuvable"; exit 1 }
+if (-not (Test-Path $consigne)) { Note "ECHEC, consigne.md introuvable"; exit 1 }
+if (-not (Test-Path $coffre))   { Note "ECHEC, coffre introuvable"; exit 1 }
 
 Set-Location $coffre
 
@@ -227,7 +180,7 @@ $duree = [math]::Round($chrono.Elapsed.TotalSeconds, 1)
 if ($code -ne 0) {
     Note "ECHEC du passage, code $code, apres $duree s"
     if ($sortie) { Note "sortie : $sortie" }
-    Fin 1
+    exit 1
 }
 
 # La sortie est un objet JSON depuis l entretien du 6 septembre 2026. Il
@@ -287,6 +240,3 @@ if (Test-Path $journal) {
     $l = Get-Content $journal
     if ($l.Count -gt 800) { $l | Select-Object -Last 500 | Set-Content -Path $journal -Encoding utf8 }
 }
-
-# 11. Lever le verrou. Fin naturelle du script, la seule qui ne passe pas par Fin().
-Verrou-Lever
