@@ -135,6 +135,21 @@ if (Test-Path $courriels) {
     Note "courriels.ps1 introuvable, on passe directement au rangement"
 }
 
+# 0 quater. La phase 4 bis, les reunions Fathom.
+# Elle passe apres les courriels et avant les deux gardes ci-dessous, pour la
+# meme raison qu eux : elle ne cree que des fichiers neufs dans 00 Inbox, donc
+# Obsidian ouvert ne la gene pas, et le bibliothecaire doit ranger dans la
+# foulee ce qu elle vient de deposer. Le verrou pose plus haut la couvre deja.
+# Son propre marqueur, son garde du jour et sa liste de reunions deja vues la
+# rendent idempotente, deux lancements le meme jour ne doublent rien.
+$reunions = 'C:\Obsidian\reunions\reunions.ps1'
+if (Test-Path $reunions) {
+    & powershell -ExecutionPolicy Bypass -File $reunions
+    Note "reunions Fathom, code $LASTEXITCODE"
+} else {
+    Note "reunions.ps1 introuvable, on passe directement au rangement"
+}
+
 # 1. Garde, deja passe aujourd hui
 if (-not $Manuel) {
     if ((Test-Path $marqueur) -and ((Get-Content $marqueur -TotalCount 1).Trim() -eq $aujourdhui)) {
