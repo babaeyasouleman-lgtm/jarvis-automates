@@ -12,3 +12,4 @@
 - [Automatisations du coffre](coffre-automatisations.md) : trois tâches Windows, le passage de nuit qui enchaîne note du matin, extracteur et bibliothécaire, le filet des automates vers jarvis-automates, et les pièges Windows.
 - [Cagnotte live Gala MLM](cagnotte-live-gala-mlm.md) — l'appli du gala du 30 août 2026, et les valeurs qui manquent encore dans config.json.
 - [Archives Portraits homonymes](archives-portraits-homonymes.md) — deux zips du même nom, deux clients différents, vérifier par empreinte MD5.
+- [Paramédika, client actif](paramedika-client-actif.md) — dépôt reçu, site en construction, et pourquoi elle ne lâche pas son GoDaddy.

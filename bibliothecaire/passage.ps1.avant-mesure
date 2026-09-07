@@ -171,7 +171,7 @@ Set-Content -Path $contexte -Value $lignes -Encoding utf8
 Note "debut du passage, commit avant $avant, semaine $semaine, avant $semaineAvant, revue $revue, index $indexLignes notes"
 $chrono = [Diagnostics.Stopwatch]::StartNew()
 
-$sortie = & $claude -p "Lis le fichier $consigne et execute exactement ce qu il demande." --model $modele --output-format json
+$sortie = & $claude -p "Lis le fichier $consigne et execute exactement ce qu il demande." --model $modele
 $code = $LASTEXITCODE
 $chrono.Stop()
 
@@ -183,31 +183,7 @@ if ($code -ne 0) {
     exit 1
 }
 
-# La sortie est un objet JSON depuis l entretien du 6 septembre 2026. Il
-# porte le texte du bibliothecaire dans result, et la mesure du passage.
-# Le chiffre qui compte est num_turns : 40 tours pour une nuit ordinaire
-# avant l index, 71 sur le gros lot du 2 septembre. Sans lui, personne ne
-# peut dire si l index a servi.
-# total_cost_usd est un equivalent, pas un debit. Ce qui tourne ici passe
-# sur le quota de l abonnement, pas sur la carte.
-# Si le format change un jour, on retombe sur le texte brut. Une mesure
-# perdue ne doit jamais faire perdre un passage.
-$brut = (@($sortie) -join "")
-$dit = $brut
-$j = $null
-try { $j = $brut | ConvertFrom-Json } catch { $j = $null }
-if ($j -and $null -ne $j.num_turns) {
-    $dit = $j.result
-    $equiv = [math]::Round($j.total_cost_usd, 2)
-    Note ("mesure : {0} tours, entree {1}, cache lu {2}, sortie {3}, equivalent {4} USD" -f `
-          $j.num_turns, $j.usage.input_tokens, $j.usage.cache_read_input_tokens, `
-          $j.usage.output_tokens, $equiv)
-    if ($j.is_error) { Note "ATTENTION, le modele signale une erreur, subtype $($j.subtype)" }
-} else {
-    Note "sortie illisible en json, texte brut conserve"
-}
-
-foreach ($l in @($dit -split "`n")) { if ($l.Trim()) { Note "dit : $($l.Trim())" } }
+foreach ($l in @($sortie)) { if ($l) { Note "dit : $l" } }
 
 # 7. Filet de securite, au cas ou il aurait oublie d enregistrer
 git add -A 2>&1 | Out-Null

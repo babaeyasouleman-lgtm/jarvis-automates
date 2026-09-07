@@ -36,6 +36,10 @@ Trois tâches Windows tournent sur le PC de Souleman, et une seule d'entre elles
 4. `Compare-Object` en PowerShell 5.1 refuse un tableau vide. Pour comparer deux `git status --porcelain`, passer par `Where-Object { $avant -notcontains $_ }`.
 5. Une consigne qui nomme le fichier `journal.log` invite le modèle à y écrire lui-même, sans horodatage, en double du lanceur. Écrire noir sur blanc que le résumé va dans la réponse et que le lanceur seul écrit dans le journal.
 
+**Mesurer un passage.** `passage.ps1` appelle `claude -p` avec `--output-format json` depuis le 2026-09-06 et écrit une ligne `mesure` dans son journal : tours, tokens, équivalent en dollars. Le repère d'avant l'index est 40 tours et 339 s pour une nuit ordinaire, 71 tours sur un gros lot. Première mesure après l'index : 24 tours et 197 s, revue hebdomadaire comprise. La même ligne peut être ajoutée à `matin.ps1` et `extraction.ps1`, ce n'est pas fait.
+
+**Deux passages peuvent tourner en parallèle, et rien ne l'empêche.** Constaté le 2026-09-06. Le marqueur du jour ne se pose qu'à la fin du passage, donc il ne protège pas de la concurrence, et la tâche Windows se relance toutes les 30 minutes alors qu'un gros passage dure plus longtemps. Aucun dégât cette fois, le second bibliothécaire s'est arrêté au titre du quatrième interdit, celui du doute. Mais deux instances veulent dire deux fois le coût d'Opus. Un verrou de fichier avec péremption reste à poser.
+
 **Pourquoi les automates restent sur le PC.** Git et Obsidian Sync ne se croisent que sur le PC. Le déménagement sur un serveur est la phase 9 du plan, premier pas du palier 2, quand des employés ne pourront plus dépendre du PC.
 
 Voir [[second-brain-obsidian]] pour la structure du coffre.
