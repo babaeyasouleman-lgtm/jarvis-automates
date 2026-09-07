@@ -231,6 +231,8 @@ Elle sort du coffre, pas de ton imagination. Quatre listes, courtes, chacune dis
 3. **Personnes à relancer** : les notes de `06 Personnes` dont la clé `relance` tombe dans la semaine ou est déjà passée.
 4. **Projets actifs sans prochaine action** : les notes de `02 Projets` avec `statut: actif` dont la section `Prochaine action` est vide ou n'a que des cases cochées.
 
+**Une règle qui vaut pour les quatre listes : écarte tout ce qui appartient à un domaine en pause.** Pour chaque candidat, regarde sa clé `domaine` et va lire la note correspondante dans `03 Domaines`. Si son `statut` est `en pause`, la ligne ne remonte pas. Un dossier mis en pause ne doit pas revenir chaque dimanche, sinon la revue devient un bruit qu'on n'ouvre plus.
+
 Chaque ligne est un lien `[[ ]]` plus six mots de contexte. Rien de plus. Tu ne commentes pas, tu ne conseilles pas, tu ne le félicites pas.
 
 ---

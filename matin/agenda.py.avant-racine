@@ -15,11 +15,7 @@ l'exige.
 Il ne plante jamais. Si les identifiants manquent ou si Google refuse, il
 ecrit statut=indisponible et sort en 0. La note du matin continue.
 
-Identifiants attendus dans google.local.json, cherche a la racine
-C:/Obsidian/ d'abord, puis a cote de ce fichier. Il a demenage a la racine
-le 7 septembre 2026, quand un deuxieme automate a eu besoin du meme jeton :
-une seule identite Google, un seul fichier, jamais une copie par automate.
-Le repli a cote garde ce script capable de tourner seul.
+Identifiants attendus dans google.local.json, a cote de ce fichier :
 
     {
       "client_id": "...",
@@ -44,7 +40,6 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta
 
-RACINE = r"C:\Obsidian"
 JETON = "https://oauth2.googleapis.com/token"
 API = "https://www.googleapis.com/calendar/v3/calendars/%s/events?%s"
 DELAI = 20
@@ -80,20 +75,11 @@ def heure(ev, cle):
 def main():
     dossier = sys.argv[1] if len(sys.argv) > 1 else os.path.dirname(os.path.abspath(__file__))
     sortie = os.path.join(dossier, "agenda.txt")
+    config = os.path.join(dossier, "google.local.json")
 
-    # La racine d'abord, le dossier de ce script ensuite. Un seul fichier
-    # pour tous les automates, jamais une copie par automate.
-    config = ""
-    for candidat in (os.path.join(RACINE, "google.local.json"),
-                     os.path.join(dossier, "google.local.json")):
-        if os.path.exists(candidat):
-            config = candidat
-            break
-
-    if not config:
+    if not os.path.exists(config):
         ecrire(sortie, ["statut=indisponible",
-                        "raison=google.local.json absent de la racine et du dossier, "
-                               "identifiants jamais deposes"])
+                        "raison=google.local.json absent, identifiants jamais deposes"])
         return 0
 
     try:

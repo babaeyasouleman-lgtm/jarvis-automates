@@ -49,6 +49,8 @@ Ouvre la note de la veille nommée dans `contexte.txt`. Reprends les cases non c
 
 Parcours `05 Décisions`. Retiens celles dont la clé `revoir` est une date passée ou égale à aujourd'hui, et dont le `statut` est `prise`. Pour chacune, donne le lien et une ligne rappelant ce qui devait être vérifié.
 
+**Écarte celles dont la clé `domaine` nomme un domaine en pause.** Va lire la note correspondante dans `03 Domaines` : si son `statut` est `en pause`, la décision ne remonte pas. Une décision qui dort avec son entreprise n'est pas une décision à revoir ce matin, et la reproposer chaque jour use la section.
+
 ### 4. Personnes à relancer
 
 Parcours `06 Personnes`. Retiens celles dont la clé `relance` est une date passée ou égale à aujourd'hui. Une clé `relance` vide n'est pas une relance due.
