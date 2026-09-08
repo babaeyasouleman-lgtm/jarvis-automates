@@ -82,6 +82,12 @@ Trois tâches Windows tournent sur le PC de Souleman, et une seule d'entre elles
 
 **Ce qui n'a jamais tourné.** `lot-prospection-courriel` reste enregistré dans les tâches planifiées de l'app Claude, désactivé, mardi et jeudi à 12 h 05. Le PC est éteint à cette heure et l'app ne rattrape pas. Il devra passer par une tâche Windows ou par `passage.ps1`, comme la note du matin. La tâche d'app `note-du-matin` a été supprimée le 2026-09-03 pour qu'il n'y ait qu'un seul déclencheur ; son `SKILL.md` reste sur le disque, c'est l'origine de la consigne.
 
+**Le CLI Claude ne garde qu'UNE identite, et le passage le dit depuis le 2026-09-08.** Souleman a deux comptes, S-WEB et son perso ; **les cinq automates de nuit tournent sous `s.webagencyca@gmail.com`**, en Claude Pro, verifie dans `oauthAccount` de `~/.claude.json`. Pas d'equivalent a `gh auth switch` : se connecter a l'autre compte ecrase le premier.
+
+Si ca arrive, les automates basculent de quota **en silence**, et surtout **Fathom cesse de repondre**, parce que c'est un connecteur claude.ai attache au compte : la phase 4 bis s'arreterait sans dire pourquoi. L'agent WhatsApp n'est pas concerne, il tourne sur `ANTHROPIC_API_KEY`, une cle de la console API facturee a part.
+
+**La parade.** `passage.ps1` lit `oauthAccount.emailAddress`, ecrit le compte en premiere ligne de son journal, et le compare a `bibliothecaire/compte.txt` : un changement est signale, jamais bloque, parce qu'il est peut-etre voulu. Le fichier est exclu du depot des automates, c'est un etat local. **Separer automates et travail de jour sur deux comptes n'est pas praticable** : il faudrait jongler avec les connexions, et c'est comme ca qu'on casse un automate de nuit.
+
 **Pièges Windows, découverts en testant, coûteux à redécouvrir.**
 
 1. Une tâche planifiée ne démarre pas sur batterie sans `-AllowStartIfOnBatteries -DontStopIfGoingOnBatteries`.
