@@ -1,6 +1,6 @@
 ---
 name: coffre-automatisations
-description: "Les tâches Windows qui entretiennent le coffre Obsidian et sauvegardent les automates, les six automates que passage.ps1 enchaîne dont l'export du cerveau en liste blanche, les modèles qu'elles utilisent, et les pièges Windows qui les font échouer en silence."
+description: "Les tâches Windows qui entretiennent le coffre Obsidian et sauvegardent les automates, les six automates que passage.ps1 enchaîne dont l'export du cerveau en liste blanche et le déversement des captures de l'agent, les modèles qu'elles utilisent, et les pièges Windows qui les font échouer en silence."
 metadata:
   node_type: memory
   type: project
@@ -8,11 +8,11 @@ metadata:
   modified: 2026-09-07T18:30:00.000Z
 ---
 
-Trois tâches Windows tournent sur le PC de Souleman, et une seule d'entre elles enchaîne les cinq automates du coffre. Ne pas les reconstruire, elles existent. Le plan complet est `C:\Obsidian\Second Brain\02 Projets\Plan Jarvis.md`, restructuré par paliers le 2026-09-03.
+Trois tâches Windows tournent sur le PC de Souleman, et une seule d'entre elles enchaîne les six automates du coffre. Ne pas les reconstruire, elles existent. Le plan complet est `C:\Obsidian\Second Brain\02 Projets\Plan Jarvis.md`, restructuré par paliers le 2026-09-03.
 
 **Filet, phase 1 du [[Plan Jarvis]].** `C:\Obsidian\filet\commit-horaire.ps1`, tâche « Filet coffre Obsidian », toutes les heures. Commit et pousse le coffre vers le dépôt privé `babaeyasouleman-lgtm/second-brain`.
 
-**L'enchaînement du passage, phases 3, 2 bis, 4, 4 bis et 2.** Une seule tâche, « Bibliothecaire du coffre », déclenchée à 3 h avec réessai toutes les 30 minutes, rattrapage au démarrage puisque le PC est éteint la nuit. `passage.ps1` enchaîne dans cet ordre : `C:\Obsidian\matin\matin.ps1`, puis `C:\Obsidian\transcriptions\extraction.ps1`, qui lit les sessions Claude Code depuis un marqueur et dépose dans `00 Inbox`, puis les courriels entrants et les reunions Fathom depuis le 2026-09-07, puis le rangement. Si Obsidian est ouvert, le rangement attend, et après six refus il range quand même. Le comportement de chacun se change dans son `consigne.md`, jamais dans le script.
+**L'enchaînement du passage, phases 3, 2 bis, 4, 4 bis, 7 et 2.** Une seule tâche, « Bibliothecaire du coffre », déclenchée à 3 h avec réessai toutes les 30 minutes, rattrapage au démarrage puisque le PC est éteint la nuit. `passage.ps1` enchaîne dans cet ordre : `C:\Obsidian\matin\matin.ps1`, puis `C:\Obsidian\transcriptions\extraction.ps1`, qui lit les sessions Claude Code depuis un marqueur et dépose dans `00 Inbox`, puis les courriels entrants et les reunions Fathom depuis le 2026-09-07, puis le déversement des captures de l'agent depuis le 2026-09-08, puis le rangement, et enfin l'export du cerveau. Si Obsidian est ouvert, le rangement attend, et après six refus il range quand même. Le comportement de chacun se change dans son `consigne.md`, jamais dans le script.
 
 **L'index et les leçons du bibliothécaire, ajoutés le 2026-09-04.** `C:\Obsidian\bibliothecaire\index.py` écrit `index.txt`, une ligne par note du coffre avec sa première ligne, recalculé avant chaque passage après l'extraction. 133 notes au 2026-09-08, une seconde, zéro token. Il répond à la question qui coûtait le plus de tours d'outils, « est-ce que cette note existe déjà ». `C:\Obsidian\bibliothecaire\lecons.md` est sa mémoire de comportement, une ligne par leçon, plafond 50, seule exception à l'interdit « rien hors du coffre » de sa consigne. Il lit aussi les corrections de la semaine précédente, parce qu'une correction écrite le dimanche se lit le lundi. Point de comparaison à battre, écrit dans son journal : 40 tours pour une nuit ordinaire, 71 sur un gros lot. Journal hebdomadaire partagé dans `_Bibliothécaire/AAAA-Sxx.md`.
 
@@ -62,7 +62,21 @@ Trois tâches Windows tournent sur le PC de Souleman, et une seule d'entre elles
 
 **Un garde `index.lock`** arrête l'export si un autre git tourne déjà dans le dépôt du cerveau, pour le cas où il serait lancé à la main pendant que la tâche Windows tourne.
 
-**Modèles.** Bibliothécaire sur `opus`. Note du matin sur `sonnet`, elle assemble et ne juge pas. Courriels entrants et reunions Fathom sur `sonnet`, meme travail que l'extracteur sur d'autres sources. Extracteur sur `sonnet` depuis le 2026-09-03, décision prise à l'audit après mesure : une nuit valait 2 à 4 $ d'équivalent Opus pour un travail qui ne demande pas de connaître le coffre. Version d'avant gardée en `extraction.ps1.avant-sonnet`. Le 2026-09-03 à 0 h 03, l'extracteur a été refusé pour limite de session pendant que Souleman travaillait : les automates et lui partagent le même quota.
+**Déversement des captures, en service depuis le 2026-09-08, phase 7.** `C:\Obsidian\captures\`, avec `captures.ps1`, `marqueur.txt`, `deposes.txt` et `journal.log`. Le clone du dépôt distant vit dans `captures\depot\` et est exclu du filet des automates, il se régénère en une commande. **Aucun modèle, aucun token**, comme l'export du cerveau : il tire `babaeyasouleman-lgtm/jarvis-captures`, il copie dans `00 Inbox`, il enregistre. Le bibliothécaire range ensuite.
+
+**Il passe après les reunions et avant les deux gardes du bibliothécaire**, même raison qu'eux : il ne crée que des fichiers neufs dans `00 Inbox`. Le verrou de `passage.ps1` le couvre. Un garde `index.lock` l'arrête si un autre git tourne déjà dans le coffre.
+
+**Pas de garde du jour, contrairement aux quatre automates au-dessus.** Une capture dictée ce matin n'a aucune raison d'attendre demain, et un passage qui ne trouve rien de neuf s'arrête en une seconde sans rien dépenser. Ce sont les deux filets qui empêchent le doublon.
+
+**Les deux filets, et lequel compte vraiment.** `deposes.txt` porte les identifiants lus dans la ligne `capture:` du frontmatter, et c'est LE filet : un identifiant vu ne revient jamais. `marqueur.txt` porte l'identifiant le plus récent déversé ; ils sont horodatés donc ils se trient. Il ne filtre pas par lui-même : il sert à redémarrer si `deposes.txt` est perdu, et à pouvoir tronquer `deposes.txt` sans risque puisque tout ce qui est plus ancien que lui est déjà couvert. La règle exacte : sauter si l'identifiant est dans `deposes.txt`, OU s'il est plus ancien que le marqueur alors que `deposes.txt` ne le connaît pas.
+
+**Le PC tire, il ne pousse jamais dans `jarvis-captures`.** Un seul écrivain de chaque côté, comme sur le coffre. Donc rien n'y est supprimé et le dépôt grossit : cinq captures par jour d'un kilo-octet font deux mégaoctets par an. Ce n'est pas un problème à régler, c'est un chiffre à connaître.
+
+**Vérifié de bout en bout le 2026-09-08** : capture côté agent, poussée, tirage, déversement, rangement par le bibliothécaire qui l'a rattachée à `Plan Jarvis`, constaté qu'elle n'ajoutait rien et archivée. Passage complet à 18 tours, 1,53 $ d'équivalent. Trois lancements de suite ne produisent qu'un seul fichier dans `00 Inbox`.
+
+**Le dépôt `jarvis-captures` n'existait pas au 2026-09-08.** Tout a été testé contre un dépôt nu local, effacé ensuite. `captures.ps1` porte l'URL GitHub en dur et clonera tout seul au premier passage une fois le dépôt créé.
+
+**Modèles.** Bibliothécaire sur `opus`. Note du matin sur `sonnet`, elle assemble et ne juge pas. Courriels entrants et reunions Fathom sur `sonnet`, meme travail que l'extracteur sur d'autres sources. **Deux automates du passage n'appellent aucun modèle** : l'export du cerveau et le déversement des captures. Extracteur sur `sonnet` depuis le 2026-09-03, décision prise à l'audit après mesure : une nuit valait 2 à 4 $ d'équivalent Opus pour un travail qui ne demande pas de connaître le coffre. Version d'avant gardée en `extraction.ps1.avant-sonnet`. Le 2026-09-03 à 0 h 03, l'extracteur a été refusé pour limite de session pendant que Souleman travaillait : les automates et lui partagent le même quota.
 
 **Filet des automates, ajouté le 2026-09-03.** `C:\Obsidian\filet\commit-automates.ps1`, tâche « Filet automates », toutes les heures. Dépôt git à la racine `C:\Obsidian`, qui suit `bibliothecaire`, `transcriptions`, `filet`, et un dossier `miroir` copié par robocopy depuis les skills maison, `agent-vocal`, `devis`, `prospect-site`, `prospect-email`, `no-ai-slop`, les tâches planifiées de l'app et ce dossier de mémoire. `Second Brain/`, `node_modules`, journaux, `travail` et fichiers `*.local.*` sont exclus. Remote `babaeyasouleman-lgtm/jarvis-automates`, créé et actif depuis le 2026-09-03, il reçoit les poussées. `gh` n'est pas installé sur ce PC, le push passe par Git Credential Manager en HTTPS.
 
