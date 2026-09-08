@@ -93,6 +93,50 @@ if (Test-Path $verrou) {
 }
 Set-Content -Path $verrou -Value @("debut=$($maintenant.ToString('o'))", "fin=") -Encoding ascii
 
+# 0 pre. Sous quel compte Claude tourne ce passage.
+#
+# Ajoute le 8 septembre 2026. Le CLI ne garde qu UNE identite : pas de bascule
+# comme gh auth switch, se connecter a un autre compte ecrase le premier.
+# Souleman a deux comptes, S-WEB et son perso. Si un soir il se reconnecte sous
+# l autre, les cinq automates de cette nuit basculent avec, en silence, sur un
+# autre quota. Et le connecteur Fathom, attache au compte, cesse de repondre :
+# la phase 4 bis s arrete sans dire pourquoi.
+#
+# C est le meme piege que les deux comptes GitHub, vecu le meme jour : le
+# symptome apparait ailleurs, longtemps apres, et il ne ressemble pas a sa
+# cause. Ici il tient dans une ligne de journal.
+#
+# Ce garde ne bloque JAMAIS le passage. Il constate et il le dit. Un compte
+# different n est pas forcement une erreur, c est peut-etre voulu ; ce qui
+# serait une erreur, c est de ne pas le voir.
+$compteFichier = Join-Path $base 'compte.txt'
+$compteJson    = Join-Path $env:USERPROFILE '.claude.json'
+$compte = ''
+if (Test-Path $compteJson) {
+    try {
+        $j = Get-Content $compteJson -Raw -Encoding UTF8 | ConvertFrom-Json
+        if ($j.oauthAccount -and $j.oauthAccount.emailAddress) {
+            $compte = $j.oauthAccount.emailAddress
+        }
+    } catch { $compte = '' }
+}
+if ($compte) {
+    $attendu = ''
+    if (Test-Path $compteFichier) { $attendu = (Get-Content $compteFichier -TotalCount 1).Trim() }
+    if (-not $attendu) {
+        Set-Content -Path $compteFichier -Value $compte -Encoding ascii
+        Note "compte Claude, $compte, premier releve"
+    } elseif ($attendu -ne $compte) {
+        Note "ATTENTION, le compte Claude a change : $attendu devient $compte"
+        Note "  le quota, et le connecteur Fathom, ne sont plus les memes qu hier"
+        Note "  si c est voulu, remplacer la ligne de $compteFichier"
+    } else {
+        Note "compte Claude, $compte"
+    }
+} else {
+    Note "compte Claude illisible, le passage continue sans ce garde"
+}
+
 # 0 bis. La phase 3, la note du matin.
 # Elle passe en premier, avant l extraction et avant les deux gardes plus bas.
 # Raison : une note du matin qui attend trois heures qu Obsidian se ferme n est

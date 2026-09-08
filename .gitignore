@@ -25,3 +25,6 @@ miroir/**/.env.*
 
 # Les clones de depots distants, ils se regenerent en une commande
 captures/depot/
+
+# Le compte Claude releve par le passage : un etat local, pas une consigne
+bibliothecaire/compte.txt
