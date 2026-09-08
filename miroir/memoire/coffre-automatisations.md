@@ -1,6 +1,6 @@
 ---
 name: coffre-automatisations
-description: "Les tâches Windows qui entretiennent le coffre Obsidian et sauvegardent les automates, les cinq automates que passage.ps1 enchaîne, les modèles qu'elles utilisent, et les pièges Windows qui les font échouer en silence."
+description: "Les tâches Windows qui entretiennent le coffre Obsidian et sauvegardent les automates, les six automates que passage.ps1 enchaîne dont l'export du cerveau en liste blanche, les modèles qu'elles utilisent, et les pièges Windows qui les font échouer en silence."
 metadata:
   node_type: memory
   type: project
@@ -14,7 +14,7 @@ Trois tâches Windows tournent sur le PC de Souleman, et une seule d'entre elles
 
 **L'enchaînement du passage, phases 3, 2 bis, 4, 4 bis et 2.** Une seule tâche, « Bibliothecaire du coffre », déclenchée à 3 h avec réessai toutes les 30 minutes, rattrapage au démarrage puisque le PC est éteint la nuit. `passage.ps1` enchaîne dans cet ordre : `C:\Obsidian\matin\matin.ps1`, puis `C:\Obsidian\transcriptions\extraction.ps1`, qui lit les sessions Claude Code depuis un marqueur et dépose dans `00 Inbox`, puis les courriels entrants et les reunions Fathom depuis le 2026-09-07, puis le rangement. Si Obsidian est ouvert, le rangement attend, et après six refus il range quand même. Le comportement de chacun se change dans son `consigne.md`, jamais dans le script.
 
-**L'index et les leçons du bibliothécaire, ajoutés le 2026-09-04.** `C:\Obsidian\bibliothecaire\index.py` écrit `index.txt`, une ligne par note du coffre avec sa première ligne, recalculé avant chaque passage après l'extraction. 111 notes, 13,7 Ko, une seconde, zéro token. Il répond à la question qui coûtait le plus de tours d'outils, « est-ce que cette note existe déjà ». `C:\Obsidian\bibliothecaire\lecons.md` est sa mémoire de comportement, une ligne par leçon, plafond 50, seule exception à l'interdit « rien hors du coffre » de sa consigne. Il lit aussi les corrections de la semaine précédente, parce qu'une correction écrite le dimanche se lit le lundi. Point de comparaison à battre, écrit dans son journal : 40 tours pour une nuit ordinaire, 71 sur un gros lot. Journal hebdomadaire partagé dans `_Bibliothécaire/AAAA-Sxx.md`.
+**L'index et les leçons du bibliothécaire, ajoutés le 2026-09-04.** `C:\Obsidian\bibliothecaire\index.py` écrit `index.txt`, une ligne par note du coffre avec sa première ligne, recalculé avant chaque passage après l'extraction. 133 notes au 2026-09-08, une seconde, zéro token. Il répond à la question qui coûtait le plus de tours d'outils, « est-ce que cette note existe déjà ». `C:\Obsidian\bibliothecaire\lecons.md` est sa mémoire de comportement, une ligne par leçon, plafond 50, seule exception à l'interdit « rien hors du coffre » de sa consigne. Il lit aussi les corrections de la semaine précédente, parce qu'une correction écrite le dimanche se lit le lundi. Point de comparaison à battre, écrit dans son journal : 40 tours pour une nuit ordinaire, 71 sur un gros lot. Journal hebdomadaire partagé dans `_Bibliothécaire/AAAA-Sxx.md`.
 
 **Note du matin, en service depuis le 2026-09-03.** `C:\Obsidian\matin\`, avec `consigne.md`, `matin.ps1` et `journal.log`. Elle écrit `01 Journal/AAAA-MM-JJ.md` à partir du coffre : agenda, veille, décisions à revoir, relances dues, prochaine action de chaque projet actif, deux questions de `À confirmer`. Elle passe **en premier**, avant l'extraction et avant les deux gardes, parce qu'une note du matin qui attend trois heures qu'Obsidian se ferme n'est plus une note du matin. Marqueur `dernier-jour.txt` en ascii, un seul commit `Note du matin, <date>` qui ne contient que la note du jour, sans poussée. Si la note existe déjà avec du texte de Souleman, elle insère sa section après le titre H1 et ne réécrit rien.
 
@@ -44,6 +44,24 @@ Trois tâches Windows tournent sur le PC de Souleman, et une seule d'entre elles
 
 **Le premier passage d'un automate neuf est le seul moment ou son garde du jour n'existe pas.** Constate le 2026-09-07 : la tache Windows allait relancer `reunions.ps1` en parallele d'un premier passage lance a la main. Le verrou de `passage.ps1` ne protege que l'enchainement, pas un lancement direct. Poser `dernier-jour.txt` a la main avant, une seule fois, pour tout automate neuf.
 
+**Export du cerveau, en service depuis le 2026-09-08, phase 6.** `C:\Obsidian\cerveau\`, avec `export.ps1`, `liste-blanche.txt`, `journal.log` et le miroir `depot\`. Poussé vers `babaeyasouleman-lgtm/jarvis-cerveau`, privé. **Aucun modèle, aucun token, 3 secondes** : il copie et il pousse, sur le modèle de `commit-automates.ps1` et pas d'un automate qui juge. C'est le seul de l'enchaînement qui n'appelle pas `claude -p`.
+
+**Il passe en dernier, après le rangement, et c'est voulu.** Étape 8 bis de `passage.ps1`, avant le marqueur du jour. Il doit refléter le coffre rangé, sinon les captures de la nuit resteraient invisibles à l'agent pendant vingt-quatre heures. Conséquence assumée : il suit le sort du rangement, donc une nuit où Obsidian reste ouvert le repousse aussi, jusqu'à trois heures. L'agent affiche alors un cerveau plus vieux, ce qui est visible et acceptable.
+
+**La liste blanche vit dans `liste-blanche.txt`, pas dans le `.ps1`.** Deux raisons : les noms portent des accents, `05 Décisions`, et PowerShell 5.1 lit les `.ps1` en ANSI ; et surtout ce qui décide de ce qui quitte le PC se relit d'un coup d'oeil sans lire du code. Le fichier est en UTF-8 sans BOM, lu avec `Get-Content -Encoding UTF8`. Format : `racine = <dossier>` et `domaine = <sous-dossier de 03 Domaines>`.
+
+**Liste blanche à DEUX niveaux, jamais une liste noire.** Les dossiers racine : `02 Projets`, `03 Domaines`, `05 Décisions`, `06 Personnes`, `07 Cartes`, `08 Billets`. Et les sous-dossiers de `03 Domaines` un par un, ce qui fait qu'un futur `03 Domaines/Finances` resterait sur le PC tout seul, exactement comme `Moi`. Chaque dossier écarté est nommé dans le journal, pour que l'oubli se voie. Vérifié le 2026-09-08 avec deux dossiers de test créés puis supprimés : ni `10 Finances perso` ni `03 Domaines/Argent` ne sont partis, ni dans le dépôt ni dans la table des matières.
+
+**Un garde relit le miroir avant de pousser** et refuse la poussée si un seul fichier vient d'ailleurs que de la liste blanche. Ceinture après les bretelles, sur un coffre qui porte un dossier d'immigration et des revenus.
+
+**76 notes sur 133 partent.** Le contenu de `03 Domaines/Moi` reste entier sur le PC. Mais la liste blanche protège les dossiers, pas les mentions : `06 Personnes/Souleman.md` résume la carrière finance et le solde de La Rotonde, et `Maeva.md` renvoie à la section Couple de `Personnel`. C'est du classement, pas un défaut de l'export. À trancher à la phase 7.
+
+**`index.py` est réutilisé, pas recopié.** Pointé sur le miroir au lieu du coffre, il produit la table des matières de ce qui est exporté et rien de plus. 3 326 tokens pour 76 notes. `fraicheur.txt`, écrit à chaque passage, porte `export=<ISO>` et `notes=<n>` : c'est lui et non la date d'un commit qui dit à l'agent l'âge de ce qu'il lit.
+
+**Le miroir se régénère, donc `robocopy /MIR` y supprime.** C'est le seul endroit où un script du coffre supprime quelque chose, et ça reste dans `cerveau\depot\`, jamais dans `Second Brain`. Un dossier retiré de la liste blanche est retiré du dépôt au passage suivant, sinon il resterait publié pour toujours.
+
+**Un garde `index.lock`** arrête l'export si un autre git tourne déjà dans le dépôt du cerveau, pour le cas où il serait lancé à la main pendant que la tâche Windows tourne.
+
 **Modèles.** Bibliothécaire sur `opus`. Note du matin sur `sonnet`, elle assemble et ne juge pas. Courriels entrants et reunions Fathom sur `sonnet`, meme travail que l'extracteur sur d'autres sources. Extracteur sur `sonnet` depuis le 2026-09-03, décision prise à l'audit après mesure : une nuit valait 2 à 4 $ d'équivalent Opus pour un travail qui ne demande pas de connaître le coffre. Version d'avant gardée en `extraction.ps1.avant-sonnet`. Le 2026-09-03 à 0 h 03, l'extracteur a été refusé pour limite de session pendant que Souleman travaillait : les automates et lui partagent le même quota.
 
 **Filet des automates, ajouté le 2026-09-03.** `C:\Obsidian\filet\commit-automates.ps1`, tâche « Filet automates », toutes les heures. Dépôt git à la racine `C:\Obsidian`, qui suit `bibliothecaire`, `transcriptions`, `filet`, et un dossier `miroir` copié par robocopy depuis les skills maison, `agent-vocal`, `devis`, `prospect-site`, `prospect-email`, `no-ai-slop`, les tâches planifiées de l'app et ce dossier de mémoire. `Second Brain/`, `node_modules`, journaux, `travail` et fichiers `*.local.*` sont exclus. Remote `babaeyasouleman-lgtm/jarvis-automates`, créé et actif depuis le 2026-09-03, il reçoit les poussées. `gh` n'est pas installé sur ce PC, le push passe par Git Credential Manager en HTTPS.
@@ -64,4 +82,4 @@ Trois tâches Windows tournent sur le PC de Souleman, et une seule d'entre elles
 
 **Pourquoi les automates restent sur le PC.** Git et Obsidian Sync ne se croisent que sur le PC. Le déménagement sur un serveur est la phase 9 du plan, premier pas du palier 2, quand des employés ne pourront plus dépendre du PC.
 
-Voir [[second-brain-obsidian]] pour la structure du coffre.
+Voir [[second-brain-obsidian]] pour la structure du coffre, et [[agent-whatsapp-modules]] pour l'agent qui lit ce cerveau.

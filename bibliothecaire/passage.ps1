@@ -309,6 +309,25 @@ if ($retard -and [int]$retard -gt 0) {
     if ($?) { Note "pousse, $retard commit(s)" } else { Note "ECHEC push, $retard commit(s) en attente" }
 }
 
+# 8 bis. La phase 6, l export du cerveau.
+# Il passe ICI et pas plus haut, volontairement : il doit refleter le coffre
+# APRES rangement, sinon les captures de la nuit resteraient invisibles a
+# l agent pendant vingt-quatre heures.
+# Consequence assumee : il suit le sort du rangement. Une nuit ou Obsidian
+# reste ouvert repousse les deux de trente minutes a la fois, jusqu a trois
+# heures. Le cerveau est alors plus vieux, et l agent l affiche dans chacune
+# de ses reponses. Un retard visible vaut mieux qu un export a moitie range.
+# Le verrou pose plus haut le couvre deja.
+# Il ne juge rien et n appelle aucun modele : il copie une liste blanche et
+# il pousse. Un echec ici ne doit pas faire echouer le passage.
+$export = 'C:\Obsidian\cerveau\export.ps1'
+if (Test-Path $export) {
+    & powershell -ExecutionPolicy Bypass -File $export
+    Note "export du cerveau, code $LASTEXITCODE"
+} else {
+    Note "export.ps1 introuvable, le cerveau de l agent ne sera pas rafraichi"
+}
+
 # 9. Marquer la journee comme faite
 Set-Content -Path $marqueur -Value $aujourdhui -Encoding utf8
 

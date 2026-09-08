@@ -1,0 +1,32 @@
+# Liste blanche de l'export du cerveau. Phase 6 du Plan Jarvis, 8 septembre 2026.
+#
+# Ce fichier decide de ce qui quitte le PC. Rien d'autre ne le decide.
+#
+# Pourquoi une liste blanche et jamais une liste noire : une liste noire
+# laisserait partir tout dossier cree plus tard. Ici, un dossier qui n'est pas
+# nomme ci-dessous ne part pas, meme s'il est cree demain. Le journal de
+# l'export signale chaque dossier qu'il a ecarte, pour que l'oubli se voie.
+#
+# Ce fichier vit a cote du .ps1 et pas dedans, parce que PowerShell 5.1 lit
+# les .ps1 en ANSI et abimerait les accents de "05 Decisions". Il est en UTF-8
+# sans BOM. Les noms doivent etre ecrits exactement comme sur le disque.
+#
+# racine  = un dossier de premier niveau du coffre qui part en entier
+# domaine = un sous-dossier de "03 Domaines" qui part. Les autres restent.
+
+racine = 02 Projets
+racine = 03 Domaines
+racine = 05 Décisions
+racine = 06 Personnes
+racine = 07 Cartes
+racine = 08 Billets
+
+# "03 Domaines/Moi" n'est pas ici, et n'y sera jamais : sante, finances
+# personnelles, couple et carnet ne quittent pas le PC. Un domaine d'affaires
+# nouveau ne part pas non plus tant qu'il n'est pas ajoute a cette liste.
+domaine = Déclic
+domaine = MLM
+domaine = Manssah
+domaine = S-WEB
+domaine = TriS Group
+domaine = iA Groupe financier
