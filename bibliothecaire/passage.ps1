@@ -150,6 +150,24 @@ if (Test-Path $reunions) {
     Note "reunions.ps1 introuvable, on passe directement au rangement"
 }
 
+# 0 quinquies. La phase 7, les captures de l agent WhatsApp.
+# Elle passe apres les reunions et avant les deux gardes ci-dessous, meme
+# raison qu eux : elle ne cree que des fichiers neufs dans 00 Inbox, donc
+# Obsidian ouvert ne la gene pas, et le bibliothecaire doit ranger dans la
+# foulee ce qu elle vient de deverser. Le verrou pose plus haut la couvre deja.
+# Elle n appelle aucun modele et ne coute rien : elle tire un depot, elle copie.
+# Pas de garde du jour, volontairement, contrairement aux quatre au-dessus :
+# une capture dictee ce matin n a aucune raison d attendre demain, et un
+# deversement qui ne trouve rien de neuf s arrete en une seconde. Ses deux
+# filets, marqueur.txt et deposes.txt, empechent le doublon.
+$captures = 'C:\Obsidian\captures\captures.ps1'
+if (Test-Path $captures) {
+    & powershell -ExecutionPolicy Bypass -File $captures
+    Note "captures de l agent, code $LASTEXITCODE"
+} else {
+    Note "captures.ps1 introuvable, les captures de l agent restent dans leur depot"
+}
+
 # 1. Garde, deja passe aujourd hui
 if (-not $Manuel) {
     if ((Test-Path $marqueur) -and ((Get-Content $marqueur -TotalCount 1).Trim() -eq $aujourdhui)) {

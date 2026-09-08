@@ -22,3 +22,6 @@ miroir/**/node_modules/
 miroir/**/*.local.*
 miroir/**/.env
 miroir/**/.env.*
+
+# Les clones de depots distants, ils se regenerent en une commande
+captures/depot/
