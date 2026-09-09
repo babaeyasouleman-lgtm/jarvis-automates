@@ -91,3 +91,29 @@ L'agent WhatsApp de Souleman, dépôt privé `babaeyasouleman-lgtm/openwa-agent`
 **Le compte GitHub du PC, à surveiller.** Le 2026-09-07, `gh` s'était retrouvé authentifié sous `swebagencyca-agence`, qui n'a accès à aucun dépôt de Souleman : coffre bloqué à 14 commits en attente, clone de l'agent impossible, avec un « Repository not found » trompeur. Réglé par `gh auth login --web`, code à huit caractères autorisé depuis le téléphone, jeton écrit dans le trousseau sans passer par la conversation. Les deux comptes coexistent dans `gh`, `gh auth switch` bascule.
 
 Voir [[coffre-automatisations]] pour les automates du coffre et l'export qui alimente ce cerveau.
+
+## Ce que la phase 8 bis a ajoute, les 8 et 9 septembre 2026
+
+Le prompt du classifier fait 4 870 tokens et s ouvre sur QUATRE FAMILLES,
+faire, donner, garder, ne pas savoir. Le champ reasoning demande d abord
+« qu est-ce qu il attend de moi » : c est la decision qui rate le plus, et
+elle se prend avant le type. Ne le rallonge pas sans raison, le cout d un
+prompt long n est pas l argent, il est en cache, c est l attention.
+
+Trois pieces ecrivent des messages : matin.js le briefing de 8 h 30,
+journal.js le journal de 22 h 30, spontane.js les messages de la journee.
+**Leurs regles de ton vivent dans domain/voix.js, a un seul endroit.**
+N en recopie jamais une dans une consigne.
+
+Les brides de spontane.js portent sur le TON et l ESPACEMENT, jamais sur la
+frequence : quatre-vingt-dix minutes entre deux messages, aucun jugement,
+aucune duree transmise au redacteur. Souleman a coupe deux fois une bride
+de frequence. Le volume de messages suit le volume de travail.
+
+Cinq intentions neuves : billet, conversation pour une capture d ecran,
+donne pour lui rendre un document produit, question pour le journal et les
+questions du soir. Plus l archivage d une tache Notion abandonnee, seule
+action du systeme qui fait DISPARAITRE quelque chose.
+
+Reference des tests : 293, 289 verts, 4 rouges dans dates.test.js sur les
+fuseaux Toronto, depuis avant la phase 5. Ni plus ni moins.
