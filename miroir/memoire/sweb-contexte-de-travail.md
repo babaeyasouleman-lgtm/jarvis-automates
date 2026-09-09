@@ -13,9 +13,14 @@ Souleman **n'est pas seul** et **travaille le jour**. Établi le 2026-08-08.
 - **Trois vendeurs**, bientôt quatre: lui, **FM Media** et **Pose Ta Pierre** (Pierre Désiré).
   Les deux partenaires ne sont pas que des fournisseurs du forfait, ils démarchent et tiennent
   des rencontres. Le partage est dans `TARIFS.md`.
-- **Emploi à temps plein le jour.** Ses seules fenêtres: **12 h à 13 h**, **après 17 h**, et la
-  fin de semaine, soit environ 4 h par jour. FM Media et Pierre ont la même contrainte, donc
-  les appels et les rencontres tombent tous dans ces deux créneaux.
+- **Emploi à temps plein le jour chez iA Groupe financier, EN TÉLÉTRAVAIL.** Corrigé par lui
+  le 2026-09-09 : la version précédente disait « fenêtres 12 h et 17 h », c'était faux.
+  La réalité est **une heure de dîner et deux pauses de quinze minutes, à des heures qui
+  changent tous les jours**. Il n'y a donc aucun créneau fixe à supposer.
+  Travailler de la maison change deux choses : il peut prendre un appel court sans se
+  déplacer, et un rendez-vous en journée n'est pas impossible, seulement contraint.
+  Le vrai temps long reste le soir après 17 h et la fin de semaine.
+  FM Media et Pierre ont une contrainte semblable, donc les rencontres tombent surtout là.
 - Le **CRM des prospects vit dans le Notion de FM Media**, partagé. Son propre Notion ne
   contient aucun prospect S-WEB, il porte un autre projet (fintech, Libreville).
 - Objectif fixé le 2026-08-08: **4 clients signés par mois**. Le plan prévoit qu'il quitte son
