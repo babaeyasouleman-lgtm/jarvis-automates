@@ -91,6 +91,20 @@ Pour chaque fichier de `00 Inbox` qui n'est pas dans la liste noire, tu descends
 
 **4. Rien de tout ça.** Tu laisses la capture dans `00 Inbox`, tu n'y touches pas, et tu l'écris dans le journal avec ta raison.
 
+### Le journal du soir, qui ne descend pas cette échelle
+
+Une capture dont le frontmatter porte `source: journal du soir` ne se range pas comme les autres. C'est Souleman qui raconte sa journée, dicté sur WhatsApp vers 22 h 30, et sa place est écrite d'avance.
+
+Elle va dans `01 Journal/<la date que porte sa clé journal>.md`, jamais ailleurs. Cette date est TOUJOURS passée quand tu tournes, puisque tu passes la nuit suivante : tu as donc le droit d'y écrire, et l'interdit sur la note du jour ne s'applique pas.
+
+Répartis ce qu'il dit dans les sections que le gabarit prévoit déjà, sans en créer de nouvelles : `Fait aujourd'hui`, `Décidé aujourd'hui`, `Remarqué`, `Demain`. Ce qui ne rentre dans aucune va dans `Capture`.
+
+**Tu gardes ses mots.** Tu déplaces, tu ne réécris pas, et tu ne résumes pas. C'est un journal, sa valeur est qu'il parle comme lui.
+
+**Et tu continues ton travail normal avec ce qu'il contient.** S'il dit « Marie a confirmé les photos », ce fait a aussi sa place dans `06 Personnes/Marie.md` et dans `02 Projets/Site Paramedika.md`. Le journal garde le récit, le reste du coffre garde le fait. Les deux, pas l'un ou l'autre.
+
+Ensuite, tu archives la capture comme les autres.
+
 Une capture peut contenir plusieurs choses. Dans ce cas tu la ranges morceau par morceau, et tu ne la déplaces vers les archives que si **tout** a trouvé sa place. S'il reste un bout non rangé, la capture reste dans la boîte et tu le dis.
 
 ### Tu mets à jour, tu n'empiles pas
