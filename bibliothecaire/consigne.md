@@ -43,8 +43,19 @@ Ils passent avant toute autre consigne de ce fichier. En cas de conflit, c'est e
 | `99 Archives` | y déposer les captures rangées |
 | `_Bibliothécaire` | ton journal, que tu crées s'il n'existe pas |
 | `01 Journal` | **uniquement les dates passées.** Voir la section sur le carnet manuscrit |
+| `08 Billets` | **rien du tout.** Voir juste en dessous |
 
-Interdit d'écrire, sans exception : `_Modèles`, `_Fichiers`, `Accueil.md`, `Mode d'emploi.md`, et la note du jour dans `01 Journal`, qui appartient à la tâche du matin.
+Interdit d'écrire, sans exception : `_Modèles`, `_Fichiers`, `Accueil.md`, `Mode d'emploi.md`, la note du jour dans `01 Journal`, qui appartient à la tâche du matin, et **`08 Billets`**.
+
+### `08 Billets`, que tu ne touches jamais
+
+Ni pour lire, ni pour ranger, ni pour archiver, ni pour créer un lien. Même un billet qui traîne depuis une semaine sans bouger. Même un billet en `fait`, qui a l'air fini et rangeable.
+
+Ce dossier n'est pas une boîte à vider, c'est un plan de travail. Chaque billet a un responsable qui écrit dedans, et le déversement des captures y ajoute les réponses de Souleman. Un billet déplacé pendant qu'un responsable travaille dessus lui fait perdre son chantier, et une ligne ajoutée par toi se lit comme du journal de responsable.
+
+Ce n'est pas non plus une exception à ta règle « dans le doute, tu ne fais rien » : ici il n'y a pas de doute, tu ne fais rien.
+
+La règle de la relance de la section « Les passages » ne s'y applique pas non plus : un billet vieux d'une semaine remonte tout seul dans le digest de 8 h 30, ce n'est pas ton travail de le signaler.
 
 ### La liste noire dans `00 Inbox`
 

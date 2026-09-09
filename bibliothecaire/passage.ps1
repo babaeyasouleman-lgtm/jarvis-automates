@@ -358,6 +358,27 @@ if ($LASTEXITCODE -ne 0) {
 
 $apres = (git rev-parse --short HEAD).Trim()
 
+# 7 bis. Le garde de 08 Billets. Phase 8, 8 septembre 2026.
+#
+# La consigne lui interdit ce dossier, et la consigne suffit dans les faits :
+# c est deja comme ca que la liste noire de 00 Inbox tient depuis le 2
+# septembre. Mais un interdit qui ne laisse aucune trace quand il est franchi
+# est un interdit qu on decouvre six mois plus tard, et la lecon du 8 septembre
+# est exactement celle-la : un maillon manquant ne leve pas d erreur, il
+# produit un silence, et un silence se confond avec un comportement normal.
+#
+# On ne peut pas l empecher d ecrire, il a le coffre entier sous la main. On
+# peut refuser que ca passe inapercu. Ce garde ne fait donc rien d autre que
+# de le dire, fort, dans le journal que Souleman relit.
+if ($apres -ne $avant) {
+    $touches = @(git diff --name-only "$avant..$apres" -- "08 Billets")
+    if ($touches.Count -gt 0) {
+        Note "ALERTE, le bibliothecaire a touche 08 Billets, ce qui lui est interdit"
+        foreach ($t in ($touches | Select-Object -First 10)) { Note "  touche : $t" }
+        Note "annuler ce passage avec git revert $apres, puis relire sa consigne"
+    }
+}
+
 if ($apres -eq $avant) {
     Note "fin du passage en $duree s, rien a ranger"
 } else {

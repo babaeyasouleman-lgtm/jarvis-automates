@@ -109,7 +109,15 @@ function Get-NomLibre($dossier, $nom) {
     return $cible
 }
 
-# Le corps d un fichier de la boite, sans son frontmatter de transport.
+# Le corps d un fichier de la boite, sans son frontmatter ni son titre de
+# transport. La boite pose un titre sur tout ce qui la traverse, ce qui est
+# juste pour une capture qui devient une note, et faux pour une reponse qui
+# devient deux lignes dans une note existante : sans ce retrait, le titre
+# atterrissait au milieu de la phrase de Souleman. Vu au premier passage de
+# bout en bout, phase 8.
+#
+# Les retours a la ligne sont gardes. Une reponse d une ligne ne change pas,
+# une reponse de trois paragraphes reste lisible au lieu de devenir un mur.
 function Get-Corps($chemin) {
     $lignes = @(Get-Content $chemin -Encoding utf8)
     if ($lignes.Count -gt 0 -and $lignes[0].Trim() -eq '---') {
@@ -118,7 +126,12 @@ function Get-Corps($chemin) {
         if ($i + 1 -le $lignes.Count - 1) { $lignes = @($lignes[($i + 1)..($lignes.Count - 1)]) }
         else { $lignes = @() }
     }
-    return (($lignes -join ' ').Trim())
+    # Le titre de transport, et les lignes vides qui le suivent.
+    while ($lignes.Count -gt 0 -and -not $lignes[0].Trim()) { $lignes = @($lignes[1..($lignes.Count - 1)]) }
+    if ($lignes.Count -gt 0 -and $lignes[0] -match '^#\s+\S') {
+        if ($lignes.Count -gt 1) { $lignes = @($lignes[1..($lignes.Count - 1)]) } else { $lignes = @() }
+    }
+    return (($lignes -join "`n").Trim())
 }
 
 # Le billet que designe un identifiant, ou $null. On cherche par la cle
@@ -149,7 +162,10 @@ function Add-Reponse($fichier, $texte, $mots, $jour) {
     $crlf = $brut.Contains("`r`n")
     $lignes = @($brut -split "`r?`n")
     $marque = $mots['question']
-    $bloc = @('', ('**{0}, {1}** : {2}' -f $mots['reponse'], $jour, $texte))
+    # La ligne vide de fin n est pas de la coquetterie : sans elle, le titre
+    # de la section suivante se colle a la reponse et Obsidian ne le rend plus
+    # comme un titre.
+    $bloc = @('', ('**{0}, {1}** : {2}' -f $mots['reponse'], $jour, $texte), '')
 
     $debut = -1
     for ($i = 0; $i -lt $lignes.Count; $i++) {

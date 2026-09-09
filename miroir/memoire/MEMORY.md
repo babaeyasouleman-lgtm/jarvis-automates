@@ -9,8 +9,8 @@
 - [Jamais ancrer la valeur sur le temps](jamais-ancrer-la-valeur-sur-le-temps.md) — ne jamais dire combien de temps un livrable a pris, ni chez un prospect ni chez un client.
 - [Coffre Obsidian second cerveau](second-brain-obsidian.md) — emplacement `C:\Obsidian\Second Brain`, structure, et synchro iPhone non résolue.
 - [Six structures, une paie](souleman-six-structures.md) — ce qu'il porte, et pourquoi son emploi chez iA conditionne sa résidence permanente.
-- [Automatisations du coffre](coffre-automatisations.md) : trois tâches Windows, le passage de nuit qui enchaîne note du matin, extracteur, courriels, réunions Fathom, bibliothécaire et l'export du cerveau en liste blanche, le filet des automates, et les pièges Windows.
+- [Automatisations du coffre](coffre-automatisations.md) : quatre taches Windows, le passage de nuit qui enchaine note du matin, extracteur, courriels, reunions Fathom, bibliothecaire, le deversement qui adresse par une cle type et l export en liste blanche, le preneur de billets dans la journee, et les pieges Windows.
 - [Cagnotte live Gala MLM](cagnotte-live-gala-mlm.md) — l'appli du gala du 30 août 2026, et les valeurs qui manquent encore dans config.json.
 - [Archives Portraits homonymes](archives-portraits-homonymes.md) — deux zips du même nom, deux clients différents, vérifier par empreinte MD5.
 - [Paramédika, client actif](paramedika-client-actif.md) — dépôt reçu, site en construction, et pourquoi elle ne lâche pas son GoDaddy.
-- [Agent WhatsApp en modules](agent-whatsapp-modules.md) : le routeur de 321 lignes, le registre d'intentions, les deux fichiers qu'exige une capacite neuve, query_brain qui lit le cerveau en deux temps, et l'etat inhabituel du depot.
+- [Agent WhatsApp en modules](agent-whatsapp-modules.md) : le routeur de 321 lignes, le registre d intentions, les deux ou trois fichiers qu exige une capacite neuve selon qu elle pose une carte, query_brain et billet, le pre-filtre du digest de 8 h 30, et l etat inhabituel du depot.

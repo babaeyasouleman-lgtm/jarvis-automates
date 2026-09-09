@@ -218,6 +218,19 @@ foreach ($b in $affames) {
     Note "ecarte, $($b.Passages) passages sans sortir : $($b.Id) $($b.Fichier.Name)"
 }
 
+# Le compteur ne garde que ce qui est encore ouvert. Un billet annule ou fait
+# avant d avoir termine un passage y laissait une ligne pour toujours, et
+# passages.txt grossissait sans jamais servir. Le compteur ne sert qu a
+# empecher une boucle sur un billet vivant.
+$vivants = @{}
+foreach ($b in ($enCours + $aFaire + $affames)) { $vivants[$b.Id] = $true }
+$morts = @($compte.Keys | Where-Object { -not $vivants.ContainsKey($_) })
+if ($morts.Count -gt 0) {
+    foreach ($m in $morts) { $compte.Remove($m) }
+    Set-Content -Path $passages -Value (@($compte.Keys | Sort-Object | ForEach-Object { "$_ $($compte[$_])" })) -Encoding ascii
+    Note "$($morts.Count) compteur(s) retire(s), le billet n est plus ouvert"
+}
+
 $choisi = $null
 if ($enCours.Count -gt 0)     { $choisi = $enCours[0] }
 elseif ($aFaire.Count -gt 0)  { $choisi = $aFaire[0] }

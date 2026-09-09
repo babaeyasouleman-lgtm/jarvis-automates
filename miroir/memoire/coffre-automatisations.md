@@ -1,14 +1,14 @@
 ---
 name: coffre-automatisations
-description: "Les tâches Windows qui entretiennent le coffre Obsidian et sauvegardent les automates, les six automates que passage.ps1 enchaîne dont l'export du cerveau en liste blanche et le déversement des captures de l'agent, les modèles qu'elles utilisent, et les pièges Windows qui les font échouer en silence."
+description: "Les quatre tâches Windows qui entretiennent le coffre Obsidian, les six automates que passage.ps1 enchaîne dont l'export en liste blanche et le déversement qui adresse ses fichiers par une clé type, le preneur de billets qui tourne dans la journée, les modèles qu'elles utilisent, et les pièges Windows qui les font échouer en silence."
 metadata:
   node_type: memory
   type: project
   originSessionId: c9bcd99a-89d8-4a22-acae-a16e2f7c91d9
-  modified: 2026-09-07T18:30:00.000Z
+  modified: 2026-09-09T00:05:02.642Z
 ---
 
-Trois tâches Windows tournent sur le PC de Souleman, et une seule d'entre elles enchaîne les six automates du coffre. Ne pas les reconstruire, elles existent. Le plan complet est `C:\Obsidian\Second Brain\02 Projets\Plan Jarvis.md`, restructuré par paliers le 2026-09-03.
+**Quatre** tâches Windows tournent sur le PC de Souleman depuis le 2026-09-08. Une seule enchaîne les six automates du coffre, une quatrième prend les billets de travail dans la journée. Ne pas les reconstruire, elles existent. Le plan complet est `C:\Obsidian\Second Brain\02 Projets\Plan Jarvis.md`, restructuré par paliers le 2026-09-03.
 
 **Filet, phase 1 du [[Plan Jarvis]].** `C:\Obsidian\filet\commit-horaire.ps1`, tâche « Filet coffre Obsidian », toutes les heures. Commit et pousse le coffre vers le dépôt privé `babaeyasouleman-lgtm/second-brain`.
 
@@ -54,7 +54,7 @@ Trois tâches Windows tournent sur le PC de Souleman, et une seule d'entre elles
 
 **Un garde relit le miroir avant de pousser** et refuse la poussée si un seul fichier vient d'ailleurs que de la liste blanche. Ceinture après les bretelles, sur un coffre qui porte un dossier d'immigration et des revenus.
 
-**76 notes sur 133 partent.** Le contenu de `03 Domaines/Moi` reste entier sur le PC. Mais la liste blanche protège les dossiers, pas les mentions : `06 Personnes/Souleman.md` résume la carrière finance et le solde de La Rotonde, et `Maeva.md` renvoie à la section Couple de `Personnel`. C'est du classement, pas un défaut de l'export. À trancher à la phase 7.
+**78 notes partent depuis la phase 8, sur 6 racines**, contre 76 sur 5 avant que `08 Billets` n'existe. Le contenu de `03 Domaines/Moi` reste entier sur le PC. Mais la liste blanche protège les dossiers, pas les mentions : deux passages ont été retirés le 2026-09-08 de `Souleman.md` et `Maeva.md`, parce qu'ils existaient déjà dans `Moi` en plus complet. **`02 Projets/Résidence permanente.md` part en entier, et c'est une décision prise à la phase 8**, pas un oubli : la note porte le PGWP, la fenêtre jusqu'à fin 2027 et la stratégie, mais aucune pièce d'identité. Le troisième niveau de liste blanche, fichier par fichier, a été refusé deux fois, la seconde avec une raison mécanique : **une exclusion par nom de fichier échoue dans le mauvais sens**, une note renommée repart en silence. La sortie qui reste disponible sans mécanisme neuf, c'est de déplacer la note dans `03 Domaines/Moi`.
 
 **`index.py` est réutilisé, pas recopié.** Pointé sur le miroir au lieu du coffre, il produit la table des matières de ce qui est exporté et rien de plus. 3 326 tokens pour 76 notes. `fraicheur.txt`, écrit à chaque passage, porte `export=<ISO>` et `notes=<n>` : c'est lui et non la date d'un commit qui dit à l'agent l'âge de ce qu'il lit.
 
@@ -76,7 +76,19 @@ Trois tâches Windows tournent sur le PC de Souleman, et une seule d'entre elles
 
 **Le dépôt `jarvis-captures` existe depuis le 2026-09-08**, privé, créé avec le `gh` du PC qui est hors PATH dans `C:\Program Files\GitHub CLI\gh.exe`. Amorcé avec un LISEZMOI sur `main` : un dépôt complètement vide n'a pas de branche et laisse des cas limites des deux côtés. `captures.ps1` porte l'URL en dur et a cloné tout seul au premier passage réel. **Ce qui manque encore côté Railway** : `CAPTURES_REPO_URL`, un fine-grained token limité à ce seul dépôt, permission Contents en écriture. Sans lui les captures s'empilent dans `/data/outbox` sans partir.
 
-**Modèles.** Bibliothécaire sur `opus`. Note du matin sur `sonnet`, elle assemble et ne juge pas. Courriels entrants et reunions Fathom sur `sonnet`, meme travail que l'extracteur sur d'autres sources. **Deux automates du passage n'appellent aucun modèle** : l'export du cerveau et le déversement des captures. Extracteur sur `sonnet` depuis le 2026-09-03, décision prise à l'audit après mesure : une nuit valait 2 à 4 $ d'équivalent Opus pour un travail qui ne demande pas de connaître le coffre. Version d'avant gardée en `extraction.ps1.avant-sonnet`. Le 2026-09-03 à 0 h 03, l'extracteur a été refusé pour limite de session pendant que Souleman travaillait : les automates et lui partagent le même quota.
+**Preneur de billets, en service depuis le 2026-09-08, phase 8.** `C:\Obsidian\billets\`, avec `consigne.md`, `preneur.ps1`, `mots.txt`, `journal.log`, `contexte.txt`, `passages.txt` et `verrou.txt`. Tâche « Preneur de billets », **toutes les heures de 8 h à 22 h**, sur `opus`. Il déverse la boîte aux lettres, choisit UN billet dans `08 Billets`, pose `en cours`, appelle `claude -p` sur sa consigne, relit l'état sur le disque, enregistre par chemin, puis **relance `export.ps1`** pour que l'agent voie le nouvel état dans l'heure au lieu du lendemain matin. Sans rien à prendre, il sort en une seconde et zéro token.
+
+**Priorité `en cours` avant `à faire`**, ce qui rend le système auto-réparant : un passage interrompu est repris à l'heure suivante. `passages.txt` compte les passages par billet et **écarte au cinquième**, sinon un billet impossible affamerait tous les autres en dépensant du quota chaque heure. Le compteur ne garde que ce qui est encore ouvert, sinon il fuit à chaque billet annulé.
+
+**Il saute quand le passage de nuit tient son verrou**, parce que les deux puisent dans le même quota, et quand un git tourne déjà dans le coffre. Il pose aussi son propre verrou : un passage peut durer vingt minutes et la tâche revient toutes les heures.
+
+**`captures.ps1` route sur la clé `type` du frontmatter depuis la phase 8** : `capture` vers `00 Inbox`, `billet` vers `08 Billets`, `reponse-billet` sous la section `## Question` du billet visé, qui repasse alors de `bloqué` à `à faire`. **Il ne juge toujours rien** : débloquer un billet dont la question a une réponse est mécanique, pas un jugement. Les mots accentués qu'il écrit viennent de `C:\Obsidian\billets\mots.txt`, en UTF-8, parce que PowerShell 5.1 lit les `.ps1` en ANSI. Ce fichier est la source unique, lue aussi par `preneur.ps1`.
+
+**Le bibliothécaire ne touche JAMAIS `08 Billets`**, c'est dans sa consigne comme la liste noire de `00 Inbox`. Et depuis la phase 8, `passage.ps1` compare les commits d'avant et d'après son passage et **crie dans le journal** s'il y a touché. On ne peut pas l'en empêcher, il a le coffre sous la main ; on peut refuser que ça passe inaperçu. Vérifié en déclenchant le garde pour de vrai.
+
+**Le premier passage de bout en bout a trouvé ce qu'aucune relecture n'aurait vu** : un titre écrit deux fois, une clé `cout:` disparue de l'en-tête fixe, et le titre de transport collé au milieu d'une réponse. Aucun ne levait d'erreur. **Un livrable ne se relit pas, il s'ouvre.**
+
+**Modèles.** Bibliothécaire sur `opus`, preneur de billets sur `opus` puisqu'il produit ce que Souleman vend. Note du matin sur `sonnet`, elle assemble et ne juge pas. Courriels entrants et reunions Fathom sur `sonnet`, meme travail que l'extracteur sur d'autres sources. **Deux automates du passage n'appellent aucun modèle** : l'export du cerveau et le déversement des captures. Extracteur sur `sonnet` depuis le 2026-09-03, décision prise à l'audit après mesure : une nuit valait 2 à 4 $ d'équivalent Opus pour un travail qui ne demande pas de connaître le coffre. Version d'avant gardée en `extraction.ps1.avant-sonnet`. Le 2026-09-03 à 0 h 03, l'extracteur a été refusé pour limite de session pendant que Souleman travaillait : les automates et lui partagent le même quota.
 
 **Filet des automates, ajouté le 2026-09-03.** `C:\Obsidian\filet\commit-automates.ps1`, tâche « Filet automates », toutes les heures. Dépôt git à la racine `C:\Obsidian`, qui suit `bibliothecaire`, `transcriptions`, `filet`, et un dossier `miroir` copié par robocopy depuis les skills maison, `agent-vocal`, `devis`, `prospect-site`, `prospect-email`, `no-ai-slop`, les tâches planifiées de l'app et ce dossier de mémoire. `Second Brain/`, `node_modules`, journaux, `travail` et fichiers `*.local.*` sont exclus. Remote `babaeyasouleman-lgtm/jarvis-automates`, créé et actif depuis le 2026-09-03, il reçoit les poussées. `gh` n'est pas installé sur ce PC, le push passe par Git Credential Manager en HTTPS.
 
@@ -87,6 +99,8 @@ Trois tâches Windows tournent sur le PC de Souleman, et une seule d'entre elles
 Si ca arrive, les automates basculent de quota **en silence**, et surtout **Fathom cesse de repondre**, parce que c'est un connecteur claude.ai attache au compte : la phase 4 bis s'arreterait sans dire pourquoi. L'agent WhatsApp n'est pas concerne, il tourne sur `ANTHROPIC_API_KEY`, une cle de la console API facturee a part.
 
 **La parade.** `passage.ps1` lit `oauthAccount.emailAddress`, ecrit le compte en premiere ligne de son journal, et le compare a `bibliothecaire/compte.txt` : un changement est signale, jamais bloque, parce qu'il est peut-etre voulu. Le fichier est exclu du depot des automates, c'est un etat local. **Separer automates et travail de jour sur deux comptes n'est pas praticable** : il faudrait jongler avec les connexions, et c'est comme ca qu'on casse un automate de nuit.
+
+**La session OAuth du CLI expire, et TOUT ce qui pense s'arrête d'un coup.** Vu le 2026-09-08 pendant la phase 8 : `claude -p` répond « Failed to authenticate: OAuth session expired and could not be refreshed », code 1, en quatre secondes. Ça arrête le bibliothécaire, la note du matin, l'extracteur, les courriels, les réunions et le preneur de billets. **Les six scripts le journalisent correctement et ne perdent rien** : les marqueurs ne sont pas avancés, un billet reste `en cours` et repart au passage suivant. Mais rien ne prévient Souleman, et le seul symptôme visible est un coffre qui cesse de se ranger. Le garde du compte surveille un CHANGEMENT de compte, pas une EXPIRATION : ce sont deux pannes différentes. Se reconnecter est un identifiant, donc ça ne se délègue jamais. **Vérifier ce message dans les journaux avant de chercher un bug ailleurs.**
 
 **Pièges Windows, découverts en testant, coûteux à redécouvrir.**
 
