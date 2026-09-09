@@ -16,6 +16,10 @@
 #   type: reponse-billet   -> ajoute sous la section Question du billet que
 #                             la cle billet: designe, et si ce billet etait
 #                             bloque, il repasse a faire.
+#   type: reponse-question -> coche la ligne de 10 Questions que la cle
+#                             question: designe, au format fichier:ligne, et
+#                             ecrit la reponse dedans. Souleman repond sur
+#                             WhatsApp, et le coffre apprend.
 #
 # Une deuxieme boite aux lettres aurait voulu dire un deuxieme depot, un
 # deuxieme clone, un deuxieme jeu de filets contre le doublon et un deuxieme
@@ -83,6 +87,7 @@ $deposes  = Join-Path $base 'deposes.txt'
 $distant  = 'https://github.com/babaeyasouleman-lgtm/jarvis-captures.git'
 $inbox    = Join-Path $coffre '00 Inbox'
 $billets  = Join-Path $coffre '08 Billets'
+$quest    = Join-Path $coffre '10 Questions'
 # Le vocabulaire des billets vit avec le preneur, pas ici : deux copies d une
 # liste de mots finissent par diverger, et celle-ci decide d un etat ecrit
 # dans le coffre.
@@ -132,6 +137,44 @@ function Get-Corps($chemin) {
         if ($lignes.Count -gt 1) { $lignes = @($lignes[1..($lignes.Count - 1)]) } else { $lignes = @() }
     }
     return (($lignes -join "`n").Trim())
+}
+
+# Cocher une question de 10 Questions et y ecrire la reponse.
+#
+# La cible est donnee en fichier:ligne et JAMAIS retrouvee par ressemblance de
+# texte : deux questions peuvent se ressembler, et cocher la mauvaise ferait
+# disparaitre une question ouverte sans que personne ne s en apercoive.
+#
+# Le numero de ligne vient du clone du cerveau, qui a jusqu a une heure de
+# retard. Si la ligne a bouge entre-temps, on refuse au lieu de cocher a cote :
+# la reponse repart au passage suivant, avec un clone a jour. Une reponse en
+# retard ne coute rien, une question effacee par erreur ne se retrouve pas.
+#
+# Retourne une chaine vide si c est fait, la raison sinon.
+function Add-ReponseQuestion($dossier, $cible, $texte, $jour) {
+    $sep = $cible.LastIndexOf(':')
+    if ($sep -lt 1) { return 'cible malformee' }
+    $nom = $cible.Substring(0, $sep)
+    $num = 0
+    if (-not [int]::TryParse($cible.Substring($sep + 1), [ref]$num)) { return 'numero de ligne illisible' }
+
+    $chemin = Join-Path $dossier $nom
+    if (-not (Test-Path $chemin)) { return "fichier introuvable, $nom" }
+
+    $brut = [IO.File]::ReadAllText($chemin)
+    $crlf = $brut.Contains([string][char]13 + [string][char]10)
+    $lignes = @($brut -split "`r?`n")
+    if ($num -lt 1 -or $num -gt $lignes.Count) { return 'ligne hors du fichier' }
+
+    $i = $num - 1
+    if ($lignes[$i] -notmatch '^(\s*[-*]\s*)\[ \]\s*(.*)$') {
+        return 'la ligne n est plus une question ouverte, le clone a du retard'
+    }
+    $puce = $matches[1]
+    $reste = $matches[2]
+    $lignes[$i] = $puce + '[x] ' + $reste + '  ' + [string][char]0x2192 + ' ' + $texte + '  (repondu le ' + $jour + ')'
+    Set-Texte $chemin $lignes $crlf
+    return ''
 }
 
 # Le billet que designe un identifiant, ou $null. On cherche par la cle
@@ -365,6 +408,23 @@ foreach ($c in $aDeverser) {
         }
     }
 
+    # Une reponse a une question coche une ligne existante. Comme la reponse a
+    # un billet, elle ne cree aucun fichier.
+    if ($c.Type -eq 'reponse-question' -and $c.Question) {
+        $texte = (Get-Corps $c.Fichier.FullName) -replace "`r?`n", ' '
+        $souci = Add-ReponseQuestion $quest $c.Question $texte $jour
+        if ($souci) {
+            # On ne marque rien : la reponse repartira au passage suivant.
+            Note "question $($c.Question) non cochee, $souci"
+            continue
+        }
+        $copies = $copies + 1
+        $reussis += $c.Id
+        if ([string]::Compare($c.Id, $maxi, [StringComparison]::Ordinal) -gt 0) { $maxi = $c.Id }
+        Note "question tranchee : $($c.Question)"
+        continue
+    }
+
     # Une capture va dans 00 Inbox, un billet dans 08 Billets. Une reponse
     # orpheline retombe dans 00 Inbox : mieux vaut la voir le dimanche que la
     # perdre. C est la seule ligne de ce script qui ressemble a un choix, et
@@ -396,11 +456,11 @@ if ($copies -eq 0) {
 # que Souleman peut avoir des choses en cours dans le coffre, et un git add -A
 # les embarquerait dans un commit qui dit Captures.
 Set-Location $coffre
-& git add -- "00 Inbox" "08 Billets" 2>&1 | Out-Null
+& git add -- "00 Inbox" "08 Billets" "10 Questions" 2>&1 | Out-Null
 & git diff --cached --quiet
 if ($LASTEXITCODE -ne 0) {
     $aujourdhui = (Get-Date).ToString('yyyy-MM-dd')
-    & git commit -q -m "Captures de l agent, $aujourdhui" -- "00 Inbox" "08 Billets"
+    & git commit -q -m "Captures de l agent, $aujourdhui" -- "00 Inbox" "08 Billets" "10 Questions"
     if ($?) {
         $hash = (& git rev-parse --short HEAD).Trim()
         Note "$copies capture(s) deversee(s), commit $hash, annuler avec git revert $hash"
