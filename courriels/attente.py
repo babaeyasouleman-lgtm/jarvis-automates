@@ -82,7 +82,13 @@ PLAFOND = 400
 BRUIT = re.compile(
     r"no[-_.]?reply|ne[-_.]?pas[-_.]?repondre|donotreply|notifications?@|"
     r"newsletter|mailer|bounce|postmaster|support@|billing@|invoice@|"
-    r"calendar-notification|automated|noreply",
+    r"calendar-notification|automated|noreply|"
+    # Les relais d'envoi en masse. Vus au premier passage reel du 9 septembre
+    # 2026 : gmail.com@bf06.eu1.hubspotemail.net etait compte comme un fil
+    # sans reponse. Une adresse de plateforme n'attend pas de reponse, elle
+    # n'a personne derriere.
+    r"hubspotemail|sendgrid|mailchimp|mailgun|amazonses|sparkpostmail|"
+    r"salesforce|intercom|zendesk|customeriomail",
     re.I)
 
 
@@ -184,13 +190,33 @@ def reconnait(adresse, nom_affiche, gens):
         if a and a in p["courriels"]:
             return p
     n = norme(nom_affiche)
-    if not n or len(n) < 4:
-        return None
-    for p in gens:
-        for candidat in p["noms"]:
-            if candidat and (n == candidat or n.startswith(candidat + " ")
-                             or n.endswith(" " + candidat)):
-                return p
+    if n and len(n) >= 4:
+        for p in gens:
+            for candidat in p["noms"]:
+                if candidat and (n == candidat or n.startswith(candidat + " ")
+                                 or n.endswith(" " + candidat)):
+                    return p
+
+    # Troisieme regle, sur la PARTIE LOCALE de l'adresse, et c'est celle qui
+    # sert vraiment. Ajoutee le 9 septembre 2026 apres le premier passage reel :
+    # les deux premieres ne reconnaissaient personne sur 44 correspondants.
+    #
+    # La cause est bete et elle ne se devine pas depuis un bureau : les noms
+    # d'affichage des vrais courriels ne ressemblent pas aux noms du coffre.
+    # « franckmaleek.dd » pour « Franck-Maleek Djamat-Dubois ». Aucune des deux
+    # regles precedentes n'a la moindre chance.
+    #
+    # Il faut DEUX morceaux de nom d'au moins quatre lettres dans la partie
+    # locale. Un seul rattacherait « marie.tremblay@ » a n'importe quelle Marie,
+    # et une note rangee chez le mauvais coute plus cher que pas de note du tout.
+    local = a.split("@")[0]
+    local = re.sub(r"[^a-z0-9]", "", sans_accent(local))
+    if len(local) >= 8:
+        for p in gens:
+            for candidat in p["noms"]:
+                morceaux = [m for m in re.split(r"[^a-z0-9]+", candidat) if len(m) >= 4]
+                if len(morceaux) >= 2 and sum(1 for m in morceaux if m in local) >= 2:
+                    return p
     return None
 
 
@@ -245,6 +271,7 @@ def principal():
 
     maintenant = datetime.now()
     attentes = {}
+    inconnus = []
     for t in fils:
         try:
             fil = get(API + "/threads/" + t + "?format=metadata", jeton)
@@ -265,7 +292,7 @@ def principal():
         else:
             continue
 
-        if BRUIT.search(de) or BRUIT.search(h.get("to", "")):
+        if BRUIT.search(de) or BRUIT.search(h.get("to", "")) or BRUIT.search(h.get("cc", "")):
             continue
 
         # A qui a-t-il ecrit ? TOUS les destinataires du dernier message, pas
@@ -325,6 +352,9 @@ def principal():
         print("en attente de reponse (%d jours ou plus) : %d" % (jours_min, len(liste)))
         for a in liste:
             print("  %-24s %3d j   %s   %s" % (a["nom"][:24], a["silence"], a["date"], a["sujet"][:50]))
+        print("correspondants sans note dans le coffre : %d" % len(inconnus))
+        for i in inconnus[:10]:
+            print("  ", i["adresse"])
         return 0
 
     dossier = os.path.join(coffre, "10 Questions")
@@ -353,12 +383,39 @@ def principal():
         "",
     ]
     if not liste:
-        lignes.append("Personne n'attend de reponse en ce moment.")
+        lignes.append("Personne du coffre n'attend de reponse en ce moment.")
     else:
         for a in liste:
             lignes.append("- [[%s]] : %d jours de silence, ecrit le %s, sujet %s"
                           % (a["nom"], a["silence"], a["date"], a["sujet"]))
     lignes.append("")
+
+    # La seconde moitie, et au premier passage c'est elle qui portait tout.
+    #
+    # Le 9 septembre 2026, sur 52 fils ou Souleman avait ecrit en dernier, UNE
+    # seule personne etait reconnue. Pas parce que personne n'attend, mais
+    # parce que 2 de ses 24 notes de personnes portent une adresse courriel.
+    #
+    # Le dire est plus utile que de se taire : ces adresses-la reviennent
+    # souvent dans ses fils, donc ce sont des gens qui comptent, et aucune
+    # n'a de note. C'est un trou du coffre, pas un trou du script.
+    compte = {}
+    for i in inconnus:
+        compte[i["adresse"]] = compte.get(i["adresse"], 0) + 1
+    frequents = sorted(compte.items(), key=lambda x: -x[1])[:6]
+    if frequents:
+        lignes.append("## Ces gens n'ont pas de note")
+        lignes.append("")
+        lignes.append("Souleman leur a ecrit en dernier et ils n'ont pas repondu, mais")
+        lignes.append("aucun n'existe dans `06 Personnes`, donc rien ne peut les relancer.")
+        lignes.append("Leur creer une note, ou ajouter leur adresse a une note existante,")
+        lignes.append("suffit a les faire entrer dans la liste du dessus.")
+        lignes.append("")
+        for adresse, n in frequents:
+            lignes.append("- %s, %d fil(s) sans reponse" % (adresse, n))
+        lignes.append("")
+        lignes.append("_%d correspondants sans note en tout._" % len(compte))
+        lignes.append("")
 
     with open(chemin, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(lignes))

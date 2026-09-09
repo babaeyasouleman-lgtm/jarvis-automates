@@ -175,6 +175,16 @@ $courriels = 'C:\Obsidian\courriels\courriels.ps1'
 if (Test-Path $courriels) {
     & powershell -ExecutionPolicy Bypass -File $courriels
     Note "courriels entrants, code $LASTEXITCODE"
+    # 0 ter bis. Qui attend une reponse de Souleman. Meme source Gmail, autre
+    # question : courriels.py regarde ce qui ARRIVE, attente.py regarde les
+    # fils ou c est LUI qui a parle en dernier. Il ne juge rien, il n appelle
+    # aucun modele, et il n ecrit qu un seul fichier, entierement regenere.
+    # Il ne pose AUCUNE relance : c est une decision, pas un balayage.
+    $attente = 'C:\Obsidian\courriels\attente.py'
+    if ((Test-Path $attente) -and (Test-Path $python)) {
+        & $python $attente 'C:\Obsidian\courriels' $coffre
+        Note "qui attend une reponse, code $LASTEXITCODE"
+    }
 } else {
     Note "courriels.ps1 introuvable, on passe directement au rangement"
 }
