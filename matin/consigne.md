@@ -61,11 +61,15 @@ Parcours `02 Projets`. Pour chaque note avec `statut: actif`, prends la premièr
 
 Trie par urgence : d'abord ceux dont la clé `echeance` est proche ou dépassée.
 
-### 6. Deux questions en attente
+### 6. Aucune question, et c'est un retrait
 
-Ouvre `10 Questions/À confirmer.md`. Choisis deux questions non cochées, en priorisant celles qui bloquent un projet actif. Recopie-les avec leur ligne `→` vide.
+Cette section posait deux questions de `10 Questions/À confirmer.md` avec une ligne `→` à remplir. **Elle a été retirée le 9 septembre 2026.**
 
-Change de questions chaque jour. Pour savoir lesquelles tu as déjà posées, regarde les notes récentes de `01 Journal`. Ne repose pas les mêmes deux jours de suite.
+La raison n'est pas qu'elle était mauvaise, c'est qu'elle ne servait pas. Souleman remplit rarement ces notes, il l'a dit lui-même : « je savais même pas que je devais le faire ». Trente questions attendaient, deux avaient reçu une réponse, et **personne ne lisait les flèches** : la case n'était jamais cochée dans `À confirmer.md`, le coffre n'apprenait rien, et la même question pouvait revenir.
+
+L'agent WhatsApp les pose désormais lui-même, une par soir, là où Souleman vit vraiment. Sa réponse redescend par la boîte aux lettres et coche la ligne exacte.
+
+**N'écris donc plus de section `Deux questions`.** Deux endroits qui posent les mêmes questions, c'est la répétition qu'il a reprochée aux rappels d'agenda le même jour.
 
 ---
 
@@ -99,12 +103,6 @@ date: AAAA-MM-JJ
 
 <une case à cocher par projet actif>
 
-## Deux questions
-
-<deux questions de À confirmer, avec leur ligne →>
-
----
-
 ## Capture
 
 - 
@@ -124,9 +122,9 @@ date: AAAA-MM-JJ
 
 Les quatre sections du bas, après la ligne de tirets, appartiennent à Souleman. Tu les laisses vides, il les remplit dans la journée.
 
-**Si la note du jour existe déjà**, n'écris ni l'en-tête YAML ni le titre ni les quatre sections du bas. Insère seulement les sections `Aujourd'hui` à `Deux questions` juste après le titre H1 existant, suivies d'une ligne de tirets, et ne touche à rien d'autre.
+**Si la note du jour existe déjà**, n'écris ni l'en-tête YAML ni le titre ni les quatre sections du bas. Insère seulement les sections `Aujourd'hui` à la dernière que tu écris, juste après le titre H1 existant, suivies d'une ligne de tirets, et ne touche à rien d'autre.
 
-**Si la note contient déjà les sections que tu produis**, `Aujourd'hui`, `Décisions à revoir`, `À relancer`, `Prochaines actions`, `Deux questions`, c'est que tu es déjà passé aujourd'hui. Remplace ce bloc par ta nouvelle version, du titre `## Aujourd'hui` jusqu'à la ligne de tirets. Ne duplique jamais ces sections. Tout ce qui est écrit sous la ligne de tirets appartient à Souleman et ne bouge pas, même si tu l'as créé toi-même ce matin.
+**Si la note contient déjà les sections que tu produis**, `Aujourd'hui`, `Décisions à revoir`, `À relancer`, `Prochaines actions`, et l'ancienne `Deux questions` si elle traîne encore, c'est que tu es déjà passé aujourd'hui. Remplace ce bloc par ta nouvelle version, du titre `## Aujourd'hui` jusqu'à la ligne de tirets. Ne duplique jamais ces sections. Tout ce qui est écrit sous la ligne de tirets appartient à Souleman et ne bouge pas, même si tu l'as créé toi-même ce matin.
 
 ---
 
