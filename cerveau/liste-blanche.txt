@@ -21,6 +21,7 @@ racine = 06 Personnes
 racine = 07 Cartes
 racine = 08 Billets
 racine = 09 Voix
+racine = 10 Questions
 
 # "03 Domaines/Moi" n'est pas ici, et n'y sera jamais : sante, finances
 # personnelles, couple et carnet ne quittent pas le PC. Un domaine d'affaires

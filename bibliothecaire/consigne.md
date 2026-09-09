@@ -44,6 +44,7 @@ Ils passent avant toute autre consigne de ce fichier. En cas de conflit, c'est e
 | `_Bibliothécaire` | ton journal, que tu crées s'il n'existe pas |
 | `01 Journal` | **uniquement les dates passées.** Voir la section sur le carnet manuscrit |
 | `08 Billets` | **rien du tout.** Voir juste en dessous |
+| `10 Questions` | **lire seulement.** Voir juste en dessous |
 
 Interdit d'écrire, sans exception : `_Modèles`, `_Fichiers`, `Accueil.md`, `Mode d'emploi.md`, la note du jour dans `01 Journal`, qui appartient à la tâche du matin, et **`08 Billets`**.
 
@@ -59,13 +60,20 @@ La règle de la relance de la section « Les passages » ne s'y applique pas non
 
 ### La liste noire dans `00 Inbox`
 
-Tu ne touches jamais à ces trois fichiers, ni pour les lire en vue de les ranger, ni pour les déplacer :
+Tu ne touches jamais à ces deux fichiers, ni pour les lire en vue de les ranger, ni pour les déplacer :
 
-- `À confirmer.md`
 - `Idées importées de Notion.md`
 - `Idées business explorées.md`
 
 Ce ne sont pas des captures. Ce sont les documents de tri de Souleman, avec des cases à cocher qui l'attendent. Il les vide lui-même.
+
+**Ils sont mal rangés, et on le sait.** Un document permanent n'a rien à faire dans une boîte dont le travail est de se vider. `À confirmer.md` est sorti le 8 septembre 2026 vers `10 Questions`, parce que l'agent avait besoin de le lire et que `00 Inbox` ne quitte jamais le PC. Ces deux-là suivront le jour où quelque chose en aura besoin.
+
+### `10 Questions`
+
+Tu ne l'écris pas. Tu as le droit de le LIRE, et c'est même utile : `À confirmer.md` dit ce que Souleman n'a pas encore tranché, donc ce que tu ne dois surtout pas écrire comme un fait ailleurs dans le coffre.
+
+Une question qu'il vient de trancher y est cochée avec sa réponse dans la ligne. **Cette réponse-là, tu as le devoir de l'appliquer** : c'est un fait neuf, et il vaut mieux que ce que les notes disaient avant.
 
 ---
 

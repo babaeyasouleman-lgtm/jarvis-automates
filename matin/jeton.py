@@ -86,11 +86,31 @@ def scopes_actuels(c):
 
 
 def main():
+    # Le fichier d'identifiants vit a la racine C:\Obsidian depuis qu'il a ete
+    # centralise : une seule identite Google pour tous les automates, jamais
+    # une copie par automate. Ce script cherchait UNIQUEMENT dans son propre
+    # dossier et n'avait pas suivi le demenagement, alors que courriels.py et
+    # brouillon.py cherchent aux deux endroits depuis toujours.
+    #
+    # Symptome, le 8 septembre 2026 : "google.local.json introuvable dans
+    # C:\Obsidian\matin", au moment precis ou il fallait ajouter la portee
+    # Drive. Le message d'erreur etait juste et la cause invisible.
+    #
+    # Meme ordre que les deux autres scripts : la racine d'abord, le dossier
+    # local ensuite. Trois copies de la meme recherche, c'est deja deux de
+    # trop, mais les aligner coute moins cher que de les refactoriser un soir.
     base = os.path.dirname(os.path.abspath(__file__))
-    chemin = os.path.join(base, "google.local.json")
-    if not os.path.exists(chemin):
-        print("ECHEC : google.local.json introuvable dans", base)
+    racine = os.path.dirname(base)
+    chemin = None
+    for essai in (os.path.join(racine, "google.local.json"),
+                  os.path.join(base, "google.local.json")):
+        if os.path.exists(essai):
+            chemin = essai
+            break
+    if not chemin:
+        print("ECHEC : google.local.json introuvable, ni dans", racine, "ni dans", base)
         return 1
+    print("Identifiants lus dans", chemin)
 
     with io.open(chemin, encoding="utf-8") as f:
         c = json.load(f)

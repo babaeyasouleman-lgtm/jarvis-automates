@@ -284,10 +284,12 @@ foreach ($f in (Get-ChildItem -Path $source -Filter '*.md' -File | Sort-Object N
     $id = ''
     $type = 'capture'
     $vise = ''
+    $question = ''
     foreach ($l in (Get-Content $f.FullName -Encoding utf8 -TotalCount 20)) {
         if ($l -match '^capture:\s*(\S+)\s*$') { $id = $matches[1] }
         elseif ($l -match '^type:\s*(\S+)\s*$') { $type = $matches[1] }
         elseif ($l -match '^billet:\s*(\S+)\s*$') { $vise = $matches[1] }
+        elseif ($l -match '^question:\s*(.+?)\s*$') { $question = $matches[1] }
     }
     if (-not $id) {
         Note "sans identifiant, ignore : $($f.Name)"
@@ -307,7 +309,7 @@ foreach ($f in (Get-ChildItem -Path $source -Filter '*.md' -File | Sort-Object N
         $sautes = $sautes + 1
         continue
     }
-    $aDeverser += [pscustomobject]@{ Id = $id; Type = $type; Vise = $vise; Fichier = $f }
+    $aDeverser += [pscustomobject]@{ Id = $id; Type = $type; Vise = $vise; Question = $question; Fichier = $f }
 }
 
 if ($Sec) {

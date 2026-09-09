@@ -63,7 +63,7 @@ Trie par urgence : d'abord ceux dont la clé `echeance` est proche ou dépassée
 
 ### 6. Deux questions en attente
 
-Ouvre `00 Inbox/À confirmer.md`. Choisis deux questions non cochées, en priorisant celles qui bloquent un projet actif. Recopie-les avec leur ligne `→` vide.
+Ouvre `10 Questions/À confirmer.md`. Choisis deux questions non cochées, en priorisant celles qui bloquent un projet actif. Recopie-les avec leur ligne `→` vide.
 
 Change de questions chaque jour. Pour savoir lesquelles tu as déjà posées, regarde les notes récentes de `01 Journal`. Ne repose pas les mêmes deux jours de suite.
 
