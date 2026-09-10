@@ -12,13 +12,21 @@
 #
 # Changer un mot ici change ce que les scripts ecrivent dans le coffre, sans
 # toucher a un script. Il faut alors changer aussi les billets deja ecrits.
+#
+# "attente" ajoute le 10 septembre 2026, refonte du billet. Il ne veut PAS
+# dire la meme chose que "bloque" : bloque attend Souleman, attente attend un
+# autre role. La difference est mecanique et pas cosmetique. captures.ps1 ne
+# fait repasser en "a faire" que les billets "bloque", donc une reponse de
+# Souleman ne debloque jamais par erreur un billet qui attendait un collegue.
 
 a_faire = à faire
 en_cours = en cours
 bloque = bloqué
+attente = attente
 a_valider = à valider
 fait = fait
 annule = annulé
 question = ## Question
 journal = ## Journal
+etapes = ## Étapes
 reponse = Réponse de Souleman
