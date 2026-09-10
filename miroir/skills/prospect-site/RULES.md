@@ -207,6 +207,18 @@ la vraie protection.
 
 ## Méthode de travail, à respecter sans qu'il la redemande
 
+- **En mode billet, la direction ne s'invente pas: elle se reprend.** Demandé le 2026-09-10:
+  *« en mode auto il prend une direction que j'ai déjà validée ou dans mes inspirations »*.
+  Sans personne en face pour arbitrer, on part d'une démo déjà livrée et acceptée, ou d'une
+  référence de `inspiration/`, et on n'y change que les textes, le logo et les couleurs du
+  prospect. Choisir une démo d'un AUTRE métier et d'une AUTRE ville: la règle du non-répété
+  protège des prospects présentés côte à côte, pas des marchés qui ne se croisent jamais.
+  Nommer dans `ADN.txt` la démo reprise et la date de son acceptation.
+- **Un effet de mouvement en mode billet, pas trois.** Trois effets sur une maquette de dix
+  minutes sont trois occasions de rater, et deux des trois de Vanessa v1 n'avaient jamais servi.
+  La révélation au défilement, avec son filet complet, suffit. Le plancher de trois vaut quand
+  il est là pour juger.
+
 - **Un prospect qui ne veut pas de site se travaille par l'audit et l'automatisation, pas par la maquette.** Demandé le 2026-08-20 sur Venturia: *« Ce prospect n'avait pas l'air de vouloir un site web donc je veux profiter pour offrir autre chose. »* Le livrable devient un document en huit parties, audit mesuré, plan en trois vagues, fiches d'automatisation chiffrées en heures, questions de découverte et table douleur vers offre. La planche se livre quand même, en second, comme levier.
 - **La planche à trois bandes se fait TOUJOURS, et avant qu'il choisisse la direction.** Elle ne
   se saute jamais sous prétexte qu'il a déjà répondu à la question de direction: répondre à une
@@ -270,6 +282,12 @@ la vraie protection.
 - **Dire à chaque livraison ce qui a été prouvé par mesure et ce qui n'a jamais été vu rendu.**
 
 ## Ce qui fait «IA» et qui est rejeté
+
+- **Aucun tracé génératif présenté comme un dessin.** Polylignes échantillonnées sur un sinus,
+  courbes tirées d'un logo, lignes d'horizon reconstruites: *« les traits tracés ont l'air
+  d'être fait à la main »*, 2026-09-10 sur Vanessa Brière v1, rejet au premier coup d'œil.
+  Une forme vient d'un fichier qu'ils ont déjà, ou elle n'existe pas. La règle du ruban ondulé
+  plus bas ne dit que COMMENT tracer si un tracé est demandé, elle n'autorise pas à en inventer un.
 
 - **La combinaison** cartes arrondies 16 à 22px, ombres douces, boutons pilule 100px, rangée de
   quatre cartes égales, et même rythme étiquette plus titre plus intro répété sur cinq sections.
