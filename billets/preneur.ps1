@@ -105,15 +105,18 @@ $rolesQuiVendent = @('livraison', 'demo')
 # lanceur. Il manquait. --max-budget-usd n existe qu avec --print, ce que ce
 # script utilise deja. Un passage qui depasse s arrete, le billet reste en
 # cours, et il repart au passage suivant.
-$budgetPassage = 2.00
+$budgetPassage = 3.00
 # Une demo de site lit une competence de 70 Ko, tire un site, trie des images
 # et ecrit une page entiere : deux dollars sur Opus s arretent au milieu du
 # build. Un passage coupe reprend au suivant grace au journal, mais trois
 # passages pour une maquette de dix minutes, c est trois heures de PC. Un
 # plafond par role, le defaut restant $budgetPassage. 10 septembre 2026.
+# Releves a la demande de Souleman le 10 septembre 2026, avant le premier
+# billet demo : sur l abonnement, ce chiffre n est pas une facture, c est un
+# garde-fou contre un passage qui boucle et vide le quota de session.
 $budgetParRole = @{
-    'demo'      = 6.00
-    'livraison' = 4.00
+    'demo'      = 12.00
+    'livraison' = 8.00
 }
 function Budget-Pour($role) {
     if ($role -and $budgetParRole.ContainsKey($role)) { return $budgetParRole[$role] }
