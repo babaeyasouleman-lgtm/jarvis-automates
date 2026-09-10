@@ -30,3 +30,13 @@ question = ## Question
 journal = ## Journal
 etapes = ## Étapes
 reponse = Réponse de Souleman
+
+# Ajoutes le 10 septembre 2026, pour les quatre types neufs de captures.ps1.
+# Les noms accentues de fichiers vivent ici et pas dans le .ps1.
+fait_le = fait le
+abandonne_le = abandonné le
+lecons = 09 Voix\Leçons de l'agent.md
+lecons_titre = Leçons de l'agent
+lecons_intro = Ce que l'agent WhatsApp a appris de Souleman, une ligne par leçon, écrite par le PC à partir de ce qu'il corrige sur WhatsApp. Il la lit avant chaque message. Une ligne fausse se corrige ici, à la main ou par « corrige : ... ».
+biblio = _Bibliothécaire
+corrige = ## Ce que je corrige

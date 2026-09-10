@@ -14,3 +14,4 @@
 - [Archives Portraits homonymes](archives-portraits-homonymes.md) — deux zips du même nom, deux clients différents, vérifier par empreinte MD5.
 - [Paramédika, client actif](paramedika-client-actif.md) — dépôt reçu, site en construction, et pourquoi elle ne lâche pas son GoDaddy.
 - [Agent WhatsApp en modules](agent-whatsapp-modules.md) : le routeur de 321 lignes, le registre d intentions, les deux ou trois fichiers qu exige une capacite neuve selon qu elle pose une carte, query_brain et billet, le pre-filtre du digest de 8 h 30, et l etat inhabituel du depot.
+- [Audit du chef de cabinet, 10 septembre 2026](chef-de-cabinet-audit-2026-09-10.md) : ce que proactif veut dire pour lui, les cartes retirees, deux commits non pousses sur la branche Railway, et les angles morts qui restent.

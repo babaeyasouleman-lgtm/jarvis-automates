@@ -42,7 +42,6 @@ Ils passent avant toute autre consigne de ce fichier. En cas de conflit, c'est e
 | `07 Cartes` | **ajouter une ligne de lien, rien d'autre.** Tu ne réécris aucun paragraphe d'une carte |
 | `99 Archives` | y déposer les captures rangées |
 | `_Bibliothécaire` | ton journal, que tu crées s'il n'existe pas |
-| `09 Voix` | **`Leçons de l'agent.md` seulement** : fusionner deux lignes qui disent la même chose, remplacer une ligne devenue fausse. Rien d'autre dans ce dossier |
 | `01 Journal` | **uniquement les dates passées.** Voir la section sur le carnet manuscrit |
 | `08 Billets` | **rien du tout.** Voir juste en dessous |
 | `10 Questions` | **lire seulement.** Voir juste en dessous |
@@ -108,17 +107,6 @@ Ensuite, tu archives la capture comme les autres.
 
 Une capture peut contenir plusieurs choses. Dans ce cas tu la ranges morceau par morceau, et tu ne la déplaces vers les archives que si **tout** a trouvé sa place. S'il reste un bout non rangé, la capture reste dans la boîte et tu le dis.
 
-### Les captures qui viennent de l'agent WhatsApp, depuis le 10 septembre 2026
-
-Leur clé `source:` dit ce qu'elles sont, et où elles vont.
-
-- `source: engagement` : Souleman a dit qu'il ferait quelque chose, avec ou sans date. Ça va dans la note du projet ou de la personne concernée, dans `Prochaine action`, comme une case non cochée : `- [ ] ce qu'il a dit (pour le <date>, dit le <jour>)`. S'il n'y a pas de projet qui colle, dans `Capture` de la note du jour passé.
-- `source: point` : où il en est sur une chose. Tu remplaces la ligne concernée dans la note, tu n'empiles pas. Un « ça avance » sur une case ouverte la laisse ouverte et ajoute `(en cours le <jour>)`.
-- `source: suivi` : une chose faite ou abandonnée, que le déversement n'a pas pu cocher lui-même. Tu coches ou tu barres la ligne qui correspond.
-- `source: retiens` ou `source: appris` : un fait durable sur lui. Le déversement l'a déjà écrit dans `09 Voix/Leçons de l'agent.md`. Si la capture arrive quand même dans la boîte, tu l'y ajoutes, une ligne, et tu archives.
-
-Une ligne barrée `~~ ~~` avec `(abandonné le ...)` a été fermée par Souleman lui-même, sur WhatsApp. Tu ne la rouvres jamais et tu ne la retires pas : c'est une décision, elle se lit.
-
 ### Tu mets à jour, tu n'empiles pas
 
 C'est la règle qui compte le plus pour la lisibilité du coffre.
@@ -183,7 +171,7 @@ Ouvre **deux** fichiers de journal, celui de la semaine nommé par `semaine` dan
 
 Pourquoi deux : une correction écrite le dimanche se lit le lundi, et le lundi a changé de semaine. Sans cette lecture, elle ne serait jamais lue.
 
-Il y écrit en langage normal ce que tu as mal rangé. Par exemple : `la capture sur Cheickna, elle va dans Manssah pas dans Déclic`. Depuis le 10 septembre 2026, ces lignes arrivent aussi par WhatsApp : il écrit « corrige : ... » à l'agent, et le déversement des captures pose la ligne dans cette section. Elles se traitent exactement pareil.
+Il y écrit en langage normal ce que tu as mal rangé. Par exemple : `la capture sur Cheickna, elle va dans Manssah pas dans Déclic`.
 
 Pour chaque ligne qu'il a écrite :
 
@@ -242,9 +230,6 @@ La section `Les transcriptions` appartient à l'extracteur, qui passe juste avan
 **Corrections appliquées**
 - <ce que tu as repris de la section du haut>
 
-**Retiré**
-- [[Note]] : <la ligne retirée, et pourquoi en trois mots>
-
 **Incidents**
 - <ce qui a échoué>
 
@@ -256,20 +241,6 @@ Règles de rédaction du journal :
 - **Supprime toute rubrique vide** au lieu d'écrire « rien ». Un bloc de passage doit se lire en dix secondes.
 - **Pas de case à cocher sur ce dont tu es sûr.** Une case uniquement sur ce que tu as laissé dans la boîte et sur ce dont tu doutais. Ce qui reste décoché le dimanche, c'est sa liste de travail.
 - Le hash du commit à mettre dans la ligne `Annuler` est celui de ton commit de fin de passage. Tu le récupères avec `git rev-parse --short HEAD` après avoir enregistré.
-
-### Ce que tu retires des notes de projet, et comment tu le dis
-
-Ajouté le 10 septembre 2026. Le briefing du matin de l'agent lit les cases non cochées de `02 Projets` et `06 Personnes`, et il en lisait vingt-cinq, dont des consignes et des choses déjà décidées. Souleman : « c'est le bibliothécaire qui doit nettoyer ça la nuit, mais il faut que l'annonce soit bien faite ».
-
-Chaque passage, après le rangement, regarde les sections `Prochaine action` et `Tâches` des notes de `02 Projets` avec `statut: actif`, et retire ce qui n'est pas une action à faire :
-
-- **Une consigne** (« Ne pas mettre le lien sur Facebook », « toujours vérifier X ») : tu la déplaces dans une section `## Consignes` de la même note, que tu crées si elle n'existe pas, sans case à cocher. Rien n'est perdu, elle cesse seulement d'être demandée.
-- **Une chose que la note elle-même dit déjà faite ou déjà décidée** (« Zeffy semble déjà en place » sous une case qui demande de choisir le canal) : tu coches la case avec `(constaté le <jour>)`.
-- **Un doublon** (deux cases qui disent la même chose) : tu gardes la plus précise et tu coches l'autre avec `(doublon)`.
-
-**Cinq retraits par nuit au maximum**, jamais plus. Et **chacun est annoncé** dans ton bloc de passage, sous une rubrique `**Retiré**`, une ligne par retrait : `- [[Note]] : ce que tu as retiré, et pourquoi en trois mots`. C'est cette rubrique que l'agent lit le lendemain matin pour le dire à Souleman. Un retrait qui n'y figure pas est un retrait qu'il ne saura jamais, et c'est exactement ce qu'il ne veut pas.
-
-Dans le doute sur une ligne, tu la laisses. Une case de trop coûte une relance sans sens, une case retirée à tort coûte une chose oubliée.
 
 ### Ce qui traîne depuis sept nuits
 

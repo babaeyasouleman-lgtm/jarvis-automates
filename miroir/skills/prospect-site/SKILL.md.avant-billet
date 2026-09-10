@@ -28,46 +28,6 @@ S'il demande explicitement le build complet, c'est un autre travail. Le dire et 
 
 ---
 
-## Mode billet : personne en face, aucune question
-
-Ajouté le 10 septembre 2026. Quand cette compétence tourne depuis le preneur de billets
-(`C:\Obsidian\billets\contexte.txt` existe et nomme le billet à traiter, ou le message qui
-t'appelle parle d'un billet), **personne ne lit tes questions en direct**. Un billet qui
-pose une question dort jusqu'à ce que Souleman la voie sur son téléphone, réponde, et que
-le PC repasse. Sa demande : « il me pose des questions, on peut voir comment le rendre
-autonome ». Dans ce mode :
-
-- **Étape 2, aucune question.** Le monde le mieux classé par l'algorithme de
-  `DIRECTIONS.md`, même si l'écart est petit. Palette du logo. Sections : avis Google plus
-  une section adaptée au métier. Trois effets de `MOTION.md`, dans trois zones différentes.
-  Langue selon leur marché. Les deux mondes candidats et la raison du choix vont dans le
-  `## Journal` du billet, une ligne, pour qu'il puisse dire « plutôt l'autre ».
-- **Étape 2.5, la planche de direction, n'existe pas.** La maquette complète est ce qu'il
-  juge, et « à valider » est le point de revue. S'il rejette la direction, sa réponse
-  revient dans le billet et le passage suivant reconstruit avec l'autre monde.
-- **« Reste proche de leur look actuel » ne se demande pas** : on ne peut pas voir leur
-  site rendu, on construit à partir du logo, des couleurs et des photos, et on le dit dans
-  le journal.
-- **Étape 6 sans le panneau.** `verify.py` et `detect.sh` tournent. `probe.js` a besoin du
-  panneau de navigateur, qui n'existe pas en passage automatique : ne pas essayer, et
-  écrire dans `## Produit` que le rendu n'a pas été vu, avec les cinq largeurs à vérifier.
-- **Étape 7 sans `SendUserFile`.** Le fichier reste dans `OneDrive\Bureau\<Prospect>\`.
-  Son chemin complet va dans `## Produit`, avec ce qui est réel et ce qui est réservé. La
-  ligne dans `BUILT.tsv` s'écrit quand même. `RULES.md` ne se touche pas : aucune
-  préférence n'a été exprimée.
-- **On bloque pour deux choses seulement** : un prix demandé qui n'existe nulle part, ou un
-  site qui ne répond pas après deux essais. Une hésitation de goût n'est jamais une raison
-  de bloquer.
-
-Le budget d'un passage est plafonné. Si le travail ne tient pas dans un passage, le
-`## Journal` et le compteur `etapes:` du billet servent à reprendre exactement où on en
-était : lire le journal d'abord, ne pas recommencer le fetch ni le tri des images.
-
-Quand Souleman lance lui-même la compétence dans Claude Code, rien de ceci ne s'applique :
-les étapes 2 et 2.5 se jouent comme avant.
-
----
-
 ## Quel fichier lire, et quand
 
 Le poids de lecture est le premier poste de dépense de ce skill. Ne rien lire « au cas où ».
@@ -138,9 +98,6 @@ Prospect sans URL: chercher son numéro de téléphone avant tout. Voir `RULES.m
 
 ## Étape 2. Deux questions, un seul appel
 
-**En mode billet, cette étape ne pose rien.** Voir « Mode billet » en tête. Les défauts du
-paragraphe « Sans réponse, avancer avec » s'appliquent tels quels.
-
 Groupées sur sa demande du 2026-08-12. Poser aussi les questions **en texte simple dans le
 message**, parce que le panneau a déjà échoué en silence.
 
@@ -171,8 +128,6 @@ de la mise en page, du rythme ni du mouvement. Sur Maro cela a coûté deux rond
 ---
 
 ## Étape 2.5. La planche de direction, avant le build complet
-
-**En mode billet, cette étape est sautée.** La maquette complète est ce qu'il juge.
 
 Ajoutée sur sa demande du 2026-08-12: *« ça sauve du temps et des tokens »*.
 
@@ -291,9 +246,6 @@ Les marques S-WEB Agency, obligatoires sur chaque build, sont dans `RULES.md`.
 
 ## Étape 6. Vérifier par la mesure
 
-**En mode billet, `verify.py` et `detect.sh` seulement.** Pas de panneau, donc pas de
-`probe.js` : le dire dans le billet au lieu de faire semblant.
-
 ```bash
 python scripts/verify.py "Prospect-demo.html"
 ```
@@ -333,9 +285,6 @@ le dire et le laisser juger.
 ---
 
 ## Étape 7. Livrer et enregistrer
-
-**En mode billet, pas de `SendUserFile`** : le chemin du fichier dans `## Produit`, la
-ligne dans `BUILT.tsv`, et rien dans `RULES.md`.
 
 ```bash
 python scripts/inline.py --html index.html --assets assets --out "Prospect-demo.html"

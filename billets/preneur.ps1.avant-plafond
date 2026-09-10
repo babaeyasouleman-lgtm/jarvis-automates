@@ -106,19 +106,6 @@ $rolesQuiVendent = @('livraison', 'demo')
 # script utilise deja. Un passage qui depasse s arrete, le billet reste en
 # cours, et il repart au passage suivant.
 $budgetPassage = 2.00
-# Une demo de site lit une competence de 70 Ko, tire un site, trie des images
-# et ecrit une page entiere : deux dollars sur Opus s arretent au milieu du
-# build. Un passage coupe reprend au suivant grace au journal, mais trois
-# passages pour une maquette de dix minutes, c est trois heures de PC. Un
-# plafond par role, le defaut restant $budgetPassage. 10 septembre 2026.
-$budgetParRole = @{
-    'demo'      = 6.00
-    'livraison' = 4.00
-}
-function Budget-Pour($role) {
-    if ($role -and $budgetParRole.ContainsKey($role)) { return $budgetParRole[$role] }
-    return $budgetPassage
-}
 
 # La priorite de pole. Elle sert a trancher quand deux billets se presentent
 # au meme creneau. Avant, l ordre etait alphabetique par nom de fichier, donc
@@ -486,7 +473,6 @@ Set-Content -Path $contexte -Encoding utf8 -Value @(
 Note "prend $($choisi.Id), $($choisi.Fichier.Name), passage $passage"
 $chrono = [Diagnostics.Stopwatch]::StartNew()
 
-$budgetPassage = Budget-Pour $choisi.Role
 Note "modele $modele pour le role '$($choisi.Role)', plafond $budgetPassage USD"
 
 Set-Location $coffre

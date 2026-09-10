@@ -21,28 +21,6 @@
 #                             ecrit la reponse dedans. Souleman repond sur
 #                             WhatsApp, et le coffre apprend.
 #
-# Quatre de plus depuis le 10 septembre 2026, le jour ou l agent a recu un
-# chemin pour les reponses de Souleman :
-#
-#   type: reponse-note     -> coche ou barre la ligne d une note de projet ou
-#                             de personne que les cles note: et ligne:
-#                             designent. etat: fait coche, etat: abandonne
-#                             barre. La ligne se retrouve par son texte, sur
-#                             ses soixante premiers caracteres, parce que le
-#                             clone de l agent peut avoir une heure de retard
-#                             sur les numeros de ligne.
-#   type: annule-billet    -> passe le billet designe par billet: a annule, si
-#                             et seulement si il est encore a faire. Un billet
-#                             que le preneur a deja pris n est pas annule, et
-#                             le journal le dit.
-#   type: lecon            -> ajoute une ligne a la note des lecons de l agent
-#                             dans 09 Voix. C est la memoire de ce qu il
-#                             apprend de Souleman, dans le coffre et non dans
-#                             un fichier a lui.
-#   type: correction-biblio -> ajoute une ligne sous Ce que je corrige dans
-#                             le journal de la semaine du bibliothecaire, qui
-#                             la lit la nuit suivante.
-#
 # Une deuxieme boite aux lettres aurait voulu dire un deuxieme depot, un
 # deuxieme clone, un deuxieme jeu de filets contre le doublon et un deuxieme
 # endroit ou une panne reseau peut perdre quelque chose. Le tuyau de la phase 7
@@ -110,8 +88,6 @@ $distant  = 'https://github.com/babaeyasouleman-lgtm/jarvis-captures.git'
 $inbox    = Join-Path $coffre '00 Inbox'
 $billets  = Join-Path $coffre '08 Billets'
 $quest    = Join-Path $coffre '10 Questions'
-$projets  = Join-Path $coffre '02 Projets'
-$personnes = Join-Path $coffre '06 Personnes'
 # Le vocabulaire des billets vit avec le preneur, pas ici : deux copies d une
 # liste de mots finissent par diverger, et celle-ci decide d un etat ecrit
 # dans le coffre.
@@ -197,96 +173,6 @@ function Add-ReponseQuestion($dossier, $cible, $texte, $jour) {
     $puce = $matches[1]
     $reste = $matches[2]
     $lignes[$i] = $puce + '[x] ' + $reste + '  ' + [string][char]0x2192 + ' ' + $texte + '  (repondu le ' + $jour + ')'
-    Set-Texte $chemin $lignes $crlf
-    return ''
-}
-
-# Cocher ou barrer une ligne d une note de projet ou de personne.
-#
-# La ligne est retrouvee par son TEXTE, sur ses soixante premiers caracteres,
-# et non par un numero : l agent lit un clone qui peut avoir une heure de
-# retard, et le bibliothecaire bouge les lignes la nuit. On ne touche qu a
-# une case ouverte. Retourne une chaine vide si c est fait, la raison sinon.
-function Set-LigneNote($nom, $ligne, $etat, $jour, $mots) {
-    $chemin = $null
-    foreach ($d in @($projets, $personnes)) {
-        $c = Join-Path $d ($nom + '.md')
-        if (Test-Path $c) { $chemin = $c; break }
-    }
-    if ($null -eq $chemin) { return "note introuvable, $nom" }
-
-    $brut = [IO.File]::ReadAllText($chemin)
-    $crlf = $brut.Contains([string][char]13 + [string][char]10)
-    $lignes = @($brut -split "`r?`n")
-    $cle = ($ligne -replace '\s+', ' ').Trim()
-    if ($cle.Length -gt 60) { $cle = $cle.Substring(0, 60) }
-    if (-not $cle) { return 'ligne vide' }
-
-    $i = -1
-    for ($k = 0; $k -lt $lignes.Count; $k++) {
-        if ($lignes[$k] -notmatch '^(\s*[-*]\s*)\[ \]\s*(.*)$') { continue }
-        $reste = ($matches[2] -replace '\s+', ' ').Trim()
-        if ($reste.StartsWith($cle)) { $i = $k; break }
-    }
-    if ($i -lt 0) { return 'ligne non trouvee ou deja fermee' }
-
-    $lignes[$i] -match '^(\s*[-*]\s*)\[ \]\s*(.*)$' | Out-Null
-    $puce = $matches[1]
-    $reste = $matches[2]
-    if ($etat -eq 'abandonne') {
-        $lignes[$i] = $puce + '[x] ~~' + $reste + '~~  (' + $mots['abandonne_le'] + ' ' + $jour + ')'
-    } else {
-        $lignes[$i] = $puce + '[x] ' + $reste + '  (' + $mots['fait_le'] + ' ' + $jour + ')'
-    }
-    Set-Texte $chemin $lignes $crlf
-    return ''
-}
-
-# Ajouter une ligne a la fin d une note, en la creant avec son en-tete si
-# elle n existe pas. Sert aux lecons de l agent.
-function Add-LigneNote($chemin, $entete, $texte) {
-    if (-not (Test-Path $chemin)) {
-        $dossier = Split-Path $chemin -Parent
-        if (-not (Test-Path $dossier)) { New-Item -ItemType Directory -Path $dossier -Force | Out-Null }
-        [IO.File]::WriteAllText($chemin, ($entete -join "`n") + "`n", (New-Object Text.UTF8Encoding($false)))
-    }
-    $brut = [IO.File]::ReadAllText($chemin)
-    if (-not $brut.EndsWith("`n")) { $brut = $brut + "`n" }
-    [IO.File]::WriteAllText($chemin, $brut + '- ' + $texte + "`n", (New-Object Text.UTF8Encoding($false)))
-}
-
-# La semaine ISO du jour, 2026-S37, comme le bibliothecaire la nomme.
-function Get-SemaineIso($date) {
-    $jeudi = $date.AddDays(3 - (([int]$date.DayOfWeek + 6) % 7))
-    $premier = Get-Date -Year $jeudi.Year -Month 1 -Day 1
-    $num = [math]::Ceiling((($jeudi - $premier).Days + 1) / 7)
-    return ('{0}-S{1:d2}' -f $jeudi.Year, $num)
-}
-
-# Ajouter une correction sous Ce que je corrige dans le journal de la semaine.
-function Add-Correction($dossier, $semaine, $texte, $mots) {
-    $chemin = Join-Path $dossier ($semaine + '.md')
-    if (-not (Test-Path $chemin)) { return "journal $semaine introuvable, il sera cree cette nuit" }
-    $brut = [IO.File]::ReadAllText($chemin)
-    $crlf = $brut.Contains("`r`n")
-    $lignes = @($brut -split "`r?`n")
-    $marque = $mots['corrige']
-    $debut = -1
-    for ($i = 0; $i -lt $lignes.Count; $i++) {
-        if ($lignes[$i].Trim() -eq $marque) { $debut = $i; break }
-    }
-    if ($debut -lt 0) { return 'section Ce que je corrige introuvable' }
-    $fin = $lignes.Count
-    for ($i = $debut + 1; $i -lt $lignes.Count; $i++) {
-        if ($lignes[$i] -match '^##\s') { $fin = $i; break }
-    }
-    # Avant le titre suivant, apres la derniere ligne non vide de la section.
-    $pos = $fin
-    while ($pos -gt $debut + 1 -and -not $lignes[$pos - 1].Trim()) { $pos = $pos - 1 }
-    $avant = @($lignes[0..($pos - 1)])
-    $apres = @()
-    if ($pos -lt $lignes.Count) { $apres = @($lignes[$pos..($lignes.Count - 1)]) }
-    $lignes = $avant + @('- ' + $texte) + $apres
     Set-Texte $chemin $lignes $crlf
     return ''
 }
@@ -382,12 +268,6 @@ if (Test-Path $motsTxt) {
 }
 $motsOk = $mots.ContainsKey('a_faire') -and $mots.ContainsKey('bloque') `
           -and $mots.ContainsKey('question') -and $mots.ContainsKey('reponse')
-if (-not $mots.ContainsKey('fait_le')) { $mots['fait_le'] = 'fait le' }
-if (-not $mots.ContainsKey('abandonne_le')) { $mots['abandonne_le'] = 'abandonne le' }
-if (-not $mots.ContainsKey('biblio')) { $mots['biblio'] = '_Bibliothecaire' }
-if (-not $mots.ContainsKey('lecons_intro')) { $mots['lecons_intro'] = '' }
-if (-not $mots.ContainsKey('lecons_titre')) { $mots['lecons_titre'] = 'Lecons de l agent' }
-if (-not $mots.ContainsKey('corrige')) { $mots['corrige'] = '## Ce que je corrige' }
 if (-not $motsOk) { Note "mots.txt absent ou incomplet, les billets attendront le passage suivant" }
 
 # 1 bis. Garde, un seul git a la fois dans le coffre. Le verrou de passage.ps1
@@ -448,17 +328,11 @@ foreach ($f in (Get-ChildItem -Path $source -Filter '*.md' -File | Sort-Object N
     $type = 'capture'
     $vise = ''
     $question = ''
-    $note = ''
-    $ligne = ''
-    $etat = ''
     foreach ($l in (Get-Content $f.FullName -Encoding utf8 -TotalCount 20)) {
         if ($l -match '^capture:\s*(\S+)\s*$') { $id = $matches[1] }
         elseif ($l -match '^type:\s*(\S+)\s*$') { $type = $matches[1] }
         elseif ($l -match '^billet:\s*(\S+)\s*$') { $vise = $matches[1] }
         elseif ($l -match '^question:\s*(.+?)\s*$') { $question = $matches[1] }
-        elseif ($l -match '^note:\s*(.+?)\s*$') { $note = $matches[1] }
-        elseif ($l -match '^ligne:\s*(.+?)\s*$') { $ligne = $matches[1] }
-        elseif ($l -match '^etat:\s*(.+?)\s*$') { $etat = $matches[1] }
     }
     if (-not $id) {
         Note "sans identifiant, ignore : $($f.Name)"
@@ -478,7 +352,7 @@ foreach ($f in (Get-ChildItem -Path $source -Filter '*.md' -File | Sort-Object N
         $sautes = $sautes + 1
         continue
     }
-    $aDeverser += [pscustomobject]@{ Id = $id; Type = $type; Vise = $vise; Question = $question; Note = $note; Ligne = $ligne; Etat = $etat; Fichier = $f }
+    $aDeverser += [pscustomobject]@{ Id = $id; Type = $type; Vise = $vise; Question = $question; Fichier = $f }
 }
 
 if ($Sec) {
@@ -551,84 +425,6 @@ foreach ($c in $aDeverser) {
         continue
     }
 
-    # Une reponse sur une ligne de note coche ou barre cette ligne. Si la
-    # ligne n existe plus, la reponse va dans 00 Inbox : le bibliothecaire
-    # saura quoi en faire, et rien n est perdu.
-    if ($c.Type -eq 'reponse-note' -and $c.Note -and $c.Ligne) {
-        $souci = Set-LigneNote $c.Note $c.Ligne $c.Etat $jour $mots
-        if (-not $souci) {
-            $copies = $copies + 1
-            $reussis += $c.Id
-            if ([string]::Compare($c.Id, $maxi, [StringComparison]::Ordinal) -gt 0) { $maxi = $c.Id }
-            Note "ligne $($c.Etat) dans $($c.Note) : $($c.Ligne)"
-            continue
-        }
-        Note "reponse-note non appliquee ($souci), deversee dans 00 Inbox"
-    }
-
-    # Un billet annule, si le preneur ne l a pas deja pris.
-    if ($c.Type -eq 'annule-billet' -and $c.Vise) {
-        $cibleBillet = Get-Billet $billets $c.Vise
-        if ($null -eq $cibleBillet) {
-            Note "billet $($c.Vise) introuvable, l annulation repartira au passage suivant"
-            continue
-        }
-        $brut = [IO.File]::ReadAllText($cibleBillet.FullName)
-        $crlfB = $brut.Contains("`r`n")
-        $lignesB = @($brut -split "`r?`n")
-        $fait = $false
-        for ($i = 0; $i -lt $lignesB.Count; $i++) {
-            if ($lignesB[$i] -match '^etat:\s*(.*)$') {
-                if ($matches[1].Trim() -eq $mots['a_faire']) {
-                    $lignesB[$i] = 'etat: ' + $mots['annule']
-                    $fait = $true
-                } else {
-                    Note "billet $($c.Vise) n est plus a faire, il n est pas annule"
-                }
-                break
-            }
-        }
-        if ($fait) {
-            Set-Texte $cibleBillet.FullName $lignesB $crlfB
-            Note "billet annule : $($cibleBillet.Name)"
-        }
-        $copies = $copies + 1
-        $reussis += $c.Id
-        if ([string]::Compare($c.Id, $maxi, [StringComparison]::Ordinal) -gt 0) { $maxi = $c.Id }
-        continue
-    }
-
-    # Une lecon : une ligne de plus dans la note des lecons de l agent.
-    if ($c.Type -eq 'lecon' -and $mots.ContainsKey('lecons')) {
-        try {
-            $texte = (Get-Corps $c.Fichier.FullName) -replace "`r?`n", ' '
-            $entete = @('---', 'type: ressource', 'domaine: Personnel', '---', '', '# ' + $mots['lecons_titre'], '', $mots['lecons_intro'], '')
-            Add-LigneNote (Join-Path $coffre $mots['lecons']) $entete $texte
-            $copies = $copies + 1
-            $reussis += $c.Id
-            if ([string]::Compare($c.Id, $maxi, [StringComparison]::Ordinal) -gt 0) { $maxi = $c.Id }
-            Note "lecon ajoutee : $texte"
-        } catch {
-            Note "ECHEC de la lecon pour $($c.Fichier.Name) : $($_.Exception.Message)"
-        }
-        continue
-    }
-
-    # Une correction pour le bibliothecaire, dans son journal de la semaine.
-    if ($c.Type -eq 'correction-biblio' -and $mots.ContainsKey('biblio')) {
-        $texte = (Get-Corps $c.Fichier.FullName) -replace "`r?`n", ' '
-        $souci = Add-Correction (Join-Path $coffre $mots['biblio']) (Get-SemaineIso (Get-Date)) $texte $mots
-        if ($souci) {
-            Note "correction non ecrite ($souci), elle repartira au passage suivant"
-            continue
-        }
-        $copies = $copies + 1
-        $reussis += $c.Id
-        if ([string]::Compare($c.Id, $maxi, [StringComparison]::Ordinal) -gt 0) { $maxi = $c.Id }
-        Note "correction pour le bibliothecaire : $texte"
-        continue
-    }
-
     # Une capture va dans 00 Inbox, un billet dans 08 Billets. Une reponse
     # orpheline retombe dans 00 Inbox : mieux vaut la voir le dimanche que la
     # perdre. C est la seule ligne de ce script qui ressemble a un choix, et
@@ -660,11 +456,11 @@ if ($copies -eq 0) {
 # que Souleman peut avoir des choses en cours dans le coffre, et un git add -A
 # les embarquerait dans un commit qui dit Captures.
 Set-Location $coffre
-& git add -- "00 Inbox" "08 Billets" "10 Questions" "02 Projets" "06 Personnes" "09 Voix" $mots['biblio'] 2>&1 | Out-Null
+& git add -- "00 Inbox" "08 Billets" "10 Questions" 2>&1 | Out-Null
 & git diff --cached --quiet
 if ($LASTEXITCODE -ne 0) {
     $aujourdhui = (Get-Date).ToString('yyyy-MM-dd')
-    & git commit -q -m "Captures de l agent, $aujourdhui" -- "00 Inbox" "08 Billets" "10 Questions" "02 Projets" "06 Personnes" "09 Voix" $mots['biblio']
+    & git commit -q -m "Captures de l agent, $aujourdhui" -- "00 Inbox" "08 Billets" "10 Questions"
     if ($?) {
         $hash = (& git rev-parse --short HEAD).Trim()
         Note "$copies capture(s) deversee(s), commit $hash, annuler avec git revert $hash"

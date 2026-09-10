@@ -22,9 +22,6 @@ racine = 07 Cartes
 racine = 08 Billets
 racine = 09 Voix
 racine = 10 Questions
-# Ajoute le 10 septembre 2026 : les journaux du bibliothecaire, pour que le
-# chef de cabinet dise le dimanche ce qui a bouge dans le coffre.
-racine = _Bibliothécaire
 
 # "03 Domaines/Moi" n'est pas ici, et n'y sera jamais : sante, finances
 # personnelles, couple et carnet ne quittent pas le PC. Un domaine d'affaires
