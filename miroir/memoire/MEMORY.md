@@ -9,9 +9,10 @@
 - [Jamais ancrer la valeur sur le temps](jamais-ancrer-la-valeur-sur-le-temps.md) — ne jamais dire combien de temps un livrable a pris, ni chez un prospect ni chez un client.
 - [Coffre Obsidian second cerveau](second-brain-obsidian.md) — emplacement `C:\Obsidian\Second Brain`, structure, et synchro iPhone non résolue.
 - [Six structures, une paie](souleman-six-structures.md) — ce qu'il porte, et pourquoi son emploi chez iA conditionne sa résidence permanente.
-- [Automatisations du coffre](coffre-automatisations.md) : quatre taches Windows, le passage de nuit qui enchaine note du matin, extracteur, courriels, reunions Fathom, bibliothecaire, le deversement qui adresse par une cle type et l export en liste blanche, le preneur de billets dans la journee, et les pieges Windows.
+- [Automatisations du coffre](coffre-automatisations.md) : ou vit la verite sur les automates, les cinq pieges Windows, la ligne mesure de passage.ps1. Reduit le 10 septembre 2026.
+- [Cout des sessions Jarvis](jarvis-cout-des-sessions.md) : mesure du 10 septembre 2026, porter coute et non lire, et les regles posees dans C:\Obsidian\ENTREE.md.
 - [Cagnotte live Gala MLM](cagnotte-live-gala-mlm.md) — l'appli du gala du 30 août 2026, et les valeurs qui manquent encore dans config.json.
 - [Archives Portraits homonymes](archives-portraits-homonymes.md) — deux zips du même nom, deux clients différents, vérifier par empreinte MD5.
 - [Paramédika, client actif](paramedika-client-actif.md) — dépôt reçu, site en construction, et pourquoi elle ne lâche pas son GoDaddy.
-- [Agent WhatsApp en modules](agent-whatsapp-modules.md) : le routeur de 321 lignes, le registre d intentions, les deux ou trois fichiers qu exige une capacite neuve selon qu elle pose une carte, query_brain et billet, le pre-filtre du digest de 8 h 30, et l etat inhabituel du depot.
+- [Agent WhatsApp en modules](agent-whatsapp-modules.md) : ou vit la verite sur l agent (ENTREE.md, LISEZMOI.md, en-tetes), le prompt du classifier en quatre familles, le ton dans voix.js, les brides de spontane.js. Reduit le 10 septembre 2026.
 - [Audit du chef de cabinet, 10 septembre 2026](chef-de-cabinet-audit-2026-09-10.md) : ce que proactif veut dire pour lui, les cartes retirees, deux commits non pousses sur la branche Railway, et les angles morts qui restent.
