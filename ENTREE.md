@@ -11,6 +11,11 @@ Phases 9 à 12, les premiers employés : rien de fait, deux sont déjà écrits 
 disque et n'ont jamais tourné. Le palier 2 s'ouvre sur un signal de clients, pas
 sur une date. La phase 9 attend que le chemin des réponses ait tourné quelques jours.
 
+**Chantier en cours depuis le 11 septembre 2026 : construire l'équipe, chef par chef,
+avant la phase 9.** Sept sessions dans l'ordre, le socle commun d'abord, puis le chef
+de cabinet. L'ordre, ce que chaque session produit et le prompt de la suivante vivent
+dans `Second Brain\_Équipe\Construction de l'équipe.md`. Le lire en entier, il est court.
+
 Un commit sur la branche Railway `claude/dazzling-mccarthy-H0YrY` n'était pas poussé
 au 10 septembre à 16 h : `f50e6d8`, disponibilités sur trois semaines. À vérifier avec
 `git log origin/claude/dazzling-mccarthy-H0YrY..HEAD` avant de toucher au dépôt.

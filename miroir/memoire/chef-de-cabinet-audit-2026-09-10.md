@@ -8,7 +8,7 @@ metadata:
   modified: 2026-09-10T15:25:18.006Z
 ---
 
-Audit du chef de cabinet (agent WhatsApp) le 10 septembre 2026, session d'abord de questions puis de code. Commits `04cff82` et `3ffb7e8` sur la branche `claude/dazzling-mccarthy-H0YrY`, celle que Railway deploie. **Pas pousses** au moment d'ecrire : Souleman doit dire le mot. Tout ce qui suit est donc ecrit et teste (325 tests verts), pas encore en service.
+Audit du chef de cabinet (agent WhatsApp) le 10 septembre 2026, session d'abord de questions puis de code. Sur la branche `claude/dazzling-mccarthy-H0YrY`, celle que Railway deploie. Pousses le 10 septembre jusqu'a `f84b13d`. **Seul `f50e6d8`, les disponibilites sur plusieurs semaines, ne l'est pas** : le push echouait sur « Repository not found » au 11 septembre, un probleme d'acces GitHub et non de code. 329 tests verts.
 
 **Ce que « proactif » veut dire pour lui, dans ses mots** : un message vers 8 h qui dit a quoi ressemble la journee et ce qui compte ; le rappeler ; faire des choses sans demander avec l'equipe d'agents ; lui poser des questions avec le contexte ; lui demander comment s'est passee la journee ; le suivre le dimanche (« finalement, tu as tourne ? ») ; l'etudier (ses journees, ce qu'il aime, ses priorites). Ce qui l'agace le plus : le manque d'initiative, et ne pas etre compris. Il ne va pas dans Obsidian : « c'est son monde a lui », l'agent donne le contexte lui-meme.
 

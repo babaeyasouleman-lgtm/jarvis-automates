@@ -15,4 +15,5 @@
 - [Archives Portraits homonymes](archives-portraits-homonymes.md) — deux zips du même nom, deux clients différents, vérifier par empreinte MD5.
 - [Paramédika, client actif](paramedika-client-actif.md) — dépôt reçu, site en construction, et pourquoi elle ne lâche pas son GoDaddy.
 - [Agent WhatsApp en modules](agent-whatsapp-modules.md) : ou vit la verite sur l agent (ENTREE.md, LISEZMOI.md, en-tetes), le prompt du classifier en quatre familles, le ton dans voix.js, les brides de spontane.js. Reduit le 10 septembre 2026.
-- [Audit du chef de cabinet, 10 septembre 2026](chef-de-cabinet-audit-2026-09-10.md) : ce que proactif veut dire pour lui, les cartes retirees, deux commits non pousses sur la branche Railway, et les angles morts qui restent.
+- [Audit du chef de cabinet, 10 septembre 2026](chef-de-cabinet-audit-2026-09-10.md) : ce que proactif veut dire pour lui, les cartes retirees, un commit non pousse sur la branche Railway, et les angles morts qui restent.
+- [Construction de l'équipe](construction-equipe.md) : les sept sessions avant la phase 9, le socle commun d'abord, le plan dans `_Équipe/Construction de l'équipe.md`.
