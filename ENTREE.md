@@ -2,7 +2,7 @@
 
 Lis ce fichier en premier, et rien d'autre avant de savoir ce que la phase demande.
 Tout ce qui est long vit ailleurs, avec son chemin. Tu y vas par grep, section par
-section, jamais en entier. Mis à jour par la dernière session, le 10 septembre 2026.
+section, jamais en entier. Mis à jour par la dernière session, le 11 septembre 2026.
 
 ## Où j'en suis
 
@@ -15,6 +15,11 @@ sur une date. La phase 9 attend que le chemin des réponses ait tourné quelques
 avant la phase 9.** Sept sessions dans l'ordre, le socle commun d'abord, puis le chef
 de cabinet. L'ordre, ce que chaque session produit et le prompt de la suivante vivent
 dans `Second Brain\_Équipe\Construction de l'équipe.md`. Le lire en entier, il est court.
+Session 1 faite le 11 septembre : `_Équipe\Règles communes.md`, le gabarit à treize
+champs, et le test `node --test C:\Obsidian\equipe`, quatre verts. Prochaine : la
+session 2, le chef de cabinet. Aucune consigne de chef n'existe encore, et le preneur
+ne lit qu'une consigne : les trois corrections attendent la session 3, elles sont
+écrites dans sa section.
 
 Un commit sur la branche Railway `claude/dazzling-mccarthy-H0YrY` n'était pas poussé
 au 10 septembre à 16 h : `f50e6d8`, disponibilités sur trois semaines. À vérifier avec
@@ -66,7 +71,8 @@ a lu pendant tous les appels qui suivent. Les 15 % d'appels de la fin pèsent 24
 | Ce qui quitte le PC | `C:\Obsidian\cerveau\liste-blanche.txt` et `export.ps1` | 10 Ko | Toute phase qui touche à l'export, et on relit deux fois |
 | Table des matières du coffre, une ligne par note | `C:\Obsidian\bibliothecaire\index.txt` | 21 Ko | À la place de lister le coffre |
 | Le coffre | `C:\Obsidian\Second Brain` | | Une note à la fois, jamais un dossier. Le bibliothécaire y range la nuit |
-| Charte et gabarit de l'équipe, palier 3 | `C:\Obsidian\Second Brain\_Équipe\` | 41 Ko | Seulement au palier 2 et après |
+| Charte, gabarit et règles communes de l'équipe | `C:\Obsidian\Second Brain\_Équipe\` | 50 Ko | Par le chantier de l'équipe seulement. Charte et gabarit par section, Règles communes en entier, il est court |
+| Test de cohérence des consignes, côté PC | `C:\Obsidian\equipe\regles-communes.test.js` | 4 Ko | En exécution, à la fin de chaque session de chef |
 | Journal hebdo du bibliothécaire | `C:\Obsidian\Second Brain\_Bibliothécaire\2026-Sxx.md` | 20 à 25 Ko | Jamais à l'entrée |
 | Mémoire de Claude Code, un fait par fichier | `C:\Users\Administrator\.claude\projects\C--Users-Administrator-OneDrive-Bureau\memory\` | 2 Ko chacun | L'index MEMORY.md est déjà dans le contexte. Miroir versionné dans `C:\Obsidian\miroir\memoire\` |
 
@@ -109,6 +115,9 @@ commet tout, ce fichier compris.
   plus rien mais vit encore sur le volume Railway.
 - Les identifiants de capture sont horodatés à l'heure de l'agent, en UTC.
 - Un jeton de dépôt n'atteint jamais un journal.
+- Un script JS écrit par heredoc bash depuis l'outil perd ses barres obliques inverses,
+  et `cat > fichier` sans entrée bloque la commande. Écrire les scripts de modification
+  avec l'outil Write, chemins en barres obliques.
 - Les événements S-WEB vont dans l'agenda s.webagencyca@gmail.com sans colorId, ils
   héritent de son marron.
 - Le miroir de l'export se régénère par robocopy /MIR : c'est le seul endroit où un
@@ -128,6 +137,12 @@ commet tout, ce fichier compris.
 - Le self-ping du soir ne peut pas boucler la nuit, le téléphone dort.
 - `lot-prospection-courriel` est enregistré dans les tâches de l'app Claude, désactivé,
   et ne tournerait pas même activé.
+- `_Équipe` n'est pas exporté : ni le chef de cabinet ni un chef sur serveur ne lit
+  Règles communes. À trancher à la session 2, une ligne de liste blanche, relue deux fois.
+- Souleman veut l'équipe qui tourne PC éteint, sur l'abonnement. C'est la phase 9 :
+  une machine Linux ou les routines de Claude Code dans le nuage. Le prix est une règle,
+  le PC cesse d'être seul écrivain du coffre, et deux bots ont besoin de Windows, Word et
+  le navigateur.
 
 ## À la fin de la session
 
