@@ -1,6 +1,6 @@
 ---
 name: chef-de-cabinet-audit-2026-09-10
-description: "Ce que l audit du 10 septembre 2026 a tranche pour l agent WhatsApp, ce que Souleman veut dire par proactif, les cartes qu il a retirees, et ce qui attend encore (push Railway, journaux stdout, phase 9)."
+description: "Ce que l audit du 10 septembre 2026 a tranche pour l agent WhatsApp, ce que Souleman veut dire par proactif, les cartes qu il a retirees, et ce qui attend encore (journaux stdout, phase 9). Push f50e6d8 fait le 11."
 metadata: 
   node_type: memory
   type: project
@@ -8,7 +8,7 @@ metadata:
   modified: 2026-09-10T15:25:18.006Z
 ---
 
-Audit du chef de cabinet (agent WhatsApp) le 10 septembre 2026, session d'abord de questions puis de code. Sur la branche `claude/dazzling-mccarthy-H0YrY`, celle que Railway deploie. Pousses le 10 septembre jusqu'a `f84b13d`. **Seul `f50e6d8`, les disponibilites sur plusieurs semaines, ne l'est pas** : le push echouait sur « Repository not found » au 11 septembre, un probleme d'acces GitHub et non de code. 329 tests verts.
+Audit du chef de cabinet (agent WhatsApp) le 10 septembre 2026, session d'abord de questions puis de code. Sur la branche `claude/dazzling-mccarthy-H0YrY`, celle que Railway deploie. Pousses le 10 septembre jusqu'a `f84b13d`. `f50e6d8`, les disponibilites sur plusieurs semaines, a ete pousse le 11 septembre 2026 apres `gh auth switch --user babaeyasouleman-lgtm` : le « Repository not found » venait du compte gh actif, `swebagencyca-agence`. Le commit suivant, `8dcdad7` (objectifs, role cabinet), attend le push de Souleman.
 
 **Ce que « proactif » veut dire pour lui, dans ses mots** : un message vers 8 h qui dit a quoi ressemble la journee et ce qui compte ; le rappeler ; faire des choses sans demander avec l'equipe d'agents ; lui poser des questions avec le contexte ; lui demander comment s'est passee la journee ; le suivre le dimanche (« finalement, tu as tourne ? ») ; l'etudier (ses journees, ce qu'il aime, ses priorites). Ce qui l'agace le plus : le manque d'initiative, et ne pas etre compris. Il ne va pas dans Obsidian : « c'est son monde a lui », l'agent donne le contexte lui-meme.
 

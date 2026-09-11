@@ -99,7 +99,10 @@ $archives = Join-Path $coffre '99 Archives\Billets'
 # Table "quel modele pour quoi" du Plan Jarvis, appliquee le 10 septembre 2026.
 $modeleVend      = 'opus'
 $modeleReste     = 'sonnet'
-$rolesQuiVendent = @('livraison', 'demo')
+# Le chef de cabinet est sur Opus aussi, decide par Souleman le 11 septembre
+# 2026 : il arbitre entre chefs, et un mauvais arbitrage coute plus qu un
+# passage. Il ne vend pas, mais il juge ce que les autres vendent.
+$rolesQuiVendent = @('livraison', 'demo', 'cabinet')
 
 # Regle 5 du Plan Jarvis : aucun employe ne tourne sans plafond ecrit dans son
 # lanceur. Il manquait. --max-budget-usd n existe qu avec --print, ce que ce
@@ -130,6 +133,7 @@ function Budget-Pour($role) {
 # pas, c est comme ca qu on perd des clients. Charte de l equipe.
 # Declic n a pas de pole : c est son echeance qui le fait remonter.
 $prioritePole = @{
+    'cabinet'    = 1
     'livraison'  = 1
     'demo'       = 1
     'ventes'     = 2

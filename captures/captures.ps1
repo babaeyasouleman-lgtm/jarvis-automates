@@ -43,6 +43,14 @@
 #                             le journal de la semaine du bibliothecaire, qui
 #                             la lit la nuit suivante.
 #
+# Un de plus depuis le 11 septembre 2026, session 2 de la construction de
+# l equipe :
+#
+#   type: objectif         -> ajoute une ligne a la note des objectifs de
+#                             Souleman dans 09 Voix : ses trois de la semaine,
+#                             la chose du jour, et ce qu il en a dit le soir.
+#                             Meme mecanique que lecon.
+#
 # Une deuxieme boite aux lettres aurait voulu dire un deuxieme depot, un
 # deuxieme clone, un deuxieme jeu de filets contre le doublon et un deuxieme
 # endroit ou une panne reseau peut perdre quelque chose. Le tuyau de la phase 7
@@ -610,6 +618,22 @@ foreach ($c in $aDeverser) {
             Note "lecon ajoutee : $texte"
         } catch {
             Note "ECHEC de la lecon pour $($c.Fichier.Name) : $($_.Exception.Message)"
+        }
+        continue
+    }
+
+    # Un objectif : une ligne de plus dans la note de ses objectifs.
+    if ($c.Type -eq 'objectif' -and $mots.ContainsKey('objectifs')) {
+        try {
+            $texte = (Get-Corps $c.Fichier.FullName) -replace "`r?`n", ' '
+            $entete = @('---', 'type: ressource', 'domaine: Personnel', '---', '', '# ' + $mots['objectifs_titre'], '', $mots['objectifs_intro'], '')
+            Add-LigneNote (Join-Path $coffre $mots['objectifs']) $entete $texte
+            $copies = $copies + 1
+            $reussis += $c.Id
+            if ([string]::Compare($c.Id, $maxi, [StringComparison]::Ordinal) -gt 0) { $maxi = $c.Id }
+            Note "objectif ajoute : $texte"
+        } catch {
+            Note "ECHEC de l objectif pour $($c.Fichier.Name) : $($_.Exception.Message)"
         }
         continue
     }

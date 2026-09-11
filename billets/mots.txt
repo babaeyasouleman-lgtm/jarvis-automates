@@ -40,3 +40,10 @@ lecons_titre = Leçons de l'agent
 lecons_intro = Ce que l'agent WhatsApp a appris de Souleman, une ligne par leçon, écrite par le PC à partir de ce qu'il corrige sur WhatsApp. Il la lit avant chaque message. Une ligne fausse se corrige ici, à la main ou par « corrige : ... ».
 biblio = _Bibliothécaire
 corrige = ## Ce que je corrige
+
+# Ajoutes le 11 septembre 2026, session 2 de la construction de l equipe :
+# ses objectifs, trois par semaine et un par jour, dictes sur WhatsApp et
+# ecrits ici par captures.ps1, type objectif.
+objectifs = 09 Voix\Objectifs.md
+objectifs_titre = Objectifs
+objectifs_intro = Ce que Souleman veut absolument faire, dans ses mots : trois objectifs par semaine, une chose par jour, et ce qu'il en a dit le soir. Écrit par le PC à partir de ce qu'il dit à son chef de cabinet sur WhatsApp. Une ligne par entrée, la plus ancienne en haut.
