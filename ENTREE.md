@@ -23,15 +23,20 @@ trois par semaine, la question du jour entre 10 h et midi, le bilan du soir, le
 dimanche. Puis sa revue du soir, appliquée et poussée, commit `d9136e4` : prompts à
 l'affirmatif, une chose dite une fois (`infrastructure/dits.js`), programme fusionné,
 plus de mode d'emploi en bas des messages, rituels variés, transcript entier, dimanche
-sans redite. Le détail dans `_Équipe\Chef de cabinet, journée simulée.md`. Il reste à
-Souleman à vivre sa journée avec lui, condition de fin de la session 2.
+sans redite. Puis `c33275f` : le courriel de la part de S-WEB relu puis envoyé sur
+« envoie », les blocs de travail hebdo proposés depuis l'agenda, le plan de demain après
+le journal de 22 h 30, et le briefing qui rappelle ses échéances du jour. Puis le ton corrigé : il se souvient de tout
+et le dit en ce qui reste à faire, avec une sortie, règle d'alerte de la charte, et la persona
+du chef de cabinet entre dans `voix.js` sous forme des trois questions de sa fiche. Le détail dans
+`_Équipe\Chef de cabinet, journée simulée.md`. Il reste à Souleman à vivre sa journée
+avec lui, condition de fin de la session 2.
 Prochaine : la session 3, le chef Déclic. Le preneur ne lit qu'une consigne, quatre
 corrections l'attendent, écrites dans la section de la session 3.
 
 Railway déploie la branche `claude/dazzling-mccarthy-H0YrY`, pas `main`. Avant de
 toucher au dépôt : `git log origin/claude/dazzling-mccarthy-H0YrY..HEAD`.
 
-Tests : `cd C:\Projets\openwa-agent\agent && node --test`. 344 tests, 344 verts,
+Tests : `cd C:\Projets\openwa-agent\agent && node --test`. 350 tests, 350 verts,
 mesuré le 11 septembre 2026. Le chiffre de référence est celui que tu mesures.
 
 ## Comment on travaille, en six lignes
@@ -155,10 +160,11 @@ commet tout, ce fichier compris.
   `objectif` de `captures.ps1` non plus. Une journée vécue les dira.
 - Rien ne réveille un billet en `attente` quand son enfant est `fait`. Session 3,
   dans `preneur.ps1`. D'ici là l'arbitre le fait à la main, sa consigne le dit.
-- Le courriel de la part de S-WEB, brouillon puis envoi après sa validation : décidé le
-  11 septembre, pas construit. Il manque un jeton Google avec le droit d'envoi Gmail,
-  que Souleman crée à la main. Ensuite `infrastructure/courriel.js` et une intention
-  `courriel`, avec carte. Le classifier dit encore qu'il ne sait pas envoyer.
+- Le courriel de la part de S-WEB est construit, `infrastructure/courriel.js`, jamais
+  joué en réel. Le jeton de `google.local.json` porte gmail.send depuis le 7 septembre ;
+  si Railway refuse le premier envoi, c'est que `GOOGLE_CALENDAR_TOKEN` sur Railway n'est
+  pas ce refresh_token, et on le copie. Les blocs hebdo et le plan de demain n'ont pas
+  tourné non plus : premier dimanche, premier 22 h 30.
 - Souleman veut l'équipe qui tourne PC éteint, sur l'abonnement. C'est la phase 9 :
   une machine Linux ou les routines de Claude Code dans le nuage. Le prix est une règle,
   le PC cesse d'être seul écrivain du coffre, et deux bots ont besoin de Windows, Word et
