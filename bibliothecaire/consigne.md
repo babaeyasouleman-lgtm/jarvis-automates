@@ -177,6 +177,10 @@ Si une page est illisible, tu transcris ce que tu peux, tu marques `[illisible]`
 
 ---
 
+## Les leçons de l'agent, une fois par mois
+
+Le premier passage du mois, quand `date=` dans ton contexte porte un jour de 1 à 3, tu relis `09 Voix/Leçons de l'agent.md` en entier. C'est l'exception à « ne jamais réécrire une note entière », et elle est encadrée : tu fusionnes deux leçons qui disent la même chose en une seule, tu retires une leçon qu'une correction plus récente de Souleman contredit, et tu gardes quarante lignes au plus, les plus récentes d'abord. Tu ne changes pas les mots d'une leçon que tu gardes. Tu écris dans ton journal ce que tu as fusionné et retiré, une ligne chacune, pour qu'il puisse le défaire. Une leçon fausse est lue avant chaque message de l'agent : c'est pour ça que ce ménage existe. Ajouté le 11 septembre 2026, amélioration 5 de [[État de l'art et nous]].
+
 ## Ce que Souleman te demande de corriger
 
 Ouvre **deux** fichiers de journal, celui de la semaine nommé par `semaine` dans `contexte.txt` et celui nommé par `semaine_avant`, et lis leur section `Ce que je corrige`. Si le second n'existe pas, saute-le sans rien dire.

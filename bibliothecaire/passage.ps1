@@ -421,6 +421,14 @@ if (Test-Path $export) {
     Note "export.ps1 introuvable, le cerveau de l agent ne sera pas rafraichi"
 }
 
+# 8 ter. Le tableau de bord, sans modele. 11 septembre 2026, amelioration 4.
+# Il lit les journaux hebdo des chefs et ecrit _Equipe\Tableau de bord.md.
+$tableau = 'C:\Obsidian\equipe\tableau.js'
+if (Test-Path $tableau) {
+    & node $tableau
+    Note "tableau de bord, code $LASTEXITCODE"
+}
+
 # 9. Marquer la journee comme faite
 Set-Content -Path $marqueur -Value $aujourdhui -Encoding utf8
 

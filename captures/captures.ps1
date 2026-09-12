@@ -638,6 +638,25 @@ foreach ($c in $aDeverser) {
         continue
     }
 
+    # Une ligne de stats de l agent, dans le journal hebdo du chef de cabinet.
+    # Le tableau de bord la lit. 11 septembre 2026.
+    if ($c.Type -eq 'stats' -and $mots.ContainsKey('cabinet_journal')) {
+        try {
+            $texte = (Get-Corps $c.Fichier.FullName) -replace "`r?`n", ' '
+            $semaine = Get-SemaineIso (Get-Date)
+            $chemin = Join-Path $coffre ($mots['cabinet_journal'] + '\' + $semaine + '.md')
+            $entete = @('---', 'type: journal', 'domaine: Personnel', '---', '', '# ' + $mots['cabinet_titre'] + ' ' + $semaine, '', $mots['cabinet_intro'], '', '## Jours', '')
+            Add-LigneNote $chemin $entete $texte
+            $copies = $copies + 1
+            $reussis += $c.Id
+            if ([string]::Compare($c.Id, $maxi, [StringComparison]::Ordinal) -gt 0) { $maxi = $c.Id }
+            Note "stats ajoutees : $texte"
+        } catch {
+            Note "ECHEC des stats pour $($c.Fichier.Name) : $($_.Exception.Message)"
+        }
+        continue
+    }
+
     # Une correction pour le bibliothecaire, dans son journal de la semaine.
     if ($c.Type -eq 'correction-biblio' -and $mots.ContainsKey('biblio')) {
         $texte = (Get-Corps $c.Fichier.FullName) -replace "`r?`n", ' '

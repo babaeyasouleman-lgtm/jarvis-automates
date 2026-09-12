@@ -47,3 +47,9 @@ corrige = ## Ce que je corrige
 objectifs = 09 Voix\Objectifs.md
 objectifs_titre = Objectifs
 objectifs_intro = Ce que Souleman veut absolument faire, dans ses mots : trois objectifs par semaine, une chose par jour, et ce qu'il en a dit le soir. Écrit par le PC à partir de ce qu'il dit à son chef de cabinet sur WhatsApp. Une ligne par entrée, la plus ancienne en haut.
+
+# Ajoutes le 11 septembre 2026 : la ligne de stats de l agent, deposee chaque
+# soir, va dans le journal hebdo du chef de cabinet. Le tableau de bord la lit.
+cabinet_journal = _Équipe\cabinet
+cabinet_titre = Journal du chef de cabinet, semaine
+cabinet_intro = Une ligne par jour, déposée par l'agent WhatsApp à 22 h 30 : reçus, envoyés, appels, coût équivalent. Le tableau de bord la lit. Les chiffres de la semaine, bloc chiffres:, viennent à la revue du dimanche.
