@@ -52,7 +52,8 @@ hérités) : il ne lisait que les versions de secours, longues et pleines de mod
 dans `d80ac47` : plafonds à 4000, 2000, 1000, 2000, un message coupé se refait plus court, la
 liste de secours est courte et tait ce qui est dit. Et un billet prêt se ferme depuis WhatsApp,
 type `valide-billet`, ce qui n'existait pas : la démo Dinelb est revenue quatre matins. Les
-deux billets prêts sont passés à fait à la main le 12. Premier vrai briefing attendu le 13 à 8 h.
+deux billets prêts sont passés à fait à la main le 12. Puis `eeab0e7` : avant 5 h, « demain » veut dire
+le jour qui commence, et un message cité est toujours une réponse. Premier vrai briefing attendu le 13 à 8 h.
 Prochaine : la session 3, le chef Déclic. Le preneur ne lit qu'une consigne, quatre
 corrections l'attendent, écrites dans la section de la session 3.
 
@@ -152,6 +153,8 @@ commet tout, ce fichier compris.
 - Sonnet 5 écrit plus long que Sonnet 4. Un `maxTokens` hérité coupe le message, et le filet
   déterministe part à sa place, tous les jours, sans que rien ne le dise à Souleman. Chercher
   `TRONQUE` dans les journaux Railway avant de croire qu'un prompt ne marche pas.
+- Un projet ou un domaine `statut: en pause` est éteint pour l'agent et pour la revue. « Sur
+  pause » dit sur WhatsApp doit changer le statut de la note, pas barrer une ligne.
 - Un billet « à valider » ne devient « fait » que par `valide-billet` depuis WhatsApp ou à la
   main dans Obsidian. Tant qu'il est à valider, il revient dans « Tout » et dans la liste de secours.
 - `constantes.test.js` refuse tout littéral d'état de billet hors de `billets.js` : un

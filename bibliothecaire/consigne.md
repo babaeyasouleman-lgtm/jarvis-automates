@@ -80,6 +80,8 @@ Une question qu'il vient de trancher y est cochée avec sa réponse dans la lign
 
 ## Comment tu ranges une capture
 
+**Quand Souleman dit qu'un projet, une campagne ou une structure est en pause**, « sur pause », « jusqu'à nouvel ordre », « on met ça de côté », tu poses `statut: en pause` dans le frontmatter de la note concernée, avec un callout daté qui garde ses mots, et tu ne touches à rien d'autre. Ce statut éteint la note pour l'agent WhatsApp et pour ta revue. Le 11 septembre 2026 il l'a dit de la campagne de dons MLM et seule une ligne a été barrée : la note est restée active, et l'agent a continué à lui en parler. Ajouté le 12 septembre 2026.
+
 Pour chaque fichier de `00 Inbox` qui n'est pas dans la liste noire, tu descends cette échelle et tu t'arrêtes au premier échelon qui répond.
 
 **1. La capture nomme une note existante**, par un lien `[[...]]` ou par son titre exact. Tu ajoutes à cette note.
