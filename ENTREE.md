@@ -39,15 +39,21 @@ après la comparaison avec l'état de l'art et la synthèse de Lauren Tan : « j
 moi ce soit pareil, dans la mesure du possible ». Trois sessions, A vérification, B mesure,
 C mémoire et persona, dans `_Équipe\État de l'art et nous.md`, section « Ce qu'on fait
 maintenant ». L'amélioration 1 est faite le soir même, `domain/verifier.js`, commit `agent`
-poussé. La session A est faite en entier le même soir : la preuve obligatoire dans Règles communes
-et le gabarit, le crochet `pre-push`, la carte du code. Prochaine : la session B, la mesure.
+poussé. Les trois sessions sont faites le même soir, commit `969c18b` : A, la vérification, la
+preuve, le crochet `pre-push`, la carte du code ; B, le banc d'évaluation sur 130 vrais messages
+(`agent/evals`), la ligne de stats par jour (`_Équipe/cabinet/AAAA-Sxx.md`), le plafond
+`PLAFOND_JOUR_USD`, le tableau de bord (`equipe/tableau.js`, étape 8 ter du passage) ; C, les
+leçons consolidées chaque mois par le bibliothécaire, la matière marquée, la persona qui agit,
+`_Équipe/Incidents.md`. **Deux gestes de Souleman** : poser `ANTHROPIC_API_KEY` sur le PC pour le
+premier chiffre du banc (`node evals/classifier.js`), et vivre sa journée avec le chef de cabinet.
+Rien de tout ça n'a encore tourné en réel : première nuit, premier 22 h 30, premier dimanche.
 Prochaine : la session 3, le chef Déclic. Le preneur ne lit qu'une consigne, quatre
 corrections l'attendent, écrites dans la section de la session 3.
 
 Railway déploie la branche `claude/dazzling-mccarthy-H0YrY`, pas `main`. Avant de
 toucher au dépôt : `git log origin/claude/dazzling-mccarthy-H0YrY..HEAD`.
 
-Tests : `cd C:\Projets\openwa-agent\agent && node --test`. 354 tests, 354 verts,
+Tests : `cd C:\Projets\openwa-agent\agent && node --test`. 359 tests, 359 verts,
 mesuré le 11 septembre 2026. Le chiffre de référence est celui que tu mesures.
 
 ## Comment on travaille, en six lignes
@@ -85,7 +91,7 @@ a lu pendant tous les appels qui suivent. Les 15 % d'appels de la fin pèsent 24
 | Le plan complet, 16 phases, failles connues | `C:\Obsidian\Second Brain\02 Projets\Plan Jarvis.md` | 199 Ko | Par grep. Tableau lignes 15 à 32, règles 36 à 48, failles à partir de 1537 |
 | Contrat pour ajouter une capacité à l'agent | `C:\Projets\openwa-agent\agent\src\application\intents\LISEZMOI.md` | 14 Ko | Seulement si la phase ajoute ou modifie une intention |
 | Code de l'agent, 14 000 lignes, 20 % de commentaires qui racontent le pourquoi | `C:\Projets\openwa-agent\agent\src` | 620 Ko | Par sous-agent. L'en-tête d'un fichier dit pourquoi il existe et quel bug il répare |
-| Tests, 33 fichiers | `C:\Projets\openwa-agent\agent\test` | 225 Ko | Jamais en lecture, seulement en exécution. Le crochet `.githooks/pre-push` les lance avant tout push, et refuse si un est rouge |
+| Tests, 35 fichiers | `C:\Projets\openwa-agent\agent\test` | 225 Ko | Jamais en lecture, seulement en exécution. Le crochet `.githooks/pre-push` les lance avant tout push, et refuse si un est rouge |
 | Carte du code de l'agent, une ligne par fichier | `C:\Projets\openwa-agent\agent\CARTE.md` | 12 Ko | Par un sous-agent Explore, en premier. Régénérer avec `node scripts/carte.js` après un fichier neuf, le crochet refuse le push sinon |
 | Histoire du dépôt avant le plan, juin à juillet 2026 | `C:\Projets\openwa-agent\CLAUDE.md` | 77 Ko | Jamais à l'entrée. Grep si une session touche Notion, Telegram, le pairing WhatsApp ou les variables d'environnement |
 | Les automates du PC, un dossier chacun : consigne.md, un .ps1, journal.log | `C:\Obsidian\{bibliothecaire, matin, courriels, reunions, transcriptions, captures, cerveau, billets, cabinet, filet}` | 65 Ko de consignes | La consigne de l'automate touché, et elle seule |
@@ -172,6 +178,10 @@ commet tout, ce fichier compris.
   `objectif` de `captures.ps1` non plus. Une journée vécue les dira.
 - Rien ne réveille un billet en `attente` quand son enfant est `fait`. Session 3,
   dans `preneur.ps1`. D'ici là l'arbitre le fait à la main, sa consigne le dit.
+- Tout ce qui a été construit le 11 septembre au soir attend son premier tour réel : le
+  courriel, le plan de demain, les blocs du dimanche, la ligne de stats, le plafond, l'option 1,
+  l'audit du mois, la consolidation des leçons, le tableau de bord. La première ligne de
+  `_Équipe/cabinet/2026-S37.md` le 12 septembre dit si la chaîne tient.
 - Le courriel de la part de S-WEB est construit, `infrastructure/courriel.js`, jamais
   joué en réel. Le jeton de `google.local.json` porte gmail.send depuis le 7 septembre ;
   si Railway refuse le premier envoi, c'est que `GOOGLE_CALENDAR_TOKEN` sur Railway n'est
