@@ -322,6 +322,33 @@ function Set-Texte($chemin, $lignes, $crlf) {
 
 # Ajouter une reponse sous la section Question d un billet, et le debloquer.
 # Retourne $true si le fichier a ete ecrit.
+# Un billet valide : la ligne sous Question, et etat: fait. 12 septembre 2026.
+function Set-BilletFait($fichier, $texte, $mots, $jour) {
+    $brut = [IO.File]::ReadAllText($fichier.FullName)
+    $crlf = $brut.Contains("`r`n")
+    $lignes = @($brut -split "`r?`n")
+    $marque = $mots['question']
+    $etiquette = if ($mots.ContainsKey('valide')) { $mots['valide'] } else { 'Valide par Souleman' }
+    $bloc = @('', ('**{0}, {1}** : {2}' -f $etiquette, $jour, $texte), '')
+    $debut = -1
+    for ($i = 0; $i -lt $lignes.Count; $i++) { if ($lignes[$i].Trim() -eq $marque) { $debut = $i; break } }
+    if ($debut -lt 0) {
+        $lignes = @($lignes) + @('', $marque) + $bloc
+    } else {
+        $fin = $lignes.Count
+        for ($i = $debut + 1; $i -lt $lignes.Count; $i++) { if ($lignes[$i] -match '^##\s') { $fin = $i; break } }
+        $avant = @($lignes[0..($fin - 1)])
+        $apres = @()
+        if ($fin -lt $lignes.Count) { $apres = @($lignes[$fin..($lignes.Count - 1)]) }
+        $lignes = $avant + $bloc + $apres
+    }
+    for ($i = 0; $i -lt $lignes.Count; $i++) {
+        if ($lignes[$i] -match '^etat:\s*(.*)$') { $lignes[$i] = 'etat: ' + $mots['fait']; break }
+    }
+    Set-Texte $fichier.FullName $lignes $crlf
+    return $true
+}
+
 function Add-Reponse($fichier, $texte, $mots, $jour) {
     $brut = [IO.File]::ReadAllText($fichier.FullName)
     $crlf = $brut.Contains("`r`n")
@@ -474,7 +501,7 @@ foreach ($f in (Get-ChildItem -Path $source -Filter '*.md' -File | Sort-Object N
     }
     # Un billet arrive avant mots.txt : on le laisse dans le depot sans
     # l inscrire nulle part. Il repartira au passage suivant, entier.
-    if (-not $motsOk -and ($type -eq 'billet' -or $type -eq 'reponse-billet')) {
+    if (-not $motsOk -and ($type -eq 'billet' -or $type -eq 'reponse-billet' -or $type -eq 'valide-billet')) {
         Note "billet retenu faute de mots.txt : $($f.Name)"
         continue
     }
@@ -515,6 +542,32 @@ foreach ($c in $aDeverser) {
     # Une reponse ne cree pas de fichier : elle en modifie un. C est le seul
     # cas ou ce script ecrit dans une note existante du coffre, et c est
     # borne a une section et a une cle.
+    # Un billet pret que Souleman a valide sur WhatsApp passe a fait. Le
+    # 12 septembre 2026 : rien ne le faisait, et un billet pret revenait chaque
+    # matin jusqu a ce qu il l edite a la main dans Obsidian.
+    if ($c.Type -eq 'valide-billet') {
+        if (-not $c.Vise) {
+            Note "validation sans cible, deversee dans 00 Inbox : $($c.Fichier.Name)"
+        } else {
+            $cibleBillet = Get-Billet $billets $c.Vise
+            if ($null -eq $cibleBillet) {
+                Note "billet $($c.Vise) introuvable, la validation repartira au passage suivant"
+                continue
+            }
+            try {
+                $texte = Get-Corps $c.Fichier.FullName
+                Set-BilletFait $cibleBillet $texte $mots $jour | Out-Null
+                $copies = $copies + 1
+                $reussis += $c.Id
+                if ([string]::Compare($c.Id, $maxi, [StringComparison]::Ordinal) -gt 0) { $maxi = $c.Id }
+                Note "billet $($cibleBillet.Name) valide, passe a fait"
+            } catch {
+                Note "ECHEC de la validation pour $($c.Fichier.Name) : $($_.Exception.Message)"
+            }
+            continue
+        }
+    }
+
     if ($c.Type -eq 'reponse-billet') {
         if (-not $c.Vise) {
             Note "reponse sans cible, deversee dans 00 Inbox : $($c.Fichier.Name)"

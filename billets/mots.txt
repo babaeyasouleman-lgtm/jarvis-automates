@@ -53,3 +53,6 @@ objectifs_intro = Ce que Souleman veut absolument faire, dans ses mots : trois o
 cabinet_journal = _Équipe\cabinet
 cabinet_titre = Journal du chef de cabinet, semaine
 cabinet_intro = Une ligne par jour, déposée par l'agent WhatsApp à 22 h 30 : reçus, envoyés, appels, coût équivalent. Le tableau de bord la lit. Les chiffres de la semaine, bloc chiffres:, viennent à la revue du dimanche.
+
+# Ajoute le 12 septembre 2026 : un billet pret que Souleman valide sur WhatsApp.
+valide = Validé par Souleman

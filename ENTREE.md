@@ -46,14 +46,20 @@ preuve, le crochet `pre-push`, la carte du code ; B, le banc d'évaluation sur 1
 leçons consolidées chaque mois par le bibliothécaire, la matière marquée, la persona qui agit,
 `_Équipe/Incidents.md`. **Deux gestes de Souleman** : poser `ANTHROPIC_API_KEY` sur le PC pour le
 premier chiffre du banc (`node evals/classifier.js`), et vivre sa journée avec le chef de cabinet.
-Rien de tout ça n'a encore tourné en réel : première nuit, premier 22 h 30, premier dimanche.
+Le 12 septembre au matin, son export WhatsApp et les journaux Railway ont montré que **tout
+message du modèle partait tronqué depuis le 10** (Sonnet 5 écrit plus long que les plafonds
+hérités) : il ne lisait que les versions de secours, longues et pleines de mode d'emploi. Réparé
+dans `d80ac47` : plafonds à 4000, 2000, 1000, 2000, un message coupé se refait plus court, la
+liste de secours est courte et tait ce qui est dit. Et un billet prêt se ferme depuis WhatsApp,
+type `valide-billet`, ce qui n'existait pas : la démo Dinelb est revenue quatre matins. Les
+deux billets prêts sont passés à fait à la main le 12. Premier vrai briefing attendu le 13 à 8 h.
 Prochaine : la session 3, le chef Déclic. Le preneur ne lit qu'une consigne, quatre
 corrections l'attendent, écrites dans la section de la session 3.
 
 Railway déploie la branche `claude/dazzling-mccarthy-H0YrY`, pas `main`. Avant de
 toucher au dépôt : `git log origin/claude/dazzling-mccarthy-H0YrY..HEAD`.
 
-Tests : `cd C:\Projets\openwa-agent\agent && node --test`. 359 tests, 359 verts,
+Tests : `cd C:\Projets\openwa-agent\agent && node --test`. 362 tests, 362 verts,
 mesuré le 11 septembre 2026. Le chiffre de référence est celui que tu mesures.
 
 ## Comment on travaille, en six lignes
@@ -143,6 +149,11 @@ commet tout, ce fichier compris.
   plus rien mais vit encore sur le volume Railway.
 - Les identifiants de capture sont horodatés à l'heure de l'agent, en UTC.
 - Un jeton de dépôt n'atteint jamais un journal.
+- Sonnet 5 écrit plus long que Sonnet 4. Un `maxTokens` hérité coupe le message, et le filet
+  déterministe part à sa place, tous les jours, sans que rien ne le dise à Souleman. Chercher
+  `TRONQUE` dans les journaux Railway avant de croire qu'un prompt ne marche pas.
+- Un billet « à valider » ne devient « fait » que par `valide-billet` depuis WhatsApp ou à la
+  main dans Obsidian. Tant qu'il est à valider, il revient dans « Tout » et dans la liste de secours.
 - `constantes.test.js` refuse tout littéral d'état de billet hors de `billets.js` : un
   bilan d'objectif s'appelle « accompli », jamais « fait ». Payé le 11 septembre.
 - `node --test <dossier>` ne trouve rien sous node 24 : donner le fichier.
