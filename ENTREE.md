@@ -44,8 +44,16 @@ preuve, le crochet `pre-push`, la carte du code ; B, le banc d'évaluation sur 1
 (`agent/evals`), la ligne de stats par jour (`_Équipe/cabinet/AAAA-Sxx.md`), le plafond
 `PLAFOND_JOUR_USD`, le tableau de bord (`equipe/tableau.js`, étape 8 ter du passage) ; C, les
 leçons consolidées chaque mois par le bibliothécaire, la matière marquée, la persona qui agit,
-`_Équipe/Incidents.md`. **Deux gestes de Souleman** : poser `ANTHROPIC_API_KEY` sur le PC pour le
-premier chiffre du banc (`node evals/classifier.js`), et vivre sa journée avec le chef de cabinet.
+`_Équipe/Incidents.md`. **Le banc a tourné le 12 septembre** : 63,4 % à froid, 75,4 % avec le contexte et la date de
+chaque message, 122 messages. Puis 83,6 % après les règles du 12 septembre au soir, commit `c343810` :
+c est le chiffre de référence. Relancer après chaque changement du classifier : `node evals/classifier.js`,
+la clé est sur le PC. Reste à Souleman : vivre sa journée avec le chef de cabinet.
+
+**Session fermée le 12 septembre 2026 à midi.** Dernier commit agent `c343810`, 366 tests verts,
+tout déployé. La session 2 reste ouverte tant qu'une journée réelle n'a pas été vécue avec les
+bons plafonds : premier journal ce soir 22 h 30, premier vrai briefing le 13 à 8 h, premier bilan
+le 13 à 19 h. **La suite** : lundi 14, une session courte qui lit son retour et l'export de trois
+jours, coche la session 2 dans `Construction de l'équipe.md`, et ouvre la session 3, Déclic.
 Le 12 septembre au matin, son export WhatsApp et les journaux Railway ont montré que **tout
 message du modèle partait tronqué depuis le 10** (Sonnet 5 écrit plus long que les plafonds
 hérités) : il ne lisait que les versions de secours, longues et pleines de mode d'emploi. Réparé
